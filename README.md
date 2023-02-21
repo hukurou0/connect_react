@@ -3,3 +3,7 @@ npm 8.19.3
 
 雛形作成
 npx create-react-app connect --template typescript
+
+npm i react-router-dom
+
+npm i だけでいけるっぽい？
