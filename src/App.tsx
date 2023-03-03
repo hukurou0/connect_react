@@ -1,11 +1,22 @@
-import './App.css';
-import ApiFetch from './components/ApiActions';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './pages/Layout';
+import Home from './pages/Home';
+import NoPage from './pages/NoPage';
+import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <ApiFetch />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="logIn" element={<LogIn />} />
+          <Route path="signUp" element={<SignUp />} />
+        </Route>
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
