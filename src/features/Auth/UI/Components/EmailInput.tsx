@@ -12,8 +12,8 @@ const EmailInput = ({ email, setEmail }: Params) => {
     <TextInput
       withAsterisk
       required
-      error={isVailed ? null : "Invailed email"}
-      label="Email"
+      error={isVailed ? null : "無効なアドレスです"}
+      label="メールアドレス"
       placeholder="your@email.com"
       value={email}
       onChange={setEmail}
