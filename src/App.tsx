@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './Layout';
-import Home from '../Home';
-import NoPage from '../NoPage';
-import LogIn from "../Auth/LogIn";
-import SignUp from "../Auth/SignUp";
+import Home from './features/Home/Home';
+import NoPage from './features/NoPage/NoPage';
+import LogIn from "./features/Auth/UI/Screens/LogInScreen";
+import SignUp from "./features/Auth/UI/Screens/SignUpScreen";
 
 const App = () => {
   return (

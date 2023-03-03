@@ -1,5 +1,5 @@
 import { createStyles, Container, Title, Text, Button, Group, rem } from '@mantine/core';
-import { Illustration } from '../assets/404Illustration';
+import { Illustration } from '../../common/Assets/404Illustration';
 import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({

@@ -29,7 +29,7 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons-react';
-import logo from '../assets/logo.jpg';
+import logo from '../../Assets/logo.jpg';
 import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
@@ -151,10 +151,10 @@ export const HeaderMenu = () => {
     <Box pb={120}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
-          <Link to="/" style={{textDecoration: 'none'}}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Flex align="center" columnGap={8}>
               <Image width={30} height={30} src={logo} alt="Logo" />
-              <Text style={{color: '#48AAF9', fontSize: 18}}>Connect</Text>
+              <Text style={{ color: '#48AAF9', fontSize: 18 }}>Connect</Text>
             </Flex>
           </Link>
 

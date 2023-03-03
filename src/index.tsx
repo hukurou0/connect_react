@@ -1,9 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './pages/Base/App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MantineProvider } from '@mantine/core';
+import { RecoilRoot } from 'recoil';
 
 const container = createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,9 +12,11 @@ const container = createRoot(
 
 container.render(
   <React.StrictMode>
-    <MantineProvider>
-      <App />
-    </MantineProvider>
+    <RecoilRoot>
+      <MantineProvider>
+        <App />
+      </MantineProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );
 
