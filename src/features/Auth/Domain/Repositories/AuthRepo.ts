@@ -9,6 +9,13 @@ interface LogInParams {
   completion: (data: any) => void,
 }
 
+interface SignUpParams {
+  username: string,
+  password: string,
+  department: number,
+  completion: (data: any) => void,
+}
+
 export const logIn = ({ username, password, completion }: LogInParams) => {
   axios.post(BASEURL + LOGIN, {
     data: {
@@ -16,7 +23,7 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
       password: password
     }
   })
-    .then(response => {
+    .then((response: AxiosResponse) => {
       console.log(response.status);
 
       const data = response.data;
@@ -26,16 +33,9 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
       }
       completion(logInResponse);
     })
-    .catch(error => {
-      console.log(error);
+    .catch((error: AxiosError) => {
+      console.log(error.message);
     });
-}
-
-interface SignUpParams {
-  username: string,
-  password: string,
-  department: number,
-  completion: (data: any) => void,
 }
 
 export const signUp = ({ username, password, department, completion }: SignUpParams) => {

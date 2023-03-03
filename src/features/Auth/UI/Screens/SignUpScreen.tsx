@@ -1,5 +1,5 @@
 import { Alert, Button, Checkbox, Flex, Overlay, Space, Stack, Text } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInputState } from '@mantine/hooks';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { AuthResponse } from '../../Domain/Entities/AuthEntity';
@@ -9,6 +9,9 @@ import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import { DepartmentPicker } from '../Components/DepartmentPicker';
 import isVailed from '../../../../lib/helpers/validation';
 import { signUp } from '../../Domain/Repositories/AuthRepo';
+import { fetchDepartments } from '../../Domain/Repositories/DepartmentRepo';
+import { useRecoilState } from 'recoil';
+import { departmentsState } from '../../Hooks/DepartmentsState';
 
 const SignUp = () => {
   const [post, setPost] = useState<AuthResponse>();
@@ -16,13 +19,18 @@ const SignUp = () => {
   const [email, setEmail] = useInputState("");
   const [password, setPassword] = useInputState("");
   const [selectedDepartment, setSelection] = useState<DepartmentData | undefined>(undefined);
+  const [departments, setDepartments] = useRecoilState(departmentsState);
   const [isChecked, setCheckStatus] = useInputState(false);
   const [isErrorShown, setErrorVisivility] = useState(false);
+
+  useEffect(() => {
+    fetchDepartments(setDepartments);
+  }, []);
 
   return (
     <>
       <Stack align="center">
-        <h2>Sign Up</h2>
+        <h2>登録</h2>
 
         <Stack w={300} spacing={15}>
           <EmailInput email={email} setEmail={setEmail} />
@@ -40,7 +48,7 @@ const SignUp = () => {
             checked={isChecked}
             onChange={setCheckStatus}
             mt="md"
-            label="I agree to sell my privacy"
+            label="プライバーポリシーに同意する"
           />
 
           <Space mt="md" />
