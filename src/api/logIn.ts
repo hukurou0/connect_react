@@ -1,19 +1,25 @@
 import axios from "axios";
 import { BASEURL, LOGIN } from "../constants/urls";
-import { LogInResponse } from "../../types";
+import { AuthResponse } from "../../types";
 
-export const logIn = (completion: (data: any) => void) => {
+interface LogInParams {
+  username: string,
+  password: string,
+  completion: (data: any) => void,
+}
+
+export const logIn = ({username, password, completion}: LogInParams) => {
   axios.post(BASEURL + LOGIN, {
     data: {
-      username: "aaaa",
-      password: "aaaa"
+      username: username,
+      password: password
     }
   })
     .then(response => {
       console.log(response.status);
 
       const data = response.data;
-      const logInResponse: LogInResponse = {
+      const logInResponse: AuthResponse = {
         status_code: data.status_code,
         data: data.data
       }
