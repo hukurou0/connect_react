@@ -39,7 +39,6 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
 }
 
 export const signUp = ({ username, password, department, completion }: SignUpParams) => {
-
   axios.post(BASEURL + SIGNUP, {
     data: {
       username: username,
@@ -47,30 +46,30 @@ export const signUp = ({ username, password, department, completion }: SignUpPar
       department: department
     }
   })
-    .then((response: AxiosResponse) => {
-      console.log(response.status);
+  .then((response: AxiosResponse) => {
+    console.log(response.status);
 
-      const data = response.data;
-      const authResponse: AuthResponse = {
-        status_code: data.status_code,
-        data: data.data
-      }
-      completion(authResponse);
-    })
-    .catch((error: AxiosError) => {
-      const errorData: APIError = {
-        status: error.response?.status ?? 0,
-        code: error.code ?? "",
-        message: error.message
-      }
+    const data = response.data;
+    const authResponse: AuthResponse = {
+      status_code: data.status_code,
+      data: data.data
+    }
+    completion(authResponse);
+  })
+  .catch((error: AxiosError) => {
+    const errorData: APIError = {
+      status: error.response?.status ?? 0,
+      code: error.code ?? "",
+      message: error.message
+    }
 
-      const authResponse: AuthResponse = {
-        status_code: error.response?.status ?? 0,
-        data: {},
-        error: errorData
-      }
-      completion(authResponse);
+    const authResponse: AuthResponse = {
+      status_code: error.response?.status ?? 0,
+      data: {},
+      error: errorData
+    }
+    completion(authResponse);
 
-      console.log(error);
-    });
+    console.log(error.response?.data);
+  });
 }

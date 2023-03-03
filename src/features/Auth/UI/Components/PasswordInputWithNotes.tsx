@@ -13,10 +13,10 @@ function PasswordRequirement({ meets, label }: { meets: boolean; label: string }
 }
 
 const requirements = [
-  { re: /[0-9]/, label: 'Includes number' },
-  { re: /[a-z]/, label: 'Includes lowercase letter' },
-  { re: /[A-Z]/, label: 'Includes uppercase letter' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
+  { re: /[0-9]/, label: '数字を含んでください' },
+  { re: /[a-z]/, label: '小文字を含んでください' },
+  { re: /[A-Z]/, label: '大文字を含んでください' },
+  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: '特殊文字を含んでください' },
 ];
 
 function getStrength(password: string) {
@@ -61,8 +61,8 @@ export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
         withAsterisk
         value={password}
         onChange={setPassword}
-        placeholder="Your password"
-        label="Password"
+        placeholder="パスワード"
+        label="パスワード"
         required
       />
 
@@ -70,7 +70,7 @@ export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
         {bars}
       </Group>
 
-      <PasswordRequirement label="Has at least 6 characters" meets={password.length > 5} />
+      <PasswordRequirement label="パスワードは6文字以上で設定してください" meets={password.length > 5} />
       {checks}
     </div>
   );

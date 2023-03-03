@@ -6,10 +6,9 @@ export const fetchDepartments = (completion: (data: DepartmentData[]) => void) =
   axios.get(BASEURL + GET_DEPARTMENTS)
     .then((response: AxiosResponse) => {
       console.log(response);
+      completion(response.data.data);
     })
     .catch((error: AxiosError) => {
-      console.log("ERROR");
-      
       console.log(error);
     });
 }
