@@ -1,5 +1,5 @@
 import { Stack } from '@mantine/core';
-import ApiFetch from '../components/ApiActions';
+import ApiFetch from '../../components/ApiActions';
 
 const SignUp = () => {
   return (

@@ -1,7 +1,7 @@
-import { HeaderMenu } from '../components/Header';
-import { FooterSocial } from '../components/Footer';
+import { HeaderMenu } from '../../components/Header';
+import { FooterSocial } from '../../components/Footer';
 import { Outlet } from 'react-router-dom';
-import { createStyles, Stack, Space } from '@mantine/core';
+import { createStyles, Stack } from '@mantine/core';
 
 
 const useStyles = createStyles((theme) => ({
