@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { BASEURL, LOGIN, SIGNUP } from "../../../lib/constants/urls";
-import { APIError } from "../../../common/Domain/Entities/ApiBaseModel";
-import { AuthResponse } from "../Domain/Entities/AuthEntity";
+import { BASEURL, LOGIN, SIGNUP } from "../../../../lib/constants/urls";
+import { APIError } from "../../../../common/Domain/Entities/ApiBaseModel";
+import { AuthResponse } from "../Entities/AuthEntity";
 
 interface LogInParams {
   username: string,

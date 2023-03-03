@@ -8,7 +8,7 @@ import EmailInput from '../Components/EmailInput';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import { DepartmentPicker } from '../Components/DepartmentPicker';
 import isVailed from '../../../../lib/helpers/validation';
-import { signUp } from '../../Repositories/AuthRepo';
+import { signUp } from '../../Domain/Repositories/AuthRepo';
 
 const SignUp = () => {
   const [post, setPost] = useState<AuthResponse>();
