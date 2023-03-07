@@ -70,6 +70,6 @@ export const signUp = ({ username, password, department, completion }: SignUpPar
     }
     completion(authResponse);
 
-    console.log(error.response?.data);
+    console.log(error.response);
   });
 }

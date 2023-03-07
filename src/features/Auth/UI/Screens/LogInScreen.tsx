@@ -6,11 +6,12 @@ import { logIn } from "../../Domain/Repositories/AuthRepo";
 import { useState } from "react";
 import { AuthResponse } from "../../Domain/Entities/AuthEntity";
 import { IconAlertCircle } from "@tabler/icons-react";
+import UsernameInput from "../Components/UsernameInput";
 
 const LogIn = () => {
   const [post, setPost] = useState<AuthResponse>();
   const [isErrorShown, setErrorVisivility] = useState(false);
-  const [email, setEmail] = useInputState("");
+  const [username, setUsername] = useInputState("");
   const [password, setPassword] = useInputState("");
 
   return (
@@ -19,22 +20,19 @@ const LogIn = () => {
         <h2>ログイン</h2>
 
         <Stack w={300} spacing={15}>
-          <EmailInput email={email} setEmail={setEmail} />
+          <UsernameInput username={username} setUsername={setUsername} />
 
           <PasswordInputWithNotes password={password} setPassword={setPassword} />
 
           <Space mt="md" />
 
           <Button onClick={() => {
-            console.log(email);
-            console.log(password);
-
             logIn({
-              username: email,
+              username: username,
               password: password,
               completion: setPost
             })
-          }}>Submit</Button>
+          }}>ログイン</Button>
         </Stack>
 
         <p>{post?.status_code ?? "FAIL"}</p>

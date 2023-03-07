@@ -12,10 +12,12 @@ import { signUp } from '../../Domain/Repositories/AuthRepo';
 import { fetchDepartments } from '../../Domain/Repositories/DepartmentRepo';
 import { useRecoilState } from 'recoil';
 import { departmentsState } from '../../Hooks/DepartmentsState';
+import UsernameInput from '../Components/UsernameInput';
 
 const SignUp = () => {
   const [post, setPost] = useState<AuthResponse>();
 
+  const [username, setUsername] = useInputState("");
   const [email, setEmail] = useInputState("");
   const [password, setPassword] = useInputState("");
   const [selectedDepartment, setSelection] = useState<DepartmentData | undefined>(undefined);
@@ -33,6 +35,8 @@ const SignUp = () => {
         <h2>登録</h2>
 
         <Stack w={300} spacing={15}>
+          <UsernameInput username={username} setUsername={setUsername} />
+
           <EmailInput email={email} setEmail={setEmail} />
 
           <PasswordInputWithNotes password={password} setPassword={setPassword} />
@@ -55,10 +59,10 @@ const SignUp = () => {
 
           <Button onClick={() => {
             console.log(selectedDepartment);
-            console.log(email);
+            console.log(username);
             console.log(password);
 
-            const isVailedInputs = isVailed(email, password, selectedDepartment);
+            const isVailedInputs = isVailed(username, password, selectedDepartment);
 
             if (!isVailedInputs || !isChecked) {
               setErrorVisivility(!isErrorShown);
@@ -66,12 +70,12 @@ const SignUp = () => {
             }
 
             signUp({
-              username: email,
+              username: username,
               password: password,
               department: selectedDepartment!.id, // After null checking
               completion: setPost
             })
-          }}>Submit</Button>
+          }}>登録</Button>
         </Stack>
 
         <p>{post?.status_code ?? "FAIL"}</p>
