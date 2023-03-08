@@ -124,7 +124,7 @@ const mockdata = [
   },
 ];
 
-export const HeaderMenu = () => {
+export const PublicHeaderMenu = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();

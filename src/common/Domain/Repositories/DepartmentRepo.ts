@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { BASEURL, GET_DEPARTMENTS } from "../../../../lib/constants/urls";
+import { BASEURL, GET_DEPARTMENTS } from "../../../lib/constants/urls";
 import { DepartmentData } from "../Entities/DepartmentEntity";
 
 export const fetchDepartments = (completion: (data: DepartmentData[]) => void) => {

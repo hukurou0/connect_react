@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { createStyles, UnstyledButton, Menu, Group, rem } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useRecoilValue } from 'recoil';
-import { departmentsState } from '../../Hooks/DepartmentsState';
-import { DepartmentData } from '../../Domain/Entities/DepartmentEntity';
+import { departmentsState } from '../../../../common/Hooks/DepartmentsState';
+import { DepartmentData } from '../../../../common/Domain/Entities/DepartmentEntity';
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
   control: {

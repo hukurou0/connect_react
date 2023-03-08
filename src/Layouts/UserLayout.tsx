@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import { Stack } from '@mantine/core';
-import { HeaderMenu } from './common/UI/Components/Header';
-import { FooterSocial } from './common/UI/Components/Footer';
+import { UserHeaderMenu } from '../common/UI/Components/UserHeader';
+import { FooterSocial } from '../common/UI/Components/Footer';
 
-const Layout = () => {
+const UserLayout = () => {
   return (
     <Stack justify="space-between" style={{minHeight: '100vh'}}>
-      <HeaderMenu />
+      <UserHeaderMenu />
       <Outlet />
       <FooterSocial />
     </Stack>
   );
 }
 
-export default Layout;
+export default UserLayout;
