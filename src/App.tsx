@@ -1,27 +1,22 @@
-import React from 'react';
-import logo from './assets/logo.svg';
-import './App.css';
-import ApiFetch from './components/ApiActions';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './features/Home/Home';
+import NoPage from './features/NoPage/NoPage';
+import LogIn from './features/Auth/UI/Screens/LogInScreen';
+import SignUp from './features/Auth/UI/Screens/SignUpScreen';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <ApiFetch />
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="logIn" element={<LogIn />} />
+          <Route path="signUp" element={<SignUp />} />
+        </Route>
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
