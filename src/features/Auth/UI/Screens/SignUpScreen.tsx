@@ -3,18 +3,22 @@ import { useEffect, useState } from 'react';
 import { useInputState } from '@mantine/hooks';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { AuthResponse } from '../../Domain/Entities/AuthEntity';
-import { DepartmentData } from '../../Domain/Entities/DepartmentEntity';
+import { DepartmentData } from '../../../../common/Domain/Entities/DepartmentEntity';
 import EmailInput from '../Components/EmailInput';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import { DepartmentPicker } from '../Components/DepartmentPicker';
 import isVailed from '../../../../lib/helpers/validation';
 import { signUp } from '../../Domain/Repositories/AuthRepo';
-import { fetchDepartments } from '../../Domain/Repositories/DepartmentRepo';
+import { fetchDepartments } from '../../../../common/Domain/Repositories/DepartmentRepo';
 import { useRecoilState } from 'recoil';
-import { departmentsState } from '../../Hooks/DepartmentsState';
+import { departmentsState } from '../../../../common/Hooks/DepartmentsState';
 import UsernameInput from '../Components/UsernameInput';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  // Navigator
+  const navigate = useNavigate();
+
   const [post, setPost] = useState<AuthResponse>();
 
   const [username, setUsername] = useInputState("");
@@ -58,6 +62,10 @@ const SignUp = () => {
           <Space mt="md" />
 
           <Button onClick={() => {
+            // This is for test.
+            navigate('/user');
+            return;
+
             console.log(selectedDepartment);
             console.log(username);
             console.log(password);
@@ -73,7 +81,12 @@ const SignUp = () => {
               username: username,
               password: password,
               department: selectedDepartment!.id, // After null checking
-              completion: setPost
+              completion: (data) => {
+                setPost(data);
+                if (post?.status_code === 201) {
+                  navigate('/user');
+                }
+              }
             })
           }}>登録</Button>
         </Stack>

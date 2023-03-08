@@ -1,4 +1,4 @@
-import { APIError } from "../../../../common/Domain/Entities/ApiBaseModel"
+import { APIError } from "./ApiBaseModel"
 
 export type DepartmentsResponse = {
   status_code: number,
