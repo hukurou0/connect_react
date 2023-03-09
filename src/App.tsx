@@ -7,6 +7,7 @@ import LogIn from './features/Auth/UI/Screens/LogInScreen';
 import SignUp from './features/Auth/UI/Screens/SignUpScreen';
 import UserTop from './features/UserTop/UI/Screens/UserTopScreen';
 import Settings from './features/Settings/UI/Screens/Settings';
+import Userinfo from './features/Settings/UI/Screens/Userinfo';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="user/" element={<UserLayout />}>
           <Route index element={<UserTop />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="settings/userinfo" element={<Userinfo />} />
         </Route>
         <Route path="*" element={<NoPage />} />
       </Routes>

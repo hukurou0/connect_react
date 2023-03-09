@@ -32,7 +32,7 @@ const SignUp = () => {
   useEffect(() => {
     fetchDepartments(setDepartments);
   }, []);
-
+  console.log(departments);
   return (
     <>
       <Stack align="center">
@@ -60,7 +60,7 @@ const SignUp = () => {
           />
 
           <Space mt="md" />
-
+          
           <Button onClick={() => {
             // This is for test.
             navigate('/user');
