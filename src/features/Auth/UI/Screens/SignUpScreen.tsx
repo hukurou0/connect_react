@@ -1,106 +1,147 @@
-import { Alert, Button, Checkbox, Flex, Overlay, Space, Stack, Text } from '@mantine/core';
-import { useEffect, useState } from 'react';
-import { useInputState } from '@mantine/hooks';
-import { IconAlertCircle } from '@tabler/icons-react';
-import { AuthResponse } from '../../Domain/Entities/AuthEntity';
-import { DepartmentData } from '../../../../common/Domain/Entities/DepartmentEntity';
-import EmailInput from '../Components/EmailInput';
-import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
-import { DepartmentPicker } from '../Components/DepartmentPicker';
-import isVailed from '../../../../lib/helpers/validation';
-import { signUp } from '../../Domain/Repositories/AuthRepo';
-import { fetchDepartments } from '../../../../common/Domain/Repositories/DepartmentRepo';
-import { useRecoilState } from 'recoil';
-import { departmentsState } from '../../../../common/Hooks/DepartmentsState';
-import UsernameInput from '../Components/UsernameInput';
-import { useNavigate } from 'react-router-dom';
+import {
+    Alert,
+    Button,
+    Checkbox,
+    Flex,
+    Overlay,
+    Space,
+    Stack,
+    Text,
+} from "@mantine/core";
+import { useEffect, useState } from "react";
+import { useInputState } from "@mantine/hooks";
+import { IconAlertCircle } from "@tabler/icons-react";
+import { AuthResponse } from "../../Domain/Entities/AuthEntity";
+import { DepartmentData } from "../../../../common/Domain/Entities/DepartmentEntity";
+import EmailInput from "../Components/EmailInput";
+import { PasswordInputWithNotes } from "../Components/PasswordInputWithNotes";
+import { DepartmentPicker } from "../Components/DepartmentPicker";
+import isVailed from "../../../../lib/helpers/validation";
+import { signUp } from "../../Domain/Repositories/AuthRepo";
+import { fetchDepartments } from "../../../../common/Domain/Repositories/DepartmentRepo";
+import { useRecoilState } from "recoil";
+import { departmentsState } from "../../../../common/Hooks/DepartmentsState";
+import UsernameInput from "../Components/UsernameInput";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  // Navigator
-  const navigate = useNavigate();
+    // Navigator
+    const navigate = useNavigate();
 
-  const [post, setPost] = useState<AuthResponse>();
+    const [post, setPost] = useState<AuthResponse>();
 
-  const [username, setUsername] = useInputState("");
-  const [email, setEmail] = useInputState("");
-  const [password, setPassword] = useInputState("");
-  const [selectedDepartment, setSelection] = useState<DepartmentData | undefined>(undefined);
-  const [departments, setDepartments] = useRecoilState(departmentsState);
-  const [isChecked, setCheckStatus] = useInputState(false);
-  const [isErrorShown, setErrorVisivility] = useState(false);
+    const [username, setUsername] = useInputState("");
+    const [email, setEmail] = useInputState("");
+    const [password, setPassword] = useInputState("");
+    const [selectedDepartment, setSelection] = useState<
+        DepartmentData | undefined
+    >(undefined);
+    const [departments, setDepartments] = useRecoilState(departmentsState);
+    const [isChecked, setCheckStatus] = useInputState(false);
+    const [isErrorShown, setErrorVisivility] = useState(false);
 
-  useEffect(() => {
-    fetchDepartments(setDepartments);
-  }, []);
-  console.log(departments);
-  return (
-    <>
-      <Stack align="center">
-        <h2>登録</h2>
+    useEffect(() => {
+        fetchDepartments(setDepartments);
+    }, []);
 
-        <Stack w={300} spacing={15}>
-          <UsernameInput username={username} setUsername={setUsername} />
+    return (
+        <>
+            <Stack align="center">
+                <h2>登録</h2>
 
-          <EmailInput email={email} setEmail={setEmail} />
+                <Stack w={300} spacing={15}>
+                    <UsernameInput
+                        username={username}
+                        setUsername={setUsername}
+                    />
 
-          <PasswordInputWithNotes password={password} setPassword={setPassword} />
+                    <EmailInput email={email} setEmail={setEmail} />
 
-          <Space mt="md" />
+                    <PasswordInputWithNotes
+                        password={password}
+                        setPassword={setPassword}
+                    />
 
-          <Flex justify="space-between" align="center">
-            <Text>学部</Text>
-            <DepartmentPicker selectedDepartment={selectedDepartment} setSelection={setSelection} />
-          </Flex>
+                    <Space mt="md" />
 
-          <Checkbox
-            checked={isChecked}
-            onChange={setCheckStatus}
-            mt="md"
-            label="プライバーポリシーに同意する"
-          />
+                    <Flex justify="space-between" align="center">
+                        <Text>学部</Text>
+                        <DepartmentPicker
+                            selectedDepartment={selectedDepartment}
+                            setSelection={setSelection}
+                        />
+                    </Flex>
 
-          <Space mt="md" />
-          
-          <Button onClick={() => {
-            // This is for test.
-            navigate('/user');
-            return;
+                    <Checkbox
+                        checked={isChecked}
+                        onChange={setCheckStatus}
+                        mt="md"
+                        label="プライバーポリシーに同意する"
+                    />
 
-            console.log(selectedDepartment);
-            console.log(username);
-            console.log(password);
+                    <Space mt="md" />
 
-            const isVailedInputs = isVailed(username, password, selectedDepartment);
+                    <Button
+                        onClick={() => {
+                            // This is for test.
+                            navigate("/user");
+                            return;
 
-            if (!isVailedInputs || !isChecked) {
-              setErrorVisivility(!isErrorShown);
-              return;
-            }
+                            console.log(selectedDepartment);
+                            console.log(username);
+                            console.log(password);
 
-            signUp({
-              username: username,
-              password: password,
-              department: selectedDepartment!.id, // After null checking
-              completion: (data) => {
-                setPost(data);
-                if (post?.status_code === 201) {
-                  navigate('/user');
-                }
-              }
-            })
-          }}>登録</Button>
-        </Stack>
+                            const isVailedInputs = isVailed(
+                                username,
+                                password,
+                                selectedDepartment
+                            );
 
-        <p>{post?.status_code ?? "FAIL"}</p>
-      </Stack>
+                            if (!isVailedInputs || !isChecked) {
+                                setErrorVisivility(!isErrorShown);
+                                return;
+                            }
 
-      {isErrorShown && <Overlay center style={{ position: "fixed" }} onClick={() => setErrorVisivility(false)}>
-        <Alert icon={<IconAlertCircle size="1rem" />} title="Error" color="red" radius="lg" withCloseButton onClose={() => setErrorVisivility(false)}>
-          全項目を正しく入力してください。
-        </Alert>
-      </Overlay>}
-    </>
-  );
-}
+                            signUp({
+                                username: username,
+                                password: password,
+                                department: selectedDepartment!.id, // After null checking
+                                completion: (data) => {
+                                    setPost(data);
+                                    if (post?.status_code === 201) {
+                                        navigate("/user");
+                                    }
+                                },
+                            });
+                        }}
+                    >
+                        登録
+                    </Button>
+                </Stack>
+
+                <p>{post?.status_code ?? "FAIL"}</p>
+            </Stack>
+
+            {isErrorShown && (
+                <Overlay
+                    center
+                    style={{ position: "fixed" }}
+                    onClick={() => setErrorVisivility(false)}
+                >
+                    <Alert
+                        icon={<IconAlertCircle size="1rem" />}
+                        title="Error"
+                        color="red"
+                        radius="lg"
+                        withCloseButton
+                        onClose={() => setErrorVisivility(false)}
+                    >
+                        全項目を正しく入力してください。
+                    </Alert>
+                </Overlay>
+            )}
+        </>
+    );
+};
 
 export default SignUp;

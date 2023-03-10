@@ -7,11 +7,7 @@ const Settings = () => {
             <p>Settings</p>
             <Stack w={300} spacing={15}>
                 <Text>Account</Text>
-                <Button
-                    sx={{ color: "black", backgroundColor: "white" }}
-                    component={Link}
-                    to="userinfo"
-                >
+                <Button sx={{}} component={Link} to="userinfo">
                     個人情報
                 </Button>
                 <Text>Informatin</Text>
