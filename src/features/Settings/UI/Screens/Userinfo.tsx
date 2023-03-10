@@ -5,12 +5,15 @@ import { departmentsState } from "../../../../common/Hooks/DepartmentsState";
 import { useRecoilState } from "recoil";
 import { Button, Text, Flex } from "@mantine/core";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { BASEURL, MODIFY_DEPARTMENTS } from "../../../../lib/constants/urls";
+import {
+    BASEURL,
+    MODIFY_DEPARTMENTS,
+    GET_USERIFNO,
+} from "../../../../lib/constants/urls";
 import { DepartmentPicker } from "../../../Auth/UI/Components/DepartmentPicker";
 import { DepartmentData } from "../../../../common/Domain/Entities/DepartmentEntity";
 
 const Userinfo = () => {
-    const tempcontent = [{ username: "sung" }];
     const [departments, setDepartments] = useRecoilState(departmentsState);
     const [selectedDepartment, setSelection] = useState<
         DepartmentData | undefined
@@ -20,8 +23,43 @@ const Userinfo = () => {
         fetchDepartments(setDepartments);
     }, []);
 
-    console.log(departments);
-    // axios.get(BASEURL + );
+    // console.log(departments);
+
+    /* const fetchUserinfo = async () => {
+        const response = axios.get(BASEURL + GET_USERIFNO);
+        setUserinfo((await response).data);
+    };
+    useEffect(() => {
+        fetchUserinfo();
+    }, []); */
+
+    /* type UserinfoData = {
+        department: string;
+        mail: string;
+        username: string;
+    }; */
+
+    const [userinfo, setUserinfo] = useState<any>();
+    const fetchUserinfo = () => {
+        axios
+            .get(BASEURL + GET_USERIFNO)
+            .then((response: AxiosResponse) => {
+                console.log(response);
+                setUserinfo(response.data);
+            })
+            .catch((error: AxiosError) => {
+                console.log(error);
+            });
+    };
+    useEffect(() => {
+        fetchUserinfo();
+    }, []);
+
+    // const UserInfo = Object.entries(userinfo);
+    console.log(userinfo.data.mail);
+
+    //console.log(UserInfo.map((info) => `${info}`));
+    // console.log(departments);
 
     interface ModifyDepartmentParams {
         department: number;
@@ -41,7 +79,6 @@ const Userinfo = () => {
                 console.log(error);
             });
     };
-    console.log(selectedDepartment);
 
     return (
         <Stack align="center">
@@ -49,15 +86,15 @@ const Userinfo = () => {
             <Stack w={300} spacing={15}>
                 <Flex justify="space-between" align="center">
                     <Text>ユーザー名</Text>
-                    <Text>info</Text>
+                    <Text>{userinfo.data.username}</Text>
                 </Flex>
                 <Flex justify="space-between" align="center">
                     <Text>メールアドレス</Text>
-                    <Text>info</Text>
+                    <Text>{userinfo.data.mail}</Text>
                 </Flex>
                 <Flex justify="space-between" align="center">
                     <Text>学部</Text>
-                    <Text>info</Text>
+                    <Text>{userinfo.data.department}</Text>
                 </Flex>
                 <Flex>
                     <DepartmentPicker

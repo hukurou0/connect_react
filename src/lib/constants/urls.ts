@@ -4,3 +4,4 @@ export const LOGIN = "/api/login";
 export const SIGNUP = "/api/signup";
 export const GET_DEPARTMENTS = "/api/getDepartment"
 export const MODIFY_DEPARTMENTS = "/api/user/modifyDepartment"
+export const GET_USERIFNO = "/api/user/getInfo"
