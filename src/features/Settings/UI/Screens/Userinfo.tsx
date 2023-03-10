@@ -33,19 +33,21 @@ const Userinfo = () => {
         fetchUserinfo();
     }, []); */
 
-    /* type UserinfoData = {
+    type UserinfoData = {
         department: string;
         mail: string;
         username: string;
-    }; */
+    };
 
-    const [userinfo, setUserinfo] = useState<any>();
+    const [userinfo, setUserinfo] = useState<UserinfoData | undefined>(
+        undefined
+    );
     const fetchUserinfo = () => {
         axios
             .get(BASEURL + GET_USERIFNO)
             .then((response: AxiosResponse) => {
                 console.log(response);
-                setUserinfo(response.data);
+                setUserinfo(response.data.data);
             })
             .catch((error: AxiosError) => {
                 console.log(error);
@@ -56,7 +58,8 @@ const Userinfo = () => {
     }, []);
 
     // const UserInfo = Object.entries(userinfo);
-    console.log(userinfo.data.mail);
+    // console.log(userinfo.data.mail);
+    // console.log(userinfo);
 
     //console.log(UserInfo.map((info) => `${info}`));
     // console.log(departments);
@@ -86,15 +89,15 @@ const Userinfo = () => {
             <Stack w={300} spacing={15}>
                 <Flex justify="space-between" align="center">
                     <Text>ユーザー名</Text>
-                    <Text>{userinfo.data.username}</Text>
+                    <Text>{userinfo?.username}</Text>
                 </Flex>
                 <Flex justify="space-between" align="center">
                     <Text>メールアドレス</Text>
-                    <Text>{userinfo.data.mail}</Text>
+                    <Text>{userinfo?.mail}</Text>
                 </Flex>
                 <Flex justify="space-between" align="center">
                     <Text>学部</Text>
-                    <Text>{userinfo.data.department}</Text>
+                    <Text>{userinfo?.department}</Text>
                 </Flex>
                 <Flex>
                     <DepartmentPicker
