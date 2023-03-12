@@ -59,7 +59,7 @@ const Userinfo = () => {
 
     // const UserInfo = Object.entries(userinfo);
     // console.log(userinfo.data.mail);
-    // console.log(userinfo);
+    //console.log(userinfo);
 
     //console.log(UserInfo.map((info) => `${info}`));
     // console.log(departments);
