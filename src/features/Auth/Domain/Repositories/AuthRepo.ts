@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL, LOGIN, SIGNUP } from '../../../../lib/constants/urls';
 import { APIError } from '../../../../common/Domain/Entities/ApiBaseModel';
 import { AuthResponse } from '../Entities/AuthEntity';
+import { logError } from '../../../../common/LogError';
 
 interface LogInParams {
   username: string;
@@ -25,8 +26,6 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
       },
     })
     .then((response: AxiosResponse) => {
-      console.log(response.status);
-
       const { data } = response;
       const logInResponse: AuthResponse = {
         status_code: data.status_code,
@@ -35,7 +34,7 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
       completion(logInResponse);
     })
     .catch((error: AxiosError) => {
-      console.log(error.message);
+      logError(error);
     });
 };
 
@@ -49,8 +48,6 @@ export const signUp = ({ username, password, department, completion }: SignUpPar
       },
     })
     .then((response: AxiosResponse) => {
-      console.log(response.status);
-
       const { data } = response;
       const authResponse: AuthResponse = {
         status_code: data.status_code,
@@ -71,7 +68,7 @@ export const signUp = ({ username, password, department, completion }: SignUpPar
         error: errorData,
       };
       completion(authResponse);
-
-      console.log(error.response);
+      
+      logError(error);
     });
 };

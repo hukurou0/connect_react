@@ -31,17 +31,12 @@ const LogIn = () => {
               logIn({
                 username: 'b',
                 password: 'b',
-                completion: (data) => {
-                  console.log(data);
-
+                completion: () => {
                   getInfo((userData) => {
                     console.log(userData);
                   });
                 },
               });
-              // logout((data) => {
-              //   console.log(data);
-              // });
             }}
           >
             ログイン

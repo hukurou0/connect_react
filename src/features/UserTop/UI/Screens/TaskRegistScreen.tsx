@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { BASEURL, CHECK } from '../../../../lib/constants/urls';
-import { SubjectPicker } from '../../components/SubjectPicker';
+import { SubjectPicker } from '../Components/SubjectPicker';
 import { fetchSubject } from '../../../../common/Domain/Repositories/SubjectRepo';
 import { subjectState } from '../../../../common/Hooks/SubjectState';
 import { SubjectData } from '../../../../common/Domain/Entities/SubjectEntity';

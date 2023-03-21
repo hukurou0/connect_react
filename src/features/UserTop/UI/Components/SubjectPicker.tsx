@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { createStyles, UnstyledButton, Menu, Group, rem } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
-import { subjectState } from '../../../common/Hooks/SubjectState';
-import { SubjectData } from '../../../common/Domain/Entities/SubjectEntity';
+import { subjectState } from '../../../../common/Hooks/SubjectState';
+import { SubjectData } from '../../../../common/Domain/Entities/SubjectEntity';
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
   control: {
