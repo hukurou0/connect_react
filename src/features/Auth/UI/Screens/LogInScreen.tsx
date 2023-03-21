@@ -7,6 +7,8 @@ import { useState } from "react";
 import { AuthResponse } from "../../Domain/Entities/AuthEntity";
 import { IconAlertCircle } from "@tabler/icons-react";
 import UsernameInput from "../Components/UsernameInput";
+import { getInfo } from "../../../../common/Domain/Repositories/GetInfoRepo";
+import { logout } from "../../../../common/Domain/Repositories/LogOutRepo";
 
 const LogIn = () => {
   const [post, setPost] = useState<AuthResponse>();
@@ -28,10 +30,19 @@ const LogIn = () => {
 
           <Button onClick={() => {
             logIn({
-              username: username,
-              password: password,
-              completion: setPost
-            })
+              username: 'b',
+              password: 'b',
+              completion: (data) => {
+                console.log(data);
+                
+                getInfo((data) => {
+                  console.log(data);
+                });
+              }
+            });
+            // logout((data) => {
+            //   console.log(data);
+            // });
           }}>ログイン</Button>
         </Stack>
 

@@ -23,19 +23,19 @@ export const logIn = ({ username, password, completion }: LogInParams) => {
       password: password
     }
   })
-    .then((response: AxiosResponse) => {
-      console.log(response.status);
+  .then((response: AxiosResponse) => {
+    console.log(response.status);
 
-      const data = response.data;
-      const logInResponse: AuthResponse = {
-        status_code: data.status_code,
-        data: data.data
-      }
-      completion(logInResponse);
-    })
-    .catch((error: AxiosError) => {
-      console.log(error.message);
-    });
+    const data = response.data;
+    const logInResponse: AuthResponse = {
+      status_code: data.status_code,
+      data: data.data
+    }
+    completion(logInResponse);
+  })
+  .catch((error: AxiosError) => {
+    console.log(error.message);
+  });
 }
 
 export const signUp = ({ username, password, department, completion }: SignUpParams) => {
