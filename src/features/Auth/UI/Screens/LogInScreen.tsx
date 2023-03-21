@@ -1,20 +1,18 @@
-import { Alert, Button, Checkbox, Flex, Overlay, Space, Stack, Text } from "@mantine/core";
-import { useInputState } from "@mantine/hooks";
-import EmailInput from "../Components/EmailInput";
-import { PasswordInputWithNotes } from "../Components/PasswordInputWithNotes";
-import { logIn } from "../../Domain/Repositories/AuthRepo";
-import { useState } from "react";
-import { AuthResponse } from "../../Domain/Entities/AuthEntity";
-import { IconAlertCircle } from "@tabler/icons-react";
-import UsernameInput from "../Components/UsernameInput";
-import { getInfo } from "../../../../common/Domain/Repositories/GetInfoRepo";
-import { logout } from "../../../../common/Domain/Repositories/LogOutRepo";
+import { Alert, Button, Overlay, Space, Stack } from '@mantine/core';
+import { useInputState } from '@mantine/hooks';
+import { useState } from 'react';
+import { IconAlertCircle } from '@tabler/icons-react';
+import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
+import { logIn } from '../../Domain/Repositories/AuthRepo';
+import { AuthResponse } from '../../Domain/Entities/AuthEntity';
+import UsernameInput from '../Components/UsernameInput';
+import { getInfo } from '../../../../common/Domain/Repositories/GetInfoRepo';
 
 const LogIn = () => {
   const [post, setPost] = useState<AuthResponse>();
   const [isErrorShown, setErrorVisivility] = useState(false);
-  const [username, setUsername] = useInputState("");
-  const [password, setPassword] = useInputState("");
+  const [username, setUsername] = useInputState('');
+  const [password, setPassword] = useInputState('');
 
   return (
     <>
@@ -28,34 +26,47 @@ const LogIn = () => {
 
           <Space mt="md" />
 
-          <Button onClick={() => {
-            logIn({
-              username: 'b',
-              password: 'b',
-              completion: (data) => {
-                console.log(data);
-                
-                getInfo((data) => {
+          <Button
+            onClick={() => {
+              logIn({
+                username: 'b',
+                password: 'b',
+                completion: (data) => {
                   console.log(data);
-                });
-              }
-            });
-            // logout((data) => {
-            //   console.log(data);
-            // });
-          }}>ログイン</Button>
+
+                  getInfo((userData) => {
+                    console.log(userData);
+                  });
+                },
+              });
+              // logout((data) => {
+              //   console.log(data);
+              // });
+            }}
+          >
+            ログイン
+          </Button>
         </Stack>
 
-        <p>{post?.status_code ?? "FAIL"}</p>
+        <p>{post?.status_code ?? 'FAIL'}</p>
       </Stack>
 
-      {isErrorShown && <Overlay center style={{ position: "fixed" }} onClick={() => setErrorVisivility(false)}>
-        <Alert icon={<IconAlertCircle size="1rem" />} title="Error" color="red" radius="lg" withCloseButton onClose={() => setErrorVisivility(false)}>
-          全項目を正しく入力してください。
-        </Alert>
-      </Overlay>}
+      {isErrorShown && (
+        <Overlay center style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
+          <Alert
+            icon={<IconAlertCircle size="1rem" />}
+            title="Error"
+            color="red"
+            radius="lg"
+            withCloseButton
+            onClose={() => setErrorVisivility(false)}
+          >
+            全項目を正しく入力してください。
+          </Alert>
+        </Overlay>
+      )}
     </>
   );
-}
+};
 
 export default LogIn;

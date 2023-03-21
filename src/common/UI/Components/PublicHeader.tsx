@@ -29,8 +29,8 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons-react';
-import logo from '../../Assets/logo.jpg';
 import { Link } from 'react-router-dom';
+import logo from '../../Assets/logo.jpg';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -74,8 +74,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
     padding: `${theme.spacing.md} calc(${theme.spacing.md} * 2)`,
     paddingBottom: theme.spacing.xl,
-    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-      }`,
+    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
   },
 
   hiddenMobile: {
@@ -179,11 +178,7 @@ export const PublicHeaderMenu = () => {
                   <Text fw={500}>Features</Text>
                 </Group>
 
-                <Divider
-                  my="sm"
-                  mx="-md"
-                  color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
-                />
+                <Divider my="sm" mx="-md" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                 <SimpleGrid cols={2} spacing={0}>
                   {links}
@@ -213,8 +208,12 @@ export const PublicHeaderMenu = () => {
           </Group>
 
           <Group className={classes.hiddenMobile}>
-            <Button variant="default" component={Link} to="/logIn">Log In</Button>
-            <Button component={Link} to="/signUp">Sign Up</Button>
+            <Button variant="default" component={Link} to="/logIn">
+              Log In
+            </Button>
+            <Button component={Link} to="/signUp">
+              Sign Up
+            </Button>
           </Group>
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -256,11 +255,15 @@ export const PublicHeaderMenu = () => {
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="/logIn">Log In</Button>
-            <Button component={Link} to="/signUp">Sign Up</Button>
+            <Button variant="default" component={Link} to="/logIn">
+              Log In
+            </Button>
+            <Button component={Link} to="/signUp">
+              Sign Up
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>
     </Box>
   );
-}
+};

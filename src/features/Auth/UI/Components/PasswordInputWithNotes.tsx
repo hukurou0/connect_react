@@ -1,16 +1,14 @@
 import { Box, Progress, PasswordInput, Group, Text, Center } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 
-function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
-  return (
-    <Text color={meets ? 'teal' : 'red'} mt={5} size="sm">
-      <Center inline>
-        {meets ? <IconCheck size="0.9rem" stroke={1.5} /> : <IconX size="0.9rem" stroke={1.5} />}
-        <Box ml={7}>{label}</Box>
-      </Center>
-    </Text>
-  );
-}
+const PasswordRequirement = ({ meets, label }: { meets: boolean; label: string }) => (
+  <Text color={meets ? 'teal' : 'red'} mt={5} size="sm">
+    <Center inline>
+      {meets ? <IconCheck size="0.9rem" stroke={1.5} /> : <IconX size="0.9rem" stroke={1.5} />}
+      <Box ml={7}>{label}</Box>
+    </Center>
+  </Text>
+);
 
 const requirements = [
   { re: /[0-9]/, label: '数字を含んでください' },
@@ -32,8 +30,8 @@ function getStrength(password: string) {
 }
 
 interface Params {
-  password: string,
-  setPassword: (value: string | React.ChangeEvent<any> | null | undefined) => void
+  password: string;
+  setPassword: (value: string | React.ChangeEvent<any> | null | undefined) => void;
 }
 
 export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
@@ -46,9 +44,7 @@ export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
     .map((_, index) => (
       <Progress
         styles={{ bar: { transitionDuration: '0ms' } }}
-        value={
-          password.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
-        }
+        value={password.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0}
         color={strength > 80 ? 'teal' : strength > 50 ? 'yellow' : 'red'}
         key={index}
         size={4}
@@ -74,4 +70,4 @@ export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
       {checks}
     </div>
   );
-}
+};

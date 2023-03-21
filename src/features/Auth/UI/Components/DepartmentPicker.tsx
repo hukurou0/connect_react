@@ -13,15 +13,10 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
     alignItems: 'center',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
     borderRadius: theme.radius.md,
-    border: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]
-      }`,
+    border: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]}`,
     transition: 'background-color 150ms ease',
     backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[opened ? 5 : 6]
-        : opened
-          ? theme.colors.gray[0]
-          : theme.white,
+      theme.colorScheme === 'dark' ? theme.colors.dark[opened ? 5 : 6] : opened ? theme.colors.gray[0] : theme.white,
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     },
@@ -39,8 +34,8 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
 }));
 
 interface Params {
-  selectedDepartment: DepartmentData | undefined,
-  setSelection: React.Dispatch<React.SetStateAction<DepartmentData | undefined>>
+  selectedDepartment: DepartmentData | undefined;
+  setSelection: React.Dispatch<React.SetStateAction<DepartmentData | undefined>>;
 }
 
 export const DepartmentPicker = ({ selectedDepartment, setSelection }: Params) => {
@@ -48,26 +43,17 @@ export const DepartmentPicker = ({ selectedDepartment, setSelection }: Params) =
   const { classes } = useStyles({ opened });
   const departments = useRecoilValue(departmentsState);
   const items = departments.map((item) => (
-    <Menu.Item
-      onClick={() => setSelection(item)}
-      key={item.name}
-    >
+    <Menu.Item onClick={() => setSelection(item)} key={item.name}>
       {item.name}
     </Menu.Item>
   ));
 
   return (
-    <Menu
-      onOpen={() => setOpened(true)}
-      onClose={() => setOpened(false)}
-      radius="md"
-      width="target"
-      withinPortal
-    >
+    <Menu onOpen={() => setOpened(true)} onClose={() => setOpened(false)} radius="md" width="target" withinPortal>
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedDepartment?.name ?? "学部を選択してください"}</span>
+            <span className={classes.label}>{selectedDepartment?.name ?? '学部を選択してください'}</span>
           </Group>
           <IconChevronDown size="1rem" className={classes.icon} stroke={1.5} />
         </UnstyledButton>
@@ -75,4 +61,4 @@ export const DepartmentPicker = ({ selectedDepartment, setSelection }: Params) =
       <Menu.Dropdown>{items}</Menu.Dropdown>
     </Menu>
   );
-}
+};

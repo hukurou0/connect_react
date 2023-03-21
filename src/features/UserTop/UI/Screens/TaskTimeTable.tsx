@@ -1,11 +1,9 @@
-import { Stack } from "@mantine/core";
+import { Stack } from '@mantine/core';
 
-const TaskTimetable = () => {
-    return (
-        <Stack align="center">
-            <h2>TaskTimetable</h2>
-        </Stack>
-    );
-};
+const TaskTimetable = () => (
+  <Stack align="center">
+    <h2>TaskTimetable</h2>
+  </Stack>
+);
 
 export default TaskTimetable;

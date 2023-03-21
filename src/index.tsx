@@ -1,14 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { MantineProvider } from '@mantine/core';
 import { RecoilRoot } from 'recoil';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const container = createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const container = createRoot(document.getElementById('root') as HTMLElement);
 
 container.render(
   <React.StrictMode>

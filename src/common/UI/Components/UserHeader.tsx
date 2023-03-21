@@ -13,8 +13,8 @@ import {
   Flex,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import logo from '../../Assets/logo.jpg';
 import { Link } from 'react-router-dom';
+import logo from '../../Assets/logo.jpg';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -58,8 +58,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
     padding: `${theme.spacing.md} calc(${theme.spacing.md} * 2)`,
     paddingBottom: theme.spacing.xl,
-    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-      }`,
+    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
   },
 
   hiddenMobile: {
@@ -77,7 +76,7 @@ const useStyles = createStyles((theme) => ({
 
 export const UserHeaderMenu = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const { classes, theme } = useStyles();
+  const { classes } = useStyles();
 
   return (
     <Box pb={120}>
@@ -91,7 +90,9 @@ export const UserHeaderMenu = () => {
           </Link>
 
           <Group className={classes.hiddenMobile}>
-            <Button variant="default" component={Link} to="settings">Settings</Button>
+            <Button variant="default" component={Link} to="settings">
+              Settings
+            </Button>
           </Group>
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -109,12 +110,13 @@ export const UserHeaderMenu = () => {
         zIndex={1000000}
       >
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="settings">Settings</Button>
+            <Button variant="default" component={Link} to="settings">
+              Settings
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>
     </Box>
   );
-}
+};
