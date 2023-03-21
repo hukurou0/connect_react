@@ -10,6 +10,6 @@ export const getInfo = (completion: (data: any) => void) => {
       completion(data);
     })
     .catch((error: AxiosError) => {
-      logError(error)
+      logError(error);
     });
 };

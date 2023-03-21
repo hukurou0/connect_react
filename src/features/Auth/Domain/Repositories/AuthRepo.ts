@@ -68,7 +68,7 @@ export const signUp = ({ username, password, department, completion }: SignUpPar
         error: errorData,
       };
       completion(authResponse);
-      
+
       logError(error);
     });
 };
