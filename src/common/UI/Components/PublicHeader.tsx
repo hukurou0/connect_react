@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import {
   createStyles,
   Header,
@@ -28,9 +30,11 @@ import {
   IconFingerprint,
   IconCoin,
   IconChevronDown,
+  IconHome,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.jpg';
+import { UserData } from '../../../Domain/Entities/UserDataEntity';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -123,7 +127,12 @@ const mockdata = [
   },
 ];
 
-export const PublicHeaderMenu = () => {
+interface HeaderProps {
+  isLoggedIn: boolean;
+  userData?: UserData | undefined;
+}
+
+export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();
@@ -207,14 +216,20 @@ export const PublicHeaderMenu = () => {
             </Link>
           </Group>
 
-          <Group className={classes.hiddenMobile}>
-            <Button variant="default" component={Link} to="/logIn">
-              Log In
+          {isLoggedIn ? (
+            <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
+              <IconHome />
             </Button>
-            <Button component={Link} to="/signUp">
-              Sign Up
-            </Button>
-          </Group>
+          ) : (
+            <Group className={classes.hiddenMobile}>
+              <Button variant="default" component={Link} to="/logIn">
+                Log In
+              </Button>
+              <Button component={Link} to="/signUp">
+                Sign Up
+              </Button>
+            </Group>
+          )}
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
         </Group>

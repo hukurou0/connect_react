@@ -4,9 +4,9 @@ import { UserHeaderMenu } from '../common/UI/Components/UserHeader';
 import { FooterSocial } from '../common/UI/Components/Footer';
 
 const UserLayout = () => (
-  <Stack justify='space-between' mih='100vh'>
+  <Stack justify="space-between" mih="100vh">
     <UserHeaderMenu />
-    <Stack h="100%" w="100%" align='center'>
+    <Stack h="100%" w="100%" align="center">
       <Outlet />
     </Stack>
     <FooterSocial />

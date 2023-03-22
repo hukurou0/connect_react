@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PublicLayout from './Layouts/PublicLayout';
 import UserLayout from './Layouts/UserLayout';
-import Home from './features/Home/Home';
-import NoPage from './features/NoPage/NoPage';
-import LogIn from './features/Auth/UI/Screens/LogInScreen';
-import SignUp from './features/Auth/UI/Screens/SignUpScreen';
-import UserTop from './features/UserTop/UI/Screens/UserTopScreen';
-import Settings from './features/Settings/UI/Screens/Settings';
-import TaskRegist from './features/TaskRegist/UI/Screens/TaskRegistScreen';
-import Timetable from './features/Timetable/UI/Screens/TimetableScreen';
+import Home from './UI/Home/Home';
+import NoPage from './UI/NoPage/NoPage';
+import LogIn from './UI/Auth/Screens/LogInScreen';
+import SignUp from './UI/Auth/Screens/SignUpScreen';
+import UserTop from './UI/UserTop/Screens/UserTopScreen';
+import Settings from './UI/Settings/Screens/Settings';
+import TaskRegist from './UI/TaskRegist/Screens/TaskRegistScreen';
+import Timetable from './UI/Timetable/Screens/TimetableScreen';
 
 const App = () => (
   <BrowserRouter>
