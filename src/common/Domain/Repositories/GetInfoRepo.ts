@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL, GET_INFO } from '../../../lib/constants/urls';
-import { logError } from '../../LogError';
+import { logError } from '../../../lib/helpers/logError';
 
 export const getInfo = (completion: (data: any) => void) => {
   axios

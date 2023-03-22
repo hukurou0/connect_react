@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { BASEURL, CHECK } from '../../../../lib/constants/urls';
-import { SubjectPicker } from '../Components/SubjectPicker';
-import { fetchSubject } from '../../../../common/Domain/Repositories/SubjectRepo';
+import { SubjectPicker } from '../../../UserTop/UI/Components/SubjectPicker';
+import { fetchSubjects } from '../../../../common/Domain/Repositories/SubjectsRepo';
 import { subjectState } from '../../../../common/Hooks/SubjectState';
 import { SubjectData } from '../../../../common/Domain/Entities/SubjectEntity';
 
@@ -58,7 +58,7 @@ const TaskRegist = () => {
   const [selectedSubject, setSelection] = useState<SubjectData | undefined>(undefined);
   const [subjects, setSubject] = useRecoilState(subjectState);
   useEffect(() => {
-    fetchSubject(setSubject);
+    fetchSubjects(setSubject);
   }, []);
 
   return (

@@ -1,16 +1,9 @@
-import {
-  Header,
-  Group,
-  Button,
-  Text,
-  Box,
-  Image,
-  Flex,
-} from '@mantine/core';
+import { Header, Group, Button, Text, Box, Image, Flex } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import { IconUserCircle } from '@tabler/icons-react';
 import logo from '../../Assets/logo.jpg';
 
-export const UserHeaderMenu = () =>
+export const UserHeaderMenu = () => (
   <Box pb={120}>
     <Header height={60} px="md">
       <Group position="apart" sx={{ height: '100%' }}>
@@ -22,10 +15,19 @@ export const UserHeaderMenu = () =>
         </Link>
 
         <Group>
-          <Button variant="default" component={Link} to="settings">
-            Settings
+          <Button
+            variant="light"
+            color='#48AAF9'
+            radius="xl"
+            size="md"
+            component={Link} to="settings">
+            <Flex align="center" columnGap={8}>
+              <IconUserCircle />
+              <Text size="md">アカウント</Text>
+            </Flex>
           </Button>
         </Group>
       </Group>
     </Header>
   </Box>
+);

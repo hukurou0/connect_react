@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL, LOGOUT } from '../../../lib/constants/urls';
-import { logError } from '../../LogError';
+import { logError } from '../../../lib/helpers/logError';
 
 export const logout = (completion: (data: any) => void) => {
   axios

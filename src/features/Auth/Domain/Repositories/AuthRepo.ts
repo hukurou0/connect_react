@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL, LOGIN, SIGNUP } from '../../../../lib/constants/urls';
 import { APIError } from '../../../../common/Domain/Entities/ApiBaseModel';
 import { AuthResponse } from '../Entities/AuthEntity';
-import { logError } from '../../../../common/LogError';
+import { logError } from '../../../../lib/helpers/logError';
 
 interface LogInParams {
   username: string;
@@ -19,7 +19,7 @@ interface SignUpParams {
 
 export const logIn = ({ username, password, completion }: LogInParams) => {
   axios
-    .post(BASEURL + LOGIN, {
+    .post(BASEURL + LOGIN, { headers: { "Access-Control-Allow-Origin": "*" } }, {
       data: {
         username,
         password,

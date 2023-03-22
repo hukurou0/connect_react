@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASEURL, GET_DEPARTMENTS } from '../../../lib/constants/urls';
 import { DepartmentData } from '../Entities/DepartmentEntity';
-import { logError } from '../../LogError';
+import { logError } from '../../../lib/helpers/logError';
 
 export const fetchDepartments = (completion: (data: DepartmentData[]) => void) => {
   axios
