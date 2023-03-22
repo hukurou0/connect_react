@@ -1,6 +1,7 @@
-import { Header, Group, Button, Text, Box, Image, Flex, createStyles, rem } from '@mantine/core';
+import { Header, Group, Button, Text, Box, Image, Flex, createStyles, rem, Drawer, Divider, ScrollArea, Burger } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconUserCircle } from '@tabler/icons-react';
+import { useDisclosure } from '@mantine/hooks';
 import logo from '../../Assets/logo.jpg';
 
 const useStyles = createStyles((theme) => ({
@@ -62,7 +63,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export const UserHeaderMenu = () => {
-  const { classes } = useStyles();
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const { classes, theme } = useStyles();
 
   return (
     <Box pb={120}>
@@ -91,9 +93,47 @@ export const UserHeaderMenu = () => {
             <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="settings">
               <IconUserCircle />
             </Button>
+
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
           </Group>
         </Group>
       </Header>
+
+      {/* For Mobile */}
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="Connect"
+        className={classes.hiddenDesktop}
+        zIndex={1000000}
+      >
+        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+
+          <Link to="/user" className={classes.link} onClick={closeDrawer}>
+            課題リスト
+          </Link>
+          <Link to="/user/regist_task" className={classes.link} onClick={closeDrawer}>
+            課題追加
+          </Link>
+          <Link to="/user/timetable" className={classes.link} onClick={closeDrawer}>
+            時間割
+          </Link>
+
+          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+
+          <Group position="center" grow pb="xl" px="md">
+            <Button variant="default" component={Link} to="/logIn" onClick={closeDrawer}>
+              Log In
+            </Button>
+            <Button component={Link} to="/signUp" onClick={closeDrawer}>
+              Sign Up
+            </Button>
+          </Group>
+        </ScrollArea>
+      </Drawer>
     </Box>
   );
 };

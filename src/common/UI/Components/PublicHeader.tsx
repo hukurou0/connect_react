@@ -248,7 +248,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Link to="/" className={classes.link}>
+          <Link to="/" className={classes.link} onClick={closeDrawer}>
             Home
           </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -260,10 +260,10 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <Link to="/" className={classes.link}>
+          <Link to="/" className={classes.link} onClick={closeDrawer}>
             Learn
           </Link>
-          <Link to="/test" className={classes.link}>
+          <Link to="/test" className={classes.link} onClick={closeDrawer}>
             Academy
           </Link>
 
