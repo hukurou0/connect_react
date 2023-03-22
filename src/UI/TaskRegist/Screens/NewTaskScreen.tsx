@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { IconCircleFilled } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
 import { SubjectData } from '../../../Domain/Entities/SubjectEntity';
+import { color, label } from '../../../lib/helpers/taskDifficulty';
 
 export const NewTask = () => {
   const navigate = useNavigate();
@@ -13,32 +14,6 @@ export const NewTask = () => {
   const [difficulty, setDifficulty] = useState(2);
   const styles = { thumb: { borderWidth: 2, height: 26, width: 26, padding: 3 } };
   const isDisabled = summary === '' || details === '';
-
-  /* eslint-disable indent */
-  const color = (): string => {
-    switch (difficulty) {
-      case 2:
-        return 'blue';
-      case 3:
-        return 'orange';
-      case 4:
-        return 'red';
-      default:
-        return 'green';
-    }
-  };
-  const label = (): string => {
-    switch (difficulty) {
-      case 2:
-        return '普通';
-      case 3:
-        return 'ちょいやば';
-      case 4:
-        return 'やばい';
-      default:
-        return '簡単';
-    }
-  };
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -75,11 +50,11 @@ export const NewTask = () => {
       <Stack align="flex-start">
         <Flex justify="space-between" w={400}>
           <Text>大変さ</Text>
-          <Text>{label()}</Text>
+          <Text>{label(difficulty)}</Text>
         </Flex>
         <Slider
           thumbChildren={<IconCircleFilled size="1rem" stroke={1.5} />}
-          color={color()}
+          color={color(difficulty)}
           label={null}
           max={4}
           value={difficulty}
