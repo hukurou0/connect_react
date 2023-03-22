@@ -83,6 +83,7 @@ const Settings = () => {
 
             <Stack w="100%" align="center">
               <Button
+                radius="lg"
                 maw={250}
                 style={{ marginTop: 25 }}
                 onClick={async () => {
@@ -94,7 +95,7 @@ const Settings = () => {
               >
                 変更を保存
               </Button>
-              <Button maw={250} style={{ marginTop: 25 }}>
+              <Button radius="lg" maw={250} style={{ marginTop: 25 }}>
                 パスワード変更
               </Button>
             </Stack>

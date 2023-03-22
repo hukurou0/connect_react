@@ -12,7 +12,7 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
     alignItems: 'center',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
     borderRadius: theme.radius.md,
-    border: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]}`,
+    border: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[4]}`,
     transition: 'background-color 150ms ease',
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.dark[opened ? 5 : 6] : opened ? theme.colors.gray[0] : theme.white,
@@ -40,8 +40,8 @@ interface Params {
 export const SubjectPicker = ({ selectedSubject, setSelection }: Params) => {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles({ opened });
-  const subject = useRecoilValue(subjectsState);
-  const items = subject?.map((item) => (
+  const subjects = useRecoilValue(subjectsState);
+  const items = subjects?.map((item) => (
     <Menu.Item onClick={() => setSelection(item)} key={item.name}>
       {item.name}
     </Menu.Item>

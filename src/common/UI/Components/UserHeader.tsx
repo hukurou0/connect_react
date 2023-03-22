@@ -77,10 +77,10 @@ export const UserHeaderMenu = () => {
 
           <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
             <Link to="/user" className={classes.link}>
-              ホーム
+              課題リスト
             </Link>
             <Link to="/user/regist_task" className={classes.link}>
-              タスクを追加
+              課題追加
             </Link>
             <Link to="/user/timetable" className={classes.link}>
               時間割
