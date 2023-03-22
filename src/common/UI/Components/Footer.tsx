@@ -1,4 +1,4 @@
-import { createStyles, Container, Group, ActionIcon, Image, rem } from '@mantine/core';
+import { createStyles, Container, Group, ActionIcon, Image, rem, Text } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import logo from '../../Assets/logo.jpg';
 
@@ -34,6 +34,7 @@ export const FooterSocial = () => {
     <div className={classes.footer}>
       <Container className={classes.inner}>
         <Image width={28} height={28} src={logo} alt="Logo" />
+        <Text size='xs' color='gray'>Copyright © 2023 Connect All rights reserved.</Text>
         <Group spacing={0} className={classes.links} position="right" noWrap>
           <ActionIcon size="lg">
             <IconBrandTwitter size="1.05rem" stroke={1.5} />
