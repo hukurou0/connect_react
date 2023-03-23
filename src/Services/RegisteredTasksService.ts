@@ -4,12 +4,15 @@ import { registeredTasks } from '../Domain/Repositories/RegisteredTasksRepo';
 import { catchCustomError } from '../lib/helpers/errorHandler';
 import { registeredTasksState } from '../Hooks/RegisteredTasksState';
 import { SubjectData } from '../Domain/Entities/SubjectEntity';
+import { loadingState } from '../Hooks/LoadingState';
 
 const RegisteredTasksService = () => {
   const setRegisteredTasks = useSetRecoilState(registeredTasksState);
   const navigate = useNavigate();
+  const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetRegisteredTasks = async (subject: SubjectData, date: Date): Promise<void> => {
+    setLoadingState(true);
     // TODO: API Function
     const response = await registeredTasks({
       subjectId: subject.subject_id,
@@ -30,6 +33,7 @@ const RegisteredTasksService = () => {
     }
     setRegisteredTasks(response.data.tasks);
 
+    setLoadingState(false);
     if (response.data.tasks.length > 0) {
       navigate('/user/select_task', { state: { subject: subject, deadline: date } });
     } else {

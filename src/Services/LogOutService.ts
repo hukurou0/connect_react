@@ -4,16 +4,19 @@ import { logout } from '../Domain/Repositories/LogOutRepo';
 import { subjectsState } from '../Hooks/SubjectState';
 import { userDataState } from '../Hooks/UserDataState';
 import { logInState } from '../Hooks/LogInState';
+import { loadingState } from '../Hooks/LoadingState';
 
 const LogOutService = () => {
   const navigate = useNavigate();
   const resetSubjects = useResetRecoilState(subjectsState);
   const resetUserData = useResetRecoilState(userDataState);
   const setLogInState = useSetRecoilState(logInState);
+  const setLoadingState = useSetRecoilState(loadingState);
 
   const logOut = async (): Promise<void> => {
+    setLoadingState(true);
     await logout();
-    // Whatever erro happen, reset all data and going back to login.
+    // Whatever error happen, reset all data and going back to login.
     // if (response.error !== undefined) {
     //   console.log(response.error);
     //   return;
@@ -21,6 +24,7 @@ const LogOutService = () => {
     resetSubjects();
     resetUserData();
     setLogInState(false);
+    setLoadingState(false);
     navigate('/login');
   };
 
