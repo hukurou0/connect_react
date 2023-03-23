@@ -17,8 +17,8 @@ import { loadingState } from './Hooks/LoadingState';
 
 const App = () => {
   const isLoading = useRecoilValue(loadingState);
-  
-  return(
+
+  return (
     <>
       <BrowserRouter>
         <Routes>

@@ -6,17 +6,17 @@ import { color, label } from '../../../lib/helpers/taskDifficulty';
 
 export const TaskItem = ({ task }: { task: TaskData }) => (
   // TODO: API Function
-  <Card key={task.detail} shadow="sm" padding="lg" radius="lg" withBorder onClick={() => { }}>
+  <Card key={task.detail} shadow="sm" padding="lg" radius="lg" w="90%" withBorder onClick={() => {}}>
     <Stack>
       <Flex align="center" justify="space-between">
         <Title order={2}>{task.summary}</Title>
-        <Flex align='center' columnGap={5}>
+        <Flex align="center" columnGap={5}>
           <Text size="md" color="gray" style={{ marginRight: 7 }}>
             {'期日: '}
             {generateDaate(task.deadlineYear, task.deadlineMonth, task.deadlineDay).toLocaleDateString()}
           </Text>
-          <Flex align='center' style={{ padding: 5, borderRadius: 50, backgroundColor: `rgba(244, 244, 244, .7)`}}>
-            <Text size='md'>{label(task.difficulty)}</Text>
+          <Flex align="center" style={{ padding: 5, borderRadius: 50, backgroundColor: `rgba(244, 244, 244, .7)` }}>
+            <Text size="md">{label(task.difficulty)}</Text>
             <IconCircleFilled size={20} opacity={0.8} style={{ color: `${color(task.difficulty)}` }} />
           </Flex>
         </Flex>

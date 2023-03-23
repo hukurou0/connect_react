@@ -1,7 +1,7 @@
 import { Stack, Flex, Text, Title, Divider, Button, Image } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { DateInput } from '@mantine/dates';
-import { SubjectPicker } from '../../UserTop/Components/SubjectPicker';
+import { SubjectPicker } from '../../../common/UI/Components/SubjectPicker';
 import { SubjectData } from '../../../Domain/Entities/SubjectEntity';
 import SubjectsService from '../../../Services/SubjectsService';
 import HomeworkImage from '../../../common/Assets/homework.png';
