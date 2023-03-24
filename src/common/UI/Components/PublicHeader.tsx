@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import {
   createStyles,
   Header,
@@ -28,9 +30,11 @@ import {
   IconFingerprint,
   IconCoin,
   IconChevronDown,
+  IconHome,
 } from '@tabler/icons-react';
-import logo from '../../Assets/logo.jpg';
 import { Link } from 'react-router-dom';
+import logo from '../../Assets/logo.jpg';
+import { UserData } from '../../../Domain/Entities/UserDataEntity';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -74,8 +78,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
     padding: `${theme.spacing.md} calc(${theme.spacing.md} * 2)`,
     paddingBottom: theme.spacing.xl,
-    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-      }`,
+    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
   },
 
   hiddenMobile: {
@@ -124,7 +127,12 @@ const mockdata = [
   },
 ];
 
-export const PublicHeaderMenu = () => {
+interface HeaderProps {
+  isLoggedIn: boolean;
+  userData?: UserData | undefined;
+}
+
+export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();
@@ -179,11 +187,7 @@ export const PublicHeaderMenu = () => {
                   <Text fw={500}>Features</Text>
                 </Group>
 
-                <Divider
-                  my="sm"
-                  mx="-md"
-                  color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
-                />
+                <Divider my="sm" mx="-md" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                 <SimpleGrid cols={2} spacing={0}>
                   {links}
@@ -212,10 +216,20 @@ export const PublicHeaderMenu = () => {
             </Link>
           </Group>
 
-          <Group className={classes.hiddenMobile}>
-            <Button variant="default" component={Link} to="/logIn">Log In</Button>
-            <Button component={Link} to="/signUp">Sign Up</Button>
-          </Group>
+          {isLoggedIn ? (
+            <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
+              <IconHome />
+            </Button>
+          ) : (
+            <Group className={classes.hiddenMobile}>
+              <Button variant="default" component={Link} to="/logIn">
+                Log In
+              </Button>
+              <Button component={Link} to="/signUp">
+                Sign Up
+              </Button>
+            </Group>
+          )}
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
         </Group>
@@ -234,7 +248,7 @@ export const PublicHeaderMenu = () => {
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Link to="/" className={classes.link}>
+          <Link to="/" className={classes.link} onClick={closeDrawer}>
             Home
           </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -246,21 +260,25 @@ export const PublicHeaderMenu = () => {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <Link to="/" className={classes.link}>
+          <Link to="/" className={classes.link} onClick={closeDrawer}>
             Learn
           </Link>
-          <Link to="/test" className={classes.link}>
+          <Link to="/test" className={classes.link} onClick={closeDrawer}>
             Academy
           </Link>
 
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="/logIn">Log In</Button>
-            <Button component={Link} to="/signUp">Sign Up</Button>
+            <Button variant="default" component={Link} to="/logIn" onClick={closeDrawer}>
+              Log In
+            </Button>
+            <Button component={Link} to="/signUp" onClick={closeDrawer}>
+              Sign Up
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>
     </Box>
   );
-}
+};

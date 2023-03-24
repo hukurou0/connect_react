@@ -1,20 +1,22 @@
 import {
-  createStyles,
   Header,
   Group,
   Button,
   Text,
   Box,
-  Burger,
-  Drawer,
-  ScrollArea,
   Image,
-  rem,
   Flex,
+  createStyles,
+  rem,
+  Drawer,
+  Divider,
+  ScrollArea,
+  Burger,
 } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { IconUserCircle } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import logo from '../../Assets/logo.jpg';
-import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -58,8 +60,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
     padding: `${theme.spacing.md} calc(${theme.spacing.md} * 2)`,
     paddingBottom: theme.spacing.xl,
-    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-      }`,
+    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
   },
 
   hiddenMobile: {
@@ -83,18 +84,32 @@ export const UserHeaderMenu = () => {
     <Box pb={120}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/user" style={{ textDecoration: 'none' }}>
             <Flex align="center" columnGap={8}>
               <Image width={30} height={30} src={logo} alt="Logo" />
               <Text style={{ color: '#48AAF9', fontSize: 18 }}>Connect</Text>
             </Flex>
           </Link>
 
-          <Group className={classes.hiddenMobile}>
-            <Button variant="default" component={Link} to="settings">Settings</Button>
+          <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
+            <Link to="/user" className={classes.link}>
+              課題リスト
+            </Link>
+            <Link to="/user/regist_task" className={classes.link}>
+              課題追加
+            </Link>
+            <Link to="/user/timetable" className={classes.link}>
+              時間割
+            </Link>
           </Group>
 
-          <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+          <Group>
+            <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="settings">
+              <IconUserCircle />
+            </Button>
+
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+          </Group>
         </Group>
       </Header>
 
@@ -104,17 +119,35 @@ export const UserHeaderMenu = () => {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
+        title="Connect"
         className={classes.hiddenDesktop}
         zIndex={1000000}
       >
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+
+          <Link to="/user" className={classes.link} onClick={closeDrawer}>
+            課題リスト
+          </Link>
+          <Link to="/user/regist_task" className={classes.link} onClick={closeDrawer}>
+            課題追加
+          </Link>
+          <Link to="/user/timetable" className={classes.link} onClick={closeDrawer}>
+            時間割
+          </Link>
+
+          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="settings">Settings</Button>
+            <Button variant="default" component={Link} to="/logIn" onClick={closeDrawer}>
+              Log In
+            </Button>
+            <Button component={Link} to="/signUp" onClick={closeDrawer}>
+              Sign Up
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>
     </Box>
   );
-}
+};
