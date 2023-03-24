@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Mantine Style Adjustment */
+.mantine-xiucpp {
+  padding-left: 0;
+  padding-right: 0;
+}

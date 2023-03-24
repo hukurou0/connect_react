@@ -1,5 +1,7 @@
 import { Stack, Flex, Text, Title, Table, Divider } from '@mantine/core';
+import { useEffect } from 'react';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
+import SubjectsService from '../../../Services/SubjectsService';
 
 const UserTop = () => {
   const today = new Date();
@@ -18,6 +20,11 @@ const UserTop = () => {
       <td>{element.room}</td>
     </tr>
   ));
+  const { getAndSetSubjects } = SubjectsService();
+
+  useEffect(() => {
+    getAndSetSubjects();
+  }, []);
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -45,11 +52,7 @@ const UserTop = () => {
         </Table>
       </Stack>
 
-      <Stack
-        w="95%"
-        align="center"
-        style={{ padding: 15, marginTop: 20 }}
-      >
+      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
         <Flex w="95%" align="center" columnGap={10}>
           <Title order={2}>やばい課題</Title>
           <Text>(期限が3日以内・大変さが「やばい」の課題)</Text>
@@ -57,30 +60,27 @@ const UserTop = () => {
         <Divider w="95%" />
         <TaskItem
           task={{
-            subjectId: 0,
+            subjectId: 1,
             taskId: 0,
             deadlineYear: 0,
             deadlineMonth: 0,
             deadlineDay: 0,
-            summary: '線形代数',
-            detail: '詳細',
+            summary: '企業社会責任に関する報告書作成',
+            detail:
+              '選んだ企業のCSR戦略と取り組みについて調査し、報告書を作成する。報告書には、企業の社会的責任に関する考え方、現状の取り組み、課題や改善策、今後の展望などを含めること。また、調査手法や情報源についても記載する必要がある。',
             difficulty: 5,
           }}
         />
       </Stack>
 
-      <Stack
-        w="95%"
-        align="center"
-        style={{ padding: 15, marginTop: 20 }}
-      >
+      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
         <Flex w="95%" align="center" columnGap={10}>
-          <Title order={2}>課題課題一覧</Title>
+          <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
         <TaskItem
           task={{
-            subjectId: 0,
+            subjectId: 1,
             taskId: 0,
             deadlineYear: 0,
             deadlineMonth: 0,
