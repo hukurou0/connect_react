@@ -80,7 +80,7 @@ const UserTop = () => {
         {allTasksData.tasks
           .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
           .map((task) => (
-            <TaskItem task={task} />
+            <TaskItem task={task} deadlineApproacing/>
           ))}
       </Stack>
 

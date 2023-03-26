@@ -4,15 +4,19 @@ import { IconList, IconSettings } from '@tabler/icons-react';
 import DepartmentService from '../../../Services/DepartmentServices';
 import UserDataService from '../../../Services/UserDataService';
 import Settings from './SettingsScreen';
+import UserTasksService from '../../../Services/UserTasksService';
+import UserTasks from './UserTasksScreen';
 
 const AccountOuterScreen = () => {
   const { getAndSetDepartments } = DepartmentService();
   const { setUserData } = UserDataService();
+  const { getAndSetUserTasks } = UserTasksService();
 
   useEffect(() => {
     (async () => {
       await getAndSetDepartments();
       await setUserData();
+      await getAndSetUserTasks();
     })();
   }, []);
 
@@ -29,7 +33,7 @@ const AccountOuterScreen = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="registeredTasks" pt="xs">
-          Messages tab content
+          <UserTasks />
         </Tabs.Panel>
       </Tabs>
     </Stack>

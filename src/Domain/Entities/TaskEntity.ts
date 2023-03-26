@@ -32,3 +32,9 @@ export type TaskData = {
   detail: string;
   difficulty: number;
 };
+
+export type UserTasksResponse = {
+  status_code: number;
+  data: { tasks: TaskData[] };
+  error?: APIError | undefined;
+}

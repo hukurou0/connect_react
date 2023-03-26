@@ -1,19 +1,24 @@
-import { Stack, Title, Text, Flex, Card, Modal } from '@mantine/core';
+/* eslint-disable react/require-default-props */
+
+import { Stack, Title, Text, Flex, Card, Modal, UnstyledButton } from '@mantine/core';
 import { FC, useState } from 'react';
-import { IconCircleFilled } from '@tabler/icons-react';
+import { IconCircleFilled, IconTrash } from '@tabler/icons-react';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
 
 interface TaskItemProps {
   task: TaskData;
+  showModel?: boolean;
+  deadlineApproacing?: boolean
+  onDelete?: (() => Promise<void>);
+  onClick?: (() => void);
 }
 
-export const TaskItem: FC<TaskItemProps> = ({ task }: TaskItemProps) => {
+export const TaskItem: FC<TaskItemProps> = ({ task, showModel = true, deadlineApproacing = false, onDelete, onClick = (() => { }) }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
 
   return (
-    // TODO: API Function
     <>
       <Modal
         opened={isPresented}
@@ -43,9 +48,22 @@ export const TaskItem: FC<TaskItemProps> = ({ task }: TaskItemProps) => {
         </Stack>
       </Modal>
 
-      <Card shadow="sm" padding="lg" radius="lg" w="90%" withBorder onClick={() => setPresentState(true)}>
+      <Card shadow="sm" padding="lg" radius="lg" w="90%" withBorder style={{borderColor: `${deadlineApproacing ? 'red' : ''}`}} onClick={() => {
+        if (showModel) {
+          setPresentState(true);
+        } else {
+          onClick();
+        }
+      }}>
         <Stack>
-          <Text>{task.subject_name}</Text>
+          <Flex align="center" justify="space-between">
+            <Text>{task.subject_name}</Text>
+            {onDelete !== undefined
+              ? <UnstyledButton onClick={async () => onDelete()}>
+                <IconTrash color='red' />
+              </UnstyledButton>
+              : <> </>}
+          </Flex>
           <Flex align="center" justify="space-between">
             <Title order={2}>{task.summary}</Title>
             <Stack align="flex-end">
