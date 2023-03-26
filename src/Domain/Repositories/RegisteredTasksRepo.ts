@@ -4,31 +4,31 @@ import { makeErrorData } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse, TaskData } from '../Entities/TaskEntity';
 
 interface CheckTaskParmas {
-  subjectId: number;
-  deadlineYear: number;
-  deadlineMonth: number;
-  deadlineDay: number;
+  subject_id: number;
+  deadline_year: number;
+  deadline_month: number;
+  deadline_day: number;
 }
 
-export const registeredTasks = async ({ subjectId, deadlineYear, deadlineMonth, deadlineDay }: CheckTaskParmas) => {
+export const registeredTasks = async ({ subject_id, deadline_year, deadline_month, deadline_day }: CheckTaskParmas) => {
   try {
     const response = await axios.post(BASEURL + CHECK, {
       data: {
-        subject_id: subjectId,
-        deadline_year: deadlineYear,
-        deadline_month: deadlineMonth,
-        deadline_day: deadlineDay,
+        subject_id: subject_id,
+        deadline_year: deadline_year,
+        deadline_month: deadline_month,
+        deadline_day: deadline_day,
       },
     });
 
     /** This is for test */
-    const emptySample = { tasks: [] };
     const sampleTask: TaskData = {
-      subjectId: 1,
-      taskId: 1,
-      deadlineYear: 2023,
-      deadlineMonth: 4,
-      deadlineDay: 13,
+      subject_id: 1,
+      subject_name: '',
+      task_id: 1,
+      deadline_year: 2023,
+      deadline_month: 4,
+      deadline_day: 13,
       summary: 'Test',
       detail: 'Test Details',
       difficulty: 4,

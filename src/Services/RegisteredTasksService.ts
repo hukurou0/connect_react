@@ -15,10 +15,10 @@ const RegisteredTasksService = () => {
     setLoadingState(true);
     // TODO: API Function
     const response = await registeredTasks({
-      subjectId: subject.subject_id,
-      deadlineYear: date.getFullYear(),
-      deadlineMonth: date.getMonth(),
-      deadlineDay: date.getDay(),
+      subject_id: subject.subject_id,
+      deadline_year: date.getFullYear(),
+      deadline_month: date.getMonth(),
+      deadline_day: date.getDay(),
     });
     console.log(response);
 

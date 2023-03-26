@@ -1,10 +1,16 @@
 import { Stack, Flex, Text, Title, Table, Divider } from '@mantine/core';
 import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
-import SubjectsService from '../../../Services/SubjectsService';
+import AllTasksService from '../../../Services/AllTasksService';
+import { allTasksDataState } from '../../../Hooks/AllTasksState';
+import { TaskData } from '../../../Domain/Entities/TaskEntity';
+import { generateDate } from '../../../lib/helpers/generateDate';
 
 const UserTop = () => {
   const today = new Date();
+  const { getAndSetAllTasks } = AllTasksService();
+  const allTasksData = useRecoilValue(allTasksDataState);
 
   const elements = [
     { time: 1, class: '線形代数', room: 'Ⅳ-402' },
@@ -13,18 +19,24 @@ const UserTop = () => {
     { time: 1, class: '線形代数', room: 'Ⅶ-LLL5' },
     { time: 5, class: '-', room: '' },
   ];
-  const rows = elements.map((element) => (
-    <tr key={element.time}>
+  const rows = elements.map((element, index) => (
+    <tr key={index}>
       <td>{element.time}</td>
       <td>{element.class}</td>
       <td>{element.room}</td>
     </tr>
   ));
-  const { getAndSetSubjects } = SubjectsService();
 
   useEffect(() => {
-    getAndSetSubjects();
+    getAndSetAllTasks();
   }, []);
+
+  const isDeadlineApproaching = (task: TaskData): boolean => {
+    const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
+    const duration = Math.abs(deadline.getTime() - today.getTime());
+    const days = Math.ceil(duration / (1000 * 3600 * 24));
+    return days <= 3;
+  };
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -58,19 +70,11 @@ const UserTop = () => {
           <Text>(期限が3日以内・大変さが「やばい」の課題)</Text>
         </Flex>
         <Divider w="95%" />
-        <TaskItem
-          task={{
-            subjectId: 1,
-            taskId: 0,
-            deadlineYear: 0,
-            deadlineMonth: 0,
-            deadlineDay: 0,
-            summary: '企業社会責任に関する報告書作成',
-            detail:
-              '選んだ企業のCSR戦略と取り組みについて調査し、報告書を作成する。報告書には、企業の社会的責任に関する考え方、現状の取り組み、課題や改善策、今後の展望などを含めること。また、調査手法や情報源についても記載する必要がある。',
-            difficulty: 5,
-          }}
-        />
+        {allTasksData.tasks
+          .filter((task) => task.difficulty === 5 || isDeadlineApproaching(task))
+          .map((task) => (
+            <TaskItem task={task} />
+          ))}
       </Stack>
 
       <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
@@ -78,18 +82,9 @@ const UserTop = () => {
           <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
-        <TaskItem
-          task={{
-            subjectId: 1,
-            taskId: 0,
-            deadlineYear: 0,
-            deadlineMonth: 0,
-            deadlineDay: 0,
-            summary: '線形代数',
-            detail: '詳細',
-            difficulty: 5,
-          }}
-        />
+        {allTasksData.tasks.map((task, index) => (
+          <TaskItem task={task} key={index} />
+        ))}
       </Stack>
     </Stack>
   );
