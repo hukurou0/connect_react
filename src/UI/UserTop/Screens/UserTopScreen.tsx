@@ -1,4 +1,4 @@
-import { Stack, Flex, Text, Title, Table, Divider, createStyles } from '@mantine/core';
+import { Stack, Flex, Text, Title, Divider, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
@@ -64,7 +64,8 @@ const UserTop = () => {
     <Stack maw={800} w="100%" align="center">
       <Title order={4} style={{ marginBottom: 20 }}>課題表示期限: {(new Date(allTasksData.visible_limit).toLocaleDateString())}</Title>
 
-      <Stack
+      {/* Timetable */}
+      {/* <Stack
         w='calc(100% - 40px)'
         align="center"
         style={{ padding: 10, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
@@ -86,7 +87,7 @@ const UserTop = () => {
           </thead>
           <tbody>{rows}</tbody>
         </Table>
-      </Stack>
+      </Stack> */}
 
       <Stack w="100%" align="center" style={{ marginTop: 20 }}>
         <Flex className={classes.hiddenMobile} w="95%" align="center" columnGap={10}>
@@ -95,7 +96,7 @@ const UserTop = () => {
         </Flex>
         <Stack className={classes.hiddenDesktop} w="95%" align="center">
           <Title order={2}>やばい課題</Title>
-          <Text color='gray'>(期限が3日以内・大変さが「やばい」の課題)</Text>
+          <Text color='gray'>期限が3日以内・大変さが「やばい」の課題</Text>
         </Stack>
         <Divider w="95%" />
         {allTasksData.tasks

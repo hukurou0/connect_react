@@ -13,7 +13,7 @@ const UserTasks = () => {
   return (
     <Stack w="100%" align="center">
 
-      <Title order={4} style={{ marginTop: 10, marginBottom: 10 }}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
+      <Title order={4} style={{ marginTop: 20, marginBottom: 15 }}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
 
       <Stack justify="flex-start" w='90%' style={{ paddingLeft: 20, paddingRight: 20 }}>
         <Title order={2} style={{ margin: 0 }}>登録した課題一覧</Title>
