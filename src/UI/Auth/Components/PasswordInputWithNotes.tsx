@@ -55,6 +55,8 @@ export const PasswordInputWithNotes = ({ password, setPassword }: Params) => {
     <div>
       <PasswordInput
         withAsterisk
+        size='md'
+        radius='lg'
         value={password}
         onChange={setPassword}
         placeholder="パスワード"

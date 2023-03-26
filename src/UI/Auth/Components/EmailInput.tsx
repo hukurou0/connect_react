@@ -11,6 +11,8 @@ const EmailInput = ({ email, setEmail }: Params) => {
 
   return (
     <TextInput
+      size='md'
+      radius='lg'
       error={isVailed ? null : '無効なアドレスです'}
       label="メールアドレス (任意)"
       placeholder="your@email.com"

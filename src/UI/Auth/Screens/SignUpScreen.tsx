@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Flex, Overlay, Space, Stack, Text } from '@mantine/core';
+import { Alert, Button, Checkbox, Flex, Overlay, Space, Stack, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useInputState } from '@mantine/hooks';
 import { IconAlertCircle } from '@tabler/icons-react';
@@ -31,11 +31,11 @@ const SignUp = () => {
   }, []);
 
   return (
-    <>
-      <Stack align="center">
-        <h2>登録</h2>
+    <Stack maw={500} w="100%" align="center">
+      <Stack align="center" w='100%'>
+        <Title order={2}>登録</Title>
 
-        <Stack w={300} spacing={15}>
+        <Stack w='90%' align='stretch'>
           <UsernameInput username={username} setUsername={setUsername} />
 
           <EmailInput email={email} setEmail={setEmail} />
@@ -54,6 +54,8 @@ const SignUp = () => {
           <Space mt="md" />
 
           <Button
+            size='md'
+            radius='lg'
             onClick={async () => {
               const isVailedInputs = isVailed(username, password, selectedDepartment);
 
@@ -85,7 +87,7 @@ const SignUp = () => {
           </Alert>
         </Overlay>
       )}
-    </>
+    </Stack>
   );
 };
 

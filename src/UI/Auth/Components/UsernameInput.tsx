@@ -13,6 +13,8 @@ const UsernameInput = ({ username, setUsername }: Params) => {
     <TextInput
       withAsterisk
       required
+      size='md'
+      radius='lg'
       error={isVailed ? null : '無効なユーザー名です'}
       label="ユーザー名"
       placeholder="Connect Taro"
