@@ -35,15 +35,15 @@ const UserTop = () => {
     const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
     const duration = Math.abs(deadline.getTime() - today.getTime());
     const days = Math.ceil(duration / (1000 * 3600 * 24));
-    return (days <= 3);
+    return days <= 3;
   };
 
   const isOutdated = (task: TaskData): boolean => {
     const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
     const duration = Math.abs(deadline.getTime() - today.getTime());
     const days = Math.ceil(duration / (1000 * 3600 * 24));
-    return (days < 0);
-  }
+    return days < 0;
+  };
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -80,7 +80,7 @@ const UserTop = () => {
         {allTasksData.tasks
           .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
           .map((task) => (
-            <TaskItem task={task} deadlineApproacing/>
+            <TaskItem task={task} deadlineApproacing />
           ))}
       </Stack>
 
@@ -89,9 +89,11 @@ const UserTop = () => {
           <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
-        {allTasksData.tasks.filter((task) => !isOutdated(task)).map((task, index) => (
-          <TaskItem task={task} key={index} />
-        ))}
+        {allTasksData.tasks
+          .filter((task) => !isOutdated(task))
+          .map((task, index) => (
+            <TaskItem task={task} key={index} />
+          ))}
       </Stack>
     </Stack>
   );

@@ -37,4 +37,4 @@ export type UserTasksResponse = {
   status_code: number;
   data: { tasks: TaskData[] };
   error?: APIError | undefined;
-}
+};

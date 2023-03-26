@@ -21,11 +21,15 @@ const AccountOuterScreen = () => {
   }, []);
 
   return (
-    <Stack maw={800} w="100%" h='100%' align="stretch" justify='flex-start'>
-      <Tabs defaultValue="settings" radius="lg" w='100%' >
+    <Stack maw={800} w="100%" h="100%" align="stretch" justify="flex-start">
+      <Tabs defaultValue="settings" radius="md" w="100%">
         <Tabs.List>
-          <Tabs.Tab value="settings" icon={<IconSettings size="0.8rem" />}>設定</Tabs.Tab>
-          <Tabs.Tab value="registeredTasks" icon={<IconList size="0.8rem" />}>登録した課題</Tabs.Tab>
+          <Tabs.Tab value="settings" icon={<IconSettings size="0.8rem" />}>
+            設定
+          </Tabs.Tab>
+          <Tabs.Tab value="registeredTasks" icon={<IconList size="0.8rem" />}>
+            登録した課題
+          </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="settings" pt="xs">
@@ -38,6 +42,6 @@ const AccountOuterScreen = () => {
       </Tabs>
     </Stack>
   );
-}
+};
 
 export default AccountOuterScreen;

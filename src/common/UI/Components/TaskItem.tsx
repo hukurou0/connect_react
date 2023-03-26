@@ -10,12 +10,18 @@ import { color, label } from '../../../lib/helpers/taskDifficulty';
 interface TaskItemProps {
   task: TaskData;
   showModel?: boolean;
-  deadlineApproacing?: boolean
-  onDelete?: (() => Promise<void>);
-  onClick?: (() => void);
+  deadlineApproacing?: boolean;
+  onDelete?: () => Promise<void>;
+  onClick?: () => void;
 }
 
-export const TaskItem: FC<TaskItemProps> = ({ task, showModel = true, deadlineApproacing = false, onDelete, onClick = (() => { }) }: TaskItemProps) => {
+export const TaskItem: FC<TaskItemProps> = ({
+  task,
+  showModel = true,
+  deadlineApproacing = false,
+  onDelete,
+  onClick = () => {},
+}: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
 
   return (
@@ -48,21 +54,31 @@ export const TaskItem: FC<TaskItemProps> = ({ task, showModel = true, deadlineAp
         </Stack>
       </Modal>
 
-      <Card shadow="sm" padding="lg" radius="lg" w="90%" withBorder style={{borderColor: `${deadlineApproacing ? 'red' : ''}`}} onClick={() => {
-        if (showModel) {
-          setPresentState(true);
-        } else {
-          onClick();
-        }
-      }}>
+      <Card
+        shadow="sm"
+        padding="lg"
+        radius="lg"
+        w="90%"
+        withBorder
+        style={{ borderColor: `${deadlineApproacing ? 'red' : ''}` }}
+        onClick={() => {
+          if (showModel) {
+            setPresentState(true);
+          } else {
+            onClick();
+          }
+        }}
+      >
         <Stack>
           <Flex align="center" justify="space-between">
             <Text>{task.subject_name}</Text>
-            {onDelete !== undefined
-              ? <UnstyledButton onClick={async () => onDelete()}>
-                <IconTrash color='red' />
+            {onDelete !== undefined ? (
+              <UnstyledButton onClick={async () => onDelete()}>
+                <IconTrash color="red" />
               </UnstyledButton>
-              : <> </>}
+            ) : (
+              <> </>
+            )}
           </Flex>
           <Flex align="center" justify="space-between">
             <Title order={2}>{task.summary}</Title>

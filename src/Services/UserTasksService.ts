@@ -28,8 +28,6 @@ const UserTasksService = () => {
   };
 
   const deleteTask = async (task: TaskData): Promise<void> => {
-    console.log("called");
-    
     setLoadingState(true);
     const response = await deleteUserTask(task);
     const customError = catchCustomError(response.status_code, navigate);
@@ -41,6 +39,7 @@ const UserTasksService = () => {
       console.log(response.error);
       return;
     }
+    await getAndSetUserTasks();
     setLoadingState(false);
   };
 
