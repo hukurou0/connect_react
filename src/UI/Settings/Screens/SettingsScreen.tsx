@@ -12,7 +12,7 @@ import LogOutService from '../../../Services/LogOutService';
 import { DepartmentPicker } from '../../../common/UI/Components/DepartmentPicker';
 
 const Settings = () => {
-  const { getAndSetDepartments, updateDepartment } = DepartmentService();
+  const { updateDepartment } = DepartmentService();
   const { setUserData } = UserDataService();
   const { logOut } = LogOutService();
   const departments = useRecoilValue(departmentsState);
@@ -20,18 +20,11 @@ const Settings = () => {
   const [selectedDepartment, setSelection] = useState<DepartmentData | undefined>(undefined);
 
   useEffect(() => {
-    (async () => {
-      await getAndSetDepartments();
-      await setUserData();
-    })();
-  }, []);
-
-  useEffect(() => {
     setSelection(getDepartment(userData?.department_id, departments));
   }, [userData]);
 
   return (
-    <Stack maw={800} w="100%" align="stretch">
+    <Stack w="100%" align="stretch">
       {/* Left Bar */}
       <Stack style={{ padding: 20 }}>
         <Flex justify="space-between" style={{ paddingLeft: 20, paddingRight: 20 }}>

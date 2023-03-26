@@ -8,12 +8,12 @@ import NoPage from './UI/NoPage/NoPage';
 import LogIn from './UI/Auth/Screens/LogInScreen';
 import SignUp from './UI/Auth/Screens/SignUpScreen';
 import UserTop from './UI/UserTop/Screens/UserTopScreen';
-import Settings from './UI/Settings/Screens/Settings';
 import TaskRegist from './UI/TaskRegist/Screens/TaskRegistScreen';
 import Timetable from './UI/Timetable/Screens/TimetableScreen';
 import { NewTask } from './UI/TaskRegist/Screens/NewTaskScreen';
 import { TaskSelection } from './UI/TaskRegist/Screens/TaskSelectionScreen';
 import { loadingState } from './Hooks/LoadingState';
+import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
 
 const App = () => {
   const isLoading = useRecoilValue(loadingState);
@@ -34,7 +34,7 @@ const App = () => {
             <Route path="create_new_task" element={<NewTask />} />
             <Route path="select_task" element={<TaskSelection />} />
             <Route path="timetable" element={<Timetable />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings" element={<AccountOuterScreen />} />
           </Route>
           <Route path="*" element={<NoPage />} />
         </Routes>
