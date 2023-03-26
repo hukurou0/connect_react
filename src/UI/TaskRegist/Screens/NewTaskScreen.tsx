@@ -17,65 +17,74 @@ export const NewTask = () => {
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Title>課題の詳細を入力しましょう</Title>
-      <Text color="gray">課題を新しく追加することで、課題の表示期間が延長されます。</Text>
-      <Divider w="100%" />
+      <Stack w='95%' align="center">
+        <Title order={2}>課題の詳細を入力しましょう</Title>
+        <Text color="gray">課題を新しく追加することで、課題の表示期間が延長されます。</Text>
+        <Divider w="100%" />
 
-      <Flex align="center" justify="space-around" w="90%" style={{ marginTop: 10, marginBottom: 10 }}>
-        <Title order={3}>{(location.state.subject as SubjectData).name}</Title>
-        <Text color="gray">{(location.state.deadline as Date).toLocaleDateString()}</Text>
-      </Flex>
-
-      <TextInput
-        value={summary}
-        onChange={setSummary}
-        placeholder="概要"
-        label="課題の概要"
-        radius="lg"
-        w="70%"
-        withAsterisk
-        required
-      />
-      <Textarea
-        placeholder="詳細"
-        label="課題の詳細"
-        radius="lg"
-        w="70%"
-        withAsterisk
-        required
-        value={details}
-        onChange={setDetails}
-      />
-
-      <Stack align="flex-start">
-        <Flex justify="space-between" w={400}>
-          <Text>大変さ</Text>
-          <Text>{label(difficulty)}</Text>
+        <Flex align="center" justify="space-around" w="100%" style={{ marginTop: 10, marginBottom: 10 }}>
+          <Title order={3}>{(location.state.subject as SubjectData).name}</Title>
+          <Text color="gray">{(location.state.deadline as Date).toLocaleDateString()}</Text>
         </Flex>
-        <Slider
-          thumbChildren={<IconCircleFilled size="1rem" stroke={1.5} />}
-          color={color(difficulty)}
-          label={null}
-          max={4}
-          value={difficulty}
-          onChange={setDifficulty}
-          styles={styles}
-          w={400}
-        />
-      </Stack>
 
-      <Button
-        radius="xl"
-        size="lg"
-        maw={250}
-        disabled={isDisabled}
-        style={{ marginTop: 25 }}
-        onClick={() => {
-          navigate('/user');
-        }}
-      >
-        課題を追加
-      </Button>
+        <TextInput
+          value={summary}
+          onChange={setSummary}
+          placeholder="概要"
+          label="課題の概要"
+          radius="lg"
+          size='md'
+          w="95%"
+          withAsterisk
+          required
+        />
+        <Textarea
+          placeholder="詳細"
+          label="課題の詳細"
+          radius="lg"
+          size='md'
+          w="95%"
+          withAsterisk
+          required
+          value={details}
+          onChange={setDetails}
+        />
+
+        <Stack align="center"
+          maw={400}
+          w='90%'>
+          <Flex justify="space-between"
+            maw={400}
+            w='80%'>
+            <Text>大変さ</Text>
+            <Text>{label(difficulty)}</Text>
+          </Flex>
+          <Slider
+            thumbChildren={<IconCircleFilled size="1rem" stroke={1.5} />}
+            color={color(difficulty)}
+            label={null}
+            max={4}
+            value={difficulty}
+            onChange={setDifficulty}
+            styles={styles}
+            maw={400}
+            w='80%'
+          />
+        </Stack>
+
+        <Button
+          radius="xl"
+          size="lg"
+          maw={250}
+          disabled={isDisabled}
+          style={{ marginTop: 25 }}
+          onClick={() => {
+            navigate('/user');
+          }}
+        >
+          課題を追加
+        </Button>
+      </Stack>
     </Stack>
   );
 };

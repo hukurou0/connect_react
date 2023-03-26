@@ -1,4 +1,4 @@
-import { Stack, Button, Text, Flex, Divider, Title } from '@mantine/core';
+import { Stack, Button, Text, Flex, Divider, Title, createStyles } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import { IconUser, IconDoorExit } from '@tabler/icons-react';
@@ -11,7 +11,22 @@ import UserDataService from '../../../Services/UserDataService';
 import LogOutService from '../../../Services/LogOutService';
 import { DepartmentPicker } from '../../../common/UI/Components/DepartmentPicker';
 
+const useStyles = createStyles((theme) => ({
+  hiddenMobile: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  hiddenDesktop: {
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+}));
+
 const Settings = () => {
+  const { classes } = useStyles();
   const { updateDepartment } = DepartmentService();
   const { setUserData } = UserDataService();
   const { logOut } = LogOutService();
@@ -26,26 +41,28 @@ const Settings = () => {
   return (
     <Stack w="100%" align="stretch">
       <Stack style={{ padding: 20 }} align='center'>
-        <Title order={4}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
+        <Title order={4} style={{ marginBottom: 15 }}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
 
-        <Flex justify="space-between" w='90%' style={{ paddingLeft: 20, paddingRight: 20 }}>
+        <Flex justify="space-between" w='95%' style={{ paddingLeft: 20, paddingRight: 20 }}>
           <Title order={2} style={{ margin: 0 }}>アカウント設定</Title>
           <Button
             radius="xl"
             size="md"
             color="orange"
             variant="light"
-            rightIcon={<IconDoorExit size="1.2rem" stroke={1.5} />}
+            rightIcon={<IconDoorExit className={classes.hiddenMobile} size="1.2rem" stroke={1.5} />}
             onClick={async () => {
               await logOut();
             }}
           >
-            ログアウト
+            <div className={classes.hiddenMobile}>ログアウト</div>
+            <IconDoorExit className={classes.hiddenDesktop} size="1.2rem" stroke={1.5} />
           </Button>
         </Flex>
-        <Divider w='90%'/>
+        <Divider w='95%' />
 
-        <Flex w="100%">
+        {/* Desktop */}
+        <Flex w="100%" className={classes.hiddenMobile}>
           {/* Left Bar */}
           <Stack w="40%" align="center" style={{ textAlign: 'left' }}>
             <div>
@@ -61,7 +78,7 @@ const Settings = () => {
             </div>
           </Stack>
 
-          {/* Right Contents */}
+
           <Stack w="60%" align="flex-start" style={{ padding: 15 }}>
             <Flex justify="space-between" align="stretch" w="100%">
               <Text>ユーザー名</Text>
@@ -96,6 +113,57 @@ const Settings = () => {
             </Stack>
           </Stack>
         </Flex>
+
+        {/* Mobile */}
+        <Stack w="100%" className={classes.hiddenDesktop} align='center'>
+          <Flex w="100%" align="center" columnGap={20}>
+            <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10 }}>
+              <IconUser size={80} color="#ffffff" fill="#E7E9ED" />
+            </div>
+            <Stack align="center" w='calc(100% - 120px)'>
+              <Text size="xl" weight="bold" style={{ marginTop: 10 }}>
+                {userData?.username}
+              </Text>
+              <Text size="sm">{userData?.department}</Text>
+            </Stack>
+          </Flex>
+
+          <Stack w="100%" align="center" style={{ margin: 15 }}>
+            <Flex justify="space-between" align="stretch" w="100%">
+              <Text>ユーザー名</Text>
+              <Text>{userData?.username}</Text>
+            </Flex>
+            <Flex justify="space-between" align="stretch" w="100%">
+              <Text>メールアドレス</Text>
+              <Text>{userData?.mail}</Text>
+            </Flex>
+            <Flex justify="space-between" align="stretch" w="100%">
+              <Text>課程</Text>
+              <DepartmentPicker selectedDepartment={selectedDepartment} setSelection={setSelection} />
+            </Flex>
+
+            <Stack w="100%" align="center">
+              <Button
+                size='md'
+                radius="lg"
+                maw={250}
+                style={{ marginTop: 25 }}
+                onClick={async () => {
+                  if (selectedDepartment !== undefined) {
+                    await updateDepartment(selectedDepartment.id);
+                    await setUserData();
+                  }
+                }}
+              >
+                変更を保存
+              </Button>
+              <Button
+                size='md' radius="lg" maw={250} style={{ marginTop: 25 }}>
+                パスワード変更
+              </Button>
+            </Stack>
+          </Stack>
+        </Stack>
       </Stack>
     </Stack>
   );

@@ -1,4 +1,4 @@
-import { Stack, Flex, Text, Title, Table, Divider } from '@mantine/core';
+import { Stack, Flex, Text, Title, Table, Divider, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
@@ -7,7 +7,22 @@ import { allTasksDataState } from '../../../Hooks/AllTasksState';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
 
+const useStyles = createStyles((theme) => ({
+  hiddenMobile: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  hiddenDesktop: {
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+}));
+
 const UserTop = () => {
+  const { classes } = useStyles();
   const today = new Date();
   const { getAndSetAllTasks } = AllTasksService();
   const allTasksData = useRecoilValue(allTasksDataState);
@@ -50,14 +65,14 @@ const UserTop = () => {
       <Title order={4} style={{ marginBottom: 20 }}>課題表示期限: {(new Date(allTasksData.visible_limit).toLocaleDateString())}</Title>
 
       <Stack
-        w="90%"
+        w='calc(100% - 40px)'
         align="center"
-        style={{ padding: 15, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
+        style={{ padding: 10, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
       >
         <Flex justify="space-between" w="95%" align="center">
           <Title order={2}>今日の時間割</Title>
           <Text size="md" color="gray">
-            {today.toLocaleString()}
+            {today.toLocaleDateString()}
           </Text>
         </Flex>
         <Divider w="95%" />
@@ -73,26 +88,30 @@ const UserTop = () => {
         </Table>
       </Stack>
 
-      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
-        <Flex w="95%" align="center" columnGap={10}>
+      <Stack w="100%" align="center" style={{ marginTop: 20 }}>
+        <Flex className={classes.hiddenMobile} w="95%" align="center" columnGap={10}>
           <Title order={2}>やばい課題</Title>
           <Text>(期限が3日以内・大変さが「やばい」の課題)</Text>
         </Flex>
+        <Stack className={classes.hiddenDesktop} w="95%" align="center">
+          <Title order={2}>やばい課題</Title>
+          <Text color='gray'>(期限が3日以内・大変さが「やばい」の課題)</Text>
+        </Stack>
         <Divider w="95%" />
         {allTasksData.tasks
-          .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
+          .filter(task => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
           .map((task) => (
             <TaskItem task={task} deadlineApproacing />
           ))}
       </Stack>
 
-      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
+      <Stack w="100%" align="center" style={{ marginTop: 20 }}>
         <Flex w="95%" align="center" columnGap={10}>
           <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
         {allTasksData.tasks
-          .filter((task) => !isOutdated(task))
+          .filter(task => !isOutdated(task))
           .map((task, index) => (
             <TaskItem task={task} key={index} />
           ))}

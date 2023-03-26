@@ -81,7 +81,7 @@ export const UserHeaderMenu = () => {
   const { classes, theme } = useStyles();
 
   return (
-    <Box pb={120}>
+    <Box pb={60}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           <Link to="/user" style={{ textDecoration: 'none' }}>

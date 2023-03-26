@@ -24,7 +24,6 @@ const UserTasks = () => {
         <TaskItem
           task={task}
           key={index}
-          showModel={false}
           onDelete={async () => {
             await deleteTask(task);
           }}

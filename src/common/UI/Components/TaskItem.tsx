@@ -20,7 +20,7 @@ export const TaskItem: FC<TaskItemProps> = ({
   showModel = true,
   deadlineApproacing = false,
   onDelete,
-  onClick = () => {},
+  onClick = () => { },
 }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
 
@@ -58,10 +58,10 @@ export const TaskItem: FC<TaskItemProps> = ({
         shadow="sm"
         padding="lg"
         radius="lg"
-        w="90%"
+        w="95%"
         withBorder
         style={{ borderColor: `${deadlineApproacing ? 'red' : ''}` }}
-        onClick={() => {
+        onClickCapture={() => {
           if (showModel) {
             setPresentState(true);
           } else {
@@ -73,7 +73,10 @@ export const TaskItem: FC<TaskItemProps> = ({
           <Flex align="center" justify="space-between">
             <Text>{task.subject_name}</Text>
             {onDelete !== undefined ? (
-              <UnstyledButton onClick={async () => onDelete()}>
+              <UnstyledButton onClick={async () => {
+                setPresentState(false);
+                onDelete();
+              }}>
                 <IconTrash color="red" />
               </UnstyledButton>
             ) : (

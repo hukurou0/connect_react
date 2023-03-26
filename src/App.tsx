@@ -39,7 +39,7 @@ const App = () => {
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
-      <LoadingOverlay loader={<Loader size="lg" variant="dots" h="100%" />} visible={isLoading} />
+      <LoadingOverlay loader={<Loader size="lg" variant="dots" h="100%" />} style={{position: 'fixed', height: '100%'}} visible={isLoading} />
     </>
   );
 };
