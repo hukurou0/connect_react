@@ -8,5 +8,6 @@ export const userDataState = atom<UserData>({
     department_id: 0,
     mail: '',
     username: '',
+    iso_visible_limit: ''
   },
 });

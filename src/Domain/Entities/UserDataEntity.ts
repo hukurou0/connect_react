@@ -11,4 +11,5 @@ export type UserData = {
   department_id: number;
   mail: string;
   username: string;
+  iso_visible_limit: string;
 };

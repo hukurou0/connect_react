@@ -1,4 +1,4 @@
-import { Stack, Button, Text, Flex, Divider } from '@mantine/core';
+import { Stack, Button, Text, Flex, Divider, Title } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import { IconUser, IconDoorExit } from '@tabler/icons-react';
@@ -25,10 +25,11 @@ const Settings = () => {
 
   return (
     <Stack w="100%" align="stretch">
-      {/* Left Bar */}
-      <Stack style={{ padding: 20 }}>
-        <Flex justify="space-between" style={{ paddingLeft: 20, paddingRight: 20 }}>
-          <h2 style={{ margin: 0 }}>アカウント設定</h2>
+      <Stack style={{ padding: 20 }} align='center'>
+        <Title order={4}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
+
+        <Flex justify="space-between" w='90%' style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <Title order={2} style={{ margin: 0 }}>アカウント設定</Title>
           <Button
             radius="xl"
             size="md"
@@ -42,10 +43,10 @@ const Settings = () => {
             ログアウト
           </Button>
         </Flex>
-        <Divider />
+        <Divider w='90%'/>
 
-        {/* Right Contents */}
         <Flex w="100%">
+          {/* Left Bar */}
           <Stack w="40%" align="center" style={{ textAlign: 'left' }}>
             <div>
               <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10 }}>
@@ -60,6 +61,7 @@ const Settings = () => {
             </div>
           </Stack>
 
+          {/* Right Contents */}
           <Stack w="60%" align="flex-start" style={{ padding: 15 }}>
             <Flex justify="space-between" align="stretch" w="100%">
               <Text>ユーザー名</Text>
