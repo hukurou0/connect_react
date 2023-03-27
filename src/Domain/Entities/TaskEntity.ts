@@ -6,25 +6,35 @@ export type DuplicatedTaskResponse = {
   error?: APIError | undefined;
 };
 
-export type TaskListResponse = {
+export type AllTasksResponse = {
   status_code: number;
-  data: {
-    canDisplay: {
-      subjectTaken: boolean;
-      taskRegistered: boolean;
-    };
-    tasks: TaskData[];
-  };
+  data: AllTasksData;
   error?: APIError | undefined;
 };
 
+export type AllTasksData = {
+  display_ok: {
+    subject_taken: boolean;
+    task_regist: boolean;
+  };
+  visible_limit: string;
+  tasks: TaskData[];
+};
+
 export type TaskData = {
-  subjectId: number;
-  taskId: number;
-  deadlineYear: number;
-  deadlineMonth: number;
-  deadlineDay: number;
+  subject_id: number;
+  subject_name: string;
+  task_id: number;
+  deadline_year: number;
+  deadline_month: number;
+  deadline_day: number;
   summary: string;
   detail: string;
   difficulty: number;
+};
+
+export type UserTasksResponse = {
+  status_code: number;
+  data: { tasks: TaskData[] };
+  error?: APIError | undefined;
 };

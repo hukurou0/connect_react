@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Stack } from '@mantine/core';
+import { Stack } from '@mantine/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { PublicHeaderMenu } from '../common/UI/Components/PublicHeader';
@@ -19,13 +19,13 @@ const PublicLayout = () => {
   }, []);
 
   return (
-    <Stack justify="space-between" mih="100vh">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <PublicHeaderMenu isLoggedIn={false} userData={isLoggedIn ? userData : undefined} />
-      <Container h="100%" w="100%">
+      <Stack style={{ flex: 1 }} h="100%" w="100%" align='center'>
         <Outlet />
-      </Container>
+      </Stack>
       <FooterSocial />
-    </Stack>
+    </div>
   );
 };
 

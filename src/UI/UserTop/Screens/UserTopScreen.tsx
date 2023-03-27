@@ -1,10 +1,31 @@
-import { Stack, Flex, Text, Title, Table, Divider } from '@mantine/core';
+import { Stack, Flex, Text, Title, Divider, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
-import SubjectsService from '../../../Services/SubjectsService';
+import AllTasksService from '../../../Services/AllTasksService';
+import { allTasksDataState } from '../../../Hooks/AllTasksState';
+import { TaskData } from '../../../Domain/Entities/TaskEntity';
+import { generateDate } from '../../../lib/helpers/generateDate';
+
+const useStyles = createStyles((theme) => ({
+  hiddenMobile: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  hiddenDesktop: {
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+}));
 
 const UserTop = () => {
+  const { classes } = useStyles();
   const today = new Date();
+  const { getAndSetAllTasks } = AllTasksService();
+  const allTasksData = useRecoilValue(allTasksDataState);
 
   const elements = [
     { time: 1, class: '線形代数', room: 'Ⅳ-402' },
@@ -13,30 +34,46 @@ const UserTop = () => {
     { time: 1, class: '線形代数', room: 'Ⅶ-LLL5' },
     { time: 5, class: '-', room: '' },
   ];
-  const rows = elements.map((element) => (
-    <tr key={element.time}>
+  const rows = elements.map((element, index) => (
+    <tr key={index}>
       <td>{element.time}</td>
       <td>{element.class}</td>
       <td>{element.room}</td>
     </tr>
   ));
-  const { getAndSetSubjects } = SubjectsService();
 
   useEffect(() => {
-    getAndSetSubjects();
+    getAndSetAllTasks();
   }, []);
+
+  const isDeadlineApproaching = (task: TaskData): boolean => {
+    const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
+    const duration = Math.abs(deadline.getTime() - today.getTime());
+    const days = Math.ceil(duration / (1000 * 3600 * 24));
+    return days <= 3;
+  };
+
+  const isOutdated = (task: TaskData): boolean => {
+    const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
+    const duration = Math.abs(deadline.getTime() - today.getTime());
+    const days = Math.ceil(duration / (1000 * 3600 * 24));
+    return days < 0;
+  };
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Stack
-        w="90%"
+      <Title order={4} style={{ marginBottom: 20 }}>課題表示期限: {(new Date(allTasksData.visible_limit).toLocaleDateString())}</Title>
+
+      {/* Timetable */}
+      {/* <Stack
+        w='calc(100% - 40px)'
         align="center"
-        style={{ padding: 15, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
+        style={{ padding: 10, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
       >
         <Flex justify="space-between" w="95%" align="center">
           <Title order={2}>今日の時間割</Title>
           <Text size="md" color="gray">
-            {today.toLocaleString()}
+            {today.toLocaleDateString()}
           </Text>
         </Flex>
         <Divider w="95%" />
@@ -50,46 +87,35 @@ const UserTop = () => {
           </thead>
           <tbody>{rows}</tbody>
         </Table>
-      </Stack>
+      </Stack> */}
 
-      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
-        <Flex w="95%" align="center" columnGap={10}>
+      <Stack w="100%" align="center" style={{ marginTop: 20 }}>
+        <Flex className={classes.hiddenMobile} w="95%" align="center" columnGap={10}>
           <Title order={2}>やばい課題</Title>
           <Text>(期限が3日以内・大変さが「やばい」の課題)</Text>
         </Flex>
+        <Stack className={classes.hiddenDesktop} w="95%" align="center">
+          <Title order={2}>やばい課題</Title>
+          <Text color='gray'>期限が3日以内・大変さが「やばい」の課題</Text>
+        </Stack>
         <Divider w="95%" />
-        <TaskItem
-          task={{
-            subjectId: 1,
-            taskId: 0,
-            deadlineYear: 0,
-            deadlineMonth: 0,
-            deadlineDay: 0,
-            summary: '企業社会責任に関する報告書作成',
-            detail:
-              '選んだ企業のCSR戦略と取り組みについて調査し、報告書を作成する。報告書には、企業の社会的責任に関する考え方、現状の取り組み、課題や改善策、今後の展望などを含めること。また、調査手法や情報源についても記載する必要がある。',
-            difficulty: 5,
-          }}
-        />
+        {allTasksData.tasks
+          .filter(task => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
+          .map((task) => (
+            <TaskItem task={task} deadlineApproacing />
+          ))}
       </Stack>
 
-      <Stack w="95%" align="center" style={{ padding: 15, marginTop: 20 }}>
+      <Stack w="100%" align="center" style={{ marginTop: 20 }}>
         <Flex w="95%" align="center" columnGap={10}>
           <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
-        <TaskItem
-          task={{
-            subjectId: 1,
-            taskId: 0,
-            deadlineYear: 0,
-            deadlineMonth: 0,
-            deadlineDay: 0,
-            summary: '線形代数',
-            detail: '詳細',
-            difficulty: 5,
-          }}
-        />
+        {allTasksData.tasks
+          .filter(task => !isOutdated(task))
+          .map((task, index) => (
+            <TaskItem task={task} key={index} />
+          ))}
       </Stack>
     </Stack>
   );

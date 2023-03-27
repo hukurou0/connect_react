@@ -4,13 +4,13 @@ import { UserHeaderMenu } from '../common/UI/Components/UserHeader';
 import { FooterSocial } from '../common/UI/Components/Footer';
 
 const UserLayout = () => (
-  <Stack justify="space-between" mih="100vh">
+  <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
     <UserHeaderMenu />
-    <Stack h="100%" w="100%" align="center">
+    <Stack style={{ flex: 1 }} mih="100%" w="100%" align="center">
       <Outlet />
     </Stack>
     <FooterSocial />
-  </Stack>
+  </div>
 );
 
 export default UserLayout;

@@ -1,4 +1,4 @@
-import { Alert, Button, Overlay, Space, Stack } from '@mantine/core';
+import { Alert, Button, Overlay, Space, Stack, Title } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { useState } from 'react';
 import { IconAlertCircle } from '@tabler/icons-react';
@@ -16,11 +16,11 @@ const LogIn = () => {
   const [passwordInput, setPassword] = useInputState('');
 
   return (
-    <>
-      <Stack align="center">
-        <h2>ログイン</h2>
+    <Stack maw={500} w="100%" align="center">
+      <Stack align="center" w='100%'>
+        <Title order={2}>ログイン</Title>
 
-        <Stack w={300} spacing={15}>
+        <Stack w='90%' align='stretch'>
           <UsernameInput username={usernameInput} setUsername={setUsername} />
 
           <PasswordInputWithNotes password={passwordInput} setPassword={setPassword} />
@@ -28,6 +28,8 @@ const LogIn = () => {
           <Space mt="md" />
 
           <Button
+            size='md'
+            radius='lg'
             onClick={async () => {
               /** This is for production */
               // const isVailedInputs = isVailed(usernameInput, passwordInput);
@@ -49,7 +51,7 @@ const LogIn = () => {
       </Stack>
 
       {isErrorShown && (
-        <Overlay center style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
+        <Overlay center w='100%' style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
           <Alert
             icon={<IconAlertCircle size="1rem" />}
             title="Error"
@@ -62,7 +64,7 @@ const LogIn = () => {
           </Alert>
         </Overlay>
       )}
-    </>
+    </Stack>
   );
 };
 

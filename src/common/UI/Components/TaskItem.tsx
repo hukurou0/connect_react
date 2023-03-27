@@ -1,27 +1,35 @@
-import { Stack, Title, Text, Flex, Card, Modal } from '@mantine/core';
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { IconCircleFilled } from '@tabler/icons-react';
+/* eslint-disable react/require-default-props */
+
+import { Stack, Title, Text, Flex, Card, Modal, UnstyledButton } from '@mantine/core';
+import { FC, useState } from 'react';
+import { IconCircleFilled, IconTrash } from '@tabler/icons-react';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
-import { subjectsState } from '../../../Hooks/SubjectState';
 
-export const TaskItem = ({ task }: { task: TaskData }) => {
+interface TaskItemProps {
+  task: TaskData;
+  showModel?: boolean;
+  deadlineApproacing?: boolean;
+  onDelete?: () => Promise<void>;
+  onClick?: () => void;
+}
+
+export const TaskItem: FC<TaskItemProps> = ({
+  task,
+  showModel = true,
+  deadlineApproacing = false,
+  onDelete,
+  onClick = () => { },
+}: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
-  const subjects = useRecoilValue(subjectsState);
-
-  if (subjects.length === 0) {
-    return <> </>;
-  }
 
   return (
-    // TODO: API Function
     <>
       <Modal
         opened={isPresented}
         onClose={() => setPresentState(false)}
-        title={subjects.filter((subject) => subject.subject_id === task.subjectId)[0].name}
+        title={task.subject_name}
         centered
         withinPortal
         radius="lg"
@@ -34,7 +42,7 @@ export const TaskItem = ({ task }: { task: TaskData }) => {
             <Stack align="flex-end">
               <Text size="md" color="gray" style={{ marginRight: 7 }}>
                 {'期日: '}
-                {generateDate(task.deadlineYear, task.deadlineMonth, task.deadlineDay).toLocaleDateString()}
+                {generateDate(task.deadline_year, task.deadline_month, task.deadline_day).toLocaleDateString()}
               </Text>
               <Flex align="center" style={{ padding: 5, borderRadius: 50, backgroundColor: `rgba(244, 244, 244, .7)` }}>
                 <Text size="md">{label(task.difficulty)}</Text>
@@ -47,22 +55,40 @@ export const TaskItem = ({ task }: { task: TaskData }) => {
       </Modal>
 
       <Card
-        key={task.detail}
         shadow="sm"
         padding="lg"
         radius="lg"
-        w="90%"
+        w="95%"
         withBorder
-        onClick={() => setPresentState(true)}
+        style={{ borderColor: `${deadlineApproacing ? 'red' : ''}` }}
+        onClickCapture={() => {
+          if (showModel) {
+            setPresentState(true);
+          } else {
+            onClick();
+          }
+        }}
       >
         <Stack>
-          <Text>{subjects.filter((subject) => subject.subject_id === task.subjectId)[0].name}</Text>
+          <Flex align="center" justify="space-between">
+            <Text>{task.subject_name}</Text>
+            {onDelete !== undefined ? (
+              <UnstyledButton onClick={async () => {
+                setPresentState(false);
+                onDelete();
+              }}>
+                <IconTrash color="red" />
+              </UnstyledButton>
+            ) : (
+              <> </>
+            )}
+          </Flex>
           <Flex align="center" justify="space-between">
             <Title order={2}>{task.summary}</Title>
             <Stack align="flex-end">
               <Text size="md" color="gray" style={{ marginRight: 7 }}>
                 {'期日: '}
-                {generateDate(task.deadlineYear, task.deadlineMonth, task.deadlineDay).toLocaleDateString()}
+                {generateDate(task.deadline_year, task.deadline_month, task.deadline_day).toLocaleDateString()}
               </Text>
               <Flex align="center" style={{ padding: 5, borderRadius: 50, backgroundColor: `rgba(244, 244, 244, .7)` }}>
                 <Text size="md">{label(task.difficulty)}</Text>
