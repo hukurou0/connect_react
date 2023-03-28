@@ -218,6 +218,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
 
           {isLoggedIn ? (
             <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
+              <Text>ユーザートップ</Text>
               <IconHome />
             </Button>
           ) : (

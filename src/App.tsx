@@ -14,6 +14,9 @@ import { NewTask } from './UI/TaskRegist/Screens/NewTaskScreen';
 import { TaskSelection } from './UI/TaskRegist/Screens/TaskSelectionScreen';
 import { loadingState } from './Hooks/LoadingState';
 import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
+import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
+import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
+import { Credits } from './UI/Credits/CreditsScreen';
 
 const App = () => {
   const isLoading = useRecoilValue(loadingState);
@@ -27,6 +30,9 @@ const App = () => {
             <Route path="logIn" element={<LogIn />} />
             <Route path="signUp" element={<SignUp />} />
             <Route path="usertop" element={<UserTop />} />
+            <Route path="credits" element={<Credits />} />
+            <Route path="privacy_policy" element={<PrivacyPolicy />} />
+            <Route path="terms_of_use" element={<TermsOfUse />} />
           </Route>
           <Route path="user/" element={<UserLayout />}>
             <Route index element={<UserTop />} />
