@@ -1,7 +1,7 @@
 import { Anchor, Divider, Stack, Title, Text } from '@mantine/core';
 
 export const Credits = () => (
-  <Stack maw={800} w="100%" align="center">
+  <Stack maw={800} w="95%" align="center">
     <Title>クレジット</Title>
     <Divider w="100%" />
     <Text>

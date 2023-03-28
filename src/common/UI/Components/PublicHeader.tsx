@@ -216,23 +216,25 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Link>
           </Group>
 
-          {isLoggedIn ? (
-            <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
-              <Text>ユーザートップ</Text>
-              <IconHome />
-            </Button>
-          ) : (
-            <Group className={classes.hiddenMobile}>
-              <Button variant="default" component={Link} to="/logIn">
-                Log In
+          <Group>
+            {isLoggedIn ? (
+              <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
+                <Text>ユーザートップ</Text>
+                <IconHome />
               </Button>
-              <Button component={Link} to="/signUp">
-                Sign Up
-              </Button>
-            </Group>
-          )}
+            ) : (
+              <Group className={classes.hiddenMobile}>
+                <Button variant="default" component={Link} to="/logIn">
+                  Log In
+                </Button>
+                <Button component={Link} to="/signUp">
+                  Sign Up
+                </Button>
+              </Group>
+            )}
 
-          <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+          </Group>
         </Group>
       </Header>
 

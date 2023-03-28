@@ -15,7 +15,7 @@ export const TermsOfUse = () => {
   }, []);
 
   return (
-    <Stack maw={800} w="100%" align="center">
+    <Stack maw={800} w="95%" align="center">
       <ReactMarkdown>{postMarkdown}</ReactMarkdown>
     </Stack>
   );
