@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { BASEURL, CHECK } from '../../lib/constants/urls';
+import { BASEURL, CHECK, DUPLICATION } from '../../lib/constants/urls';
 import { makeErrorData } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse, TaskData } from '../Entities/TaskEntity';
+import { EmptyResponse } from '../Entities/EmptyResponseEntity';
 
 interface CheckTaskParmas {
   subject_id: number;
@@ -49,5 +50,31 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
       error: errorData,
     };
     return duplicatedTaskResponse;
+  }
+};
+
+export const duplicateTask = async (taskId: number): Promise<EmptyResponse> => {
+  try {
+    const response = await axios.post(BASEURL + DUPLICATION, {
+      data: {
+        task_id: taskId,
+      },
+    });
+
+    const { data } = response.data;
+
+    const emptyResponse = {
+      status_code: data.status_code,
+      data: data.data,
+    };
+    return emptyResponse;
+  } catch (error) {
+    const errorData = makeErrorData(error);
+    const emptyResponse = {
+      status_code: 0,
+      data: {},
+      error: errorData,
+    };
+    return emptyResponse;
   }
 };
