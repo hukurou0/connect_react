@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { BASEURL, DELETE_TASK, GET_USER_TASKS } from '../../lib/constants/urls';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { TaskData, UserTasksResponse } from '../Entities/TaskEntity';
 import { EmptyResponse } from '../Entities/EmptyResponseEntity';
 
 export const fetchUserTasks = async (): Promise<UserTasksResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.get(BASEURL + GET_USER_TASKS);
     const { data } = response;
@@ -25,6 +26,7 @@ export const fetchUserTasks = async (): Promise<UserTasksResponse> => {
 };
 
 export const deleteUserTask = async (task: TaskData): Promise<EmptyResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + DELETE_TASK, {
       data: {

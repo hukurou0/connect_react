@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASEURL, LOGOUT } from '../../lib/constants/urls';
 import { EmptyResponse } from '../Entities/EmptyResponseEntity';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 
 export const logout = async (): Promise<EmptyResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.get(BASEURL + LOGOUT);
 

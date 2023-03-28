@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { registeredTasks } from '../Domain/Repositories/RegisteredTasksRepo';
-import { catchCustomError } from '../lib/helpers/errorHandler';
+import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { registeredTasksState } from '../Hooks/RegisteredTasksState';
 import { SubjectData } from '../Domain/Entities/SubjectEntity';
 import { loadingState } from '../Hooks/LoadingState';
+import { logInState } from '../Hooks/LogInState';
 
 const RegisteredTasksService = () => {
+  const { catchCustomError } = ErrorHandler();
+  const resetLogInState = useResetRecoilState(logInState);
   const setRegisteredTasks = useSetRecoilState(registeredTasksState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
@@ -22,7 +25,7 @@ const RegisteredTasksService = () => {
     });
     console.log(response);
 
-    const customError = catchCustomError(response.status_code, navigate);
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
       return;

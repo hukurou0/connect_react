@@ -45,7 +45,7 @@ export const FooterSocial = () => {
           <Link to="/privacy_policy" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             Privacy Policy
           </Link>
-          <Link to="/term_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
+          <Link to="/terms_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             Term of Use
           </Link>
           <ActionIcon size="lg">

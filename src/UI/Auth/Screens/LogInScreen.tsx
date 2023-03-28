@@ -17,10 +17,10 @@ const LogIn = () => {
 
   return (
     <Stack maw={500} w="100%" align="center">
-      <Stack align="center" w='100%'>
+      <Stack align="center" w="100%">
         <Title order={2}>ログイン</Title>
 
-        <Stack w='90%' align='stretch'>
+        <Stack w="90%" align="stretch">
           <UsernameInput username={usernameInput} setUsername={setUsername} />
 
           <PasswordInputWithNotes password={passwordInput} setPassword={setPassword} />
@@ -28,8 +28,8 @@ const LogIn = () => {
           <Space mt="md" />
 
           <Button
-            size='md'
-            radius='lg'
+            size="md"
+            radius="lg"
             onClick={async () => {
               /** This is for production */
               // const isVailedInputs = isVailed(usernameInput, passwordInput);
@@ -51,7 +51,7 @@ const LogIn = () => {
       </Stack>
 
       {isErrorShown && (
-        <Overlay center w='100%' style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
+        <Overlay center w="100%" style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
           <Alert
             icon={<IconAlertCircle size="1rem" />}
             title="Error"

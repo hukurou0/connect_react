@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASEURL, CHECK } from '../../lib/constants/urls';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse, TaskData } from '../Entities/TaskEntity';
 
 interface CheckTaskParmas {
@@ -11,6 +11,7 @@ interface CheckTaskParmas {
 }
 
 export const registeredTasks = async ({ subject_id, deadline_year, deadline_month, deadline_day }: CheckTaskParmas) => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + CHECK, {
       data: {

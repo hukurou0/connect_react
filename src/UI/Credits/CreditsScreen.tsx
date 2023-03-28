@@ -6,7 +6,7 @@ export const Credits = () => (
     <Divider w="100%" />
     <Text>
       Icons used in this app are made by
-      <Anchor href="https://www.flaticon.com/authors/freepik" style={{paddingLeft: '1ch'}} title="Freepik - Flaticon">
+      <Anchor href="https://www.flaticon.com/authors/freepik" style={{ paddingLeft: '1ch' }} title="Freepik - Flaticon">
         Freepik - Flaticon
       </Anchor>
     </Text>

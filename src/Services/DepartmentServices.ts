@@ -1,11 +1,14 @@
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { departmentsState } from '../Hooks/DepartmentsState';
 import { fetchDepartments, modifyDeparment } from '../Domain/Repositories/DepartmentRepo';
-import { catchCustomError } from '../lib/helpers/errorHandler';
+import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { loadingState } from '../Hooks/LoadingState';
+import { logInState } from '../Hooks/LogInState';
 
 const DepartmentService = () => {
+  const { catchCustomError } = ErrorHandler();
+  const resetLogInState = useResetRecoilState(logInState);
   const setDepartments = useSetRecoilState(departmentsState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
@@ -13,7 +16,7 @@ const DepartmentService = () => {
   const getAndSetDepartments = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchDepartments();
-    const customError = catchCustomError(response.status_code, navigate);
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
       return;

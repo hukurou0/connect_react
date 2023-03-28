@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASEURL, GET_TASKS } from '../../lib/constants/urls';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { AllTasksResponse } from '../Entities/TaskEntity';
 
 export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.get(BASEURL + GET_TASKS);
     const { data } = response;

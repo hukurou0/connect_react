@@ -17,7 +17,7 @@ export const NewTask = () => {
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Stack w='95%' align="center">
+      <Stack w="95%" align="center">
         <Title order={2}>課題の詳細を入力しましょう</Title>
         <Text color="gray">課題を新しく追加することで、課題の表示期間が延長されます。</Text>
         <Divider w="100%" />
@@ -33,7 +33,7 @@ export const NewTask = () => {
           placeholder="概要"
           label="課題の概要"
           radius="lg"
-          size='md'
+          size="md"
           w="95%"
           withAsterisk
           required
@@ -42,7 +42,7 @@ export const NewTask = () => {
           placeholder="詳細"
           label="課題の詳細"
           radius="lg"
-          size='md'
+          size="md"
           w="95%"
           withAsterisk
           required
@@ -50,12 +50,8 @@ export const NewTask = () => {
           onChange={setDetails}
         />
 
-        <Stack align="center"
-          maw={400}
-          w='90%'>
-          <Flex justify="space-between"
-            maw={400}
-            w='80%'>
+        <Stack align="center" maw={400} w="90%">
+          <Flex justify="space-between" maw={400} w="80%">
             <Text>大変さ</Text>
             <Text>{label(difficulty)}</Text>
           </Flex>
@@ -68,7 +64,7 @@ export const NewTask = () => {
             onChange={setDifficulty}
             styles={styles}
             maw={400}
-            w='80%'
+            w="80%"
           />
         </Stack>
 

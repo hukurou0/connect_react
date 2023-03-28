@@ -18,7 +18,7 @@ export const TaskSelection = () => {
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Stack w='95%' align="center" style={{textAlign: 'center'}}>
+      <Stack w="95%" align="center" style={{ textAlign: 'center' }}>
         <Title order={2}>すでに登録済みの課題があります</Title>
         <Text color="gray">追加したい課題が一覧にある場合、クリックすると課題表示期間が延長されます。</Text>
         <Divider w="100%" />
