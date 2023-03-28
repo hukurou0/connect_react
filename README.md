@@ -1,53 +1,92 @@
-# Getting Started with Create React App
+# CONNECT (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic Information
+- [React](https://beta.reactjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Mantine](https://mantine.dev) (UI Components)
+- [Recoil](https://recoiljs.org) (State Management)
+- DDD (Clean Architecture)
 
 ## Requirements
 - Node.js: 16.18.0
 - npm: 9.5.1
+- VS Code (Recommended)
 
 ## Installation
+`npm install` でプロジェクトの依存関係にあるライブラリ等を全てインストールする。
+
 Type `npm install` into your console to install all necessary dependencies for this project.
 
-## Available Scripts
+## Startup Local Host
+`npm start` でローカルホストを立ち上げる。
 
-In the project directory, you can run:
+Type `npm start` into your console to start your localhost.
 
-### `npm start`
+## Git Rules
+### Prefixes
+```
+fix: バグ等の修正
+feat: 新機能
+refactor: 動作に影響のないコード変更
+docs: ドキュメントのみの変更
+style: スタイルのみの変更
+perf: パフォーマンス向上関連の変更
+chore: ライブラリ等の変更
+test: テスト関連の変更
+**!: 破壊的変更
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Branch Name
+```
+ex) {your_name}/feat_***
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Commit Message
+```
+ex) feat: xxxx
+```
 
-### `npm test`
+Reference: https://www.conventionalcommits.org/en/v1.0.0/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Directories
+```
+.
+├── public/ (デプロイされるファイルを入れる)
+├── src/ (ソースコード)
+│   ├── common/ (プロジェクト内で共通しているもの)
+│   │   ├── Assets/ (アイコン等)
+│   │   ├── Domain/ (ドメイン層)
+│   │   └── (以下 features 内のドメインごと)
+│   ├── features/ (機能単位で分ける)
+│   │   ├── **/ (機能)
+│   │   │   ├── Domain/ (ドメイン層)
+│   │   │   │   ├── Entities/ (エンティティ)
+│   │   │   │   │   ├── **Entity.ts
+│   │   │   │   ├── Repositories/ (リポジトリ)
+│   │   │   │   │   ├── **Repo.ts
+│   │   │   │   ├── DomainServices/ (ドメインサービス)
+│   │   │   │   │   ├── **DomService.ts
+│   │   │   ├── ApplicationServices/ (アプリケーションサービス)
+│   │   │   │   ├── **AppService.ts
+│   │   │   ├── Hooks/ (プレゼンテーション層のコントローラ)
+│   │   │   │   ├── **State.ts
+│   │   │   │   └── **Hook.ts
+│   │   │   └── UI/ (プレゼンテーション層)
+│   │   │       ├── Components/ (コンポーネント)
+│   │   │       └── Screens/ (画面)
+│   │   │           ├── **Screen.tsx
+│   ├── lib/ (プロジェクト全体で使う関数・定数入れ)
+│   │   ├── constants/ (定数)
+│   │   └── helpers/ (ヘルパー関数)
+│   ├── App.tsx
+│   ├── Layout.tsx
+│   ├── index.css
+│   ├── index.tsx
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   └── setupTests.ts
+├── README.md
+├── package-lock.json
+├── package.json
+└── tsconfig.json
+```
