@@ -79,18 +79,18 @@ export const NewTask = () => {
           disabled={isDisabled}
           style={{ marginTop: 25 }}
           onClick={async () => {
-            console.log(location.state);
             await newaddTask(
               location.state.subject.subject_id,
               location.state.subject.name,
               0,
-              location.state.date.getFullYear(),
-              location.state.date.getMonth(),
-              location.state.date.getDay(),
+              location.state.deadline.getFullYear(),
+              location.state.deadline.getMonth(),
+              location.state.deadline.getDay(),
               summary,
               details,
               difficulty
             );
+            console.log(location.state);
             navigate('/user');
           }}
         >
