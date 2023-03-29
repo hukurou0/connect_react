@@ -80,12 +80,12 @@ export const NewTask = () => {
           style={{ marginTop: 25 }}
           onClick={async () => {
             await newaddTask(
-              location.state.subject.subject_id,
-              location.state.subject.name,
+              (location.state.subject as SubjectData).subject_id,
+              (location.state.subject as SubjectData).name,
               0,
-              location.state.deadline.getFullYear(),
-              location.state.deadline.getMonth(),
-              location.state.deadline.getDay(),
+              (location.state.deadline as Date).getFullYear(),
+              (location.state.deadline as Date).getMonth(),
+              (location.state.deadline as Date).getDate(),
               summary,
               details,
               difficulty

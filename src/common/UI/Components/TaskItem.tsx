@@ -21,10 +21,10 @@ interface TaskItemProps {
 export const TaskItem: FC<TaskItemProps> = ({
   task,
   showModel = true,
-  deadlineApproacing = false,
   addMode = false,
+  deadlineApproacing = false,
   onDelete,
-  onClick = () => {},
+  onClick = () => { },
 }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
   const { newduplicateTask } = NewTasksService();
