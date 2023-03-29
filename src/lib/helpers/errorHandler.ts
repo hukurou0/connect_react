@@ -5,7 +5,6 @@ import { APIError } from '../../Domain/Entities/ApiBaseModel';
 import { getStatusMassage } from './getStatusMessage';
 
 export const ErrorHandler = () => {
-
   const makeErrorData = (error: unknown): APIError => {
     console.log(error);
 
@@ -26,7 +25,11 @@ export const ErrorHandler = () => {
     return errorData;
   };
 
-  const catchCustomError = (statusCode: number, resetLogInState: Resetter, navigate?: NavigateFunction | undefined): APIError | undefined => {
+  const catchCustomError = (
+    statusCode: number,
+    resetLogInState: Resetter,
+    navigate?: NavigateFunction | undefined
+  ): APIError | undefined => {
     if (statusCode === 4 && navigate !== undefined) {
       resetLogInState();
       navigate('/login');

@@ -49,7 +49,12 @@ const SignUp = () => {
             <DepartmentPicker selectedDepartment={selectedDepartment} setSelection={setSelection} />
           </Flex>
 
-          <Checkbox checked={isChecked} onChange={setCheckStatus} mt="md" label="プライバーポリシーに同意する" />
+          <Checkbox
+            checked={isChecked}
+            onChange={setCheckStatus}
+            mt="md"
+            label="プライバーポリシーと利用規約に同意する"
+          />
 
           <Space mt="md" />
 

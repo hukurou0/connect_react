@@ -9,7 +9,7 @@ export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
     const response = await axios.get(BASEURL + GET_TASKS);
     const { data } = response;
     console.log(response);
-    
+
     let allTasksResponse: AllTasksResponse;
     try {
       allTasksResponse = {
@@ -31,7 +31,7 @@ export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
             subject_taken: false,
             task_regist: false,
           },
-          visible_limit: "",
+          visible_limit: '',
           tasks: [],
         },
       };

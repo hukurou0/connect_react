@@ -40,13 +40,13 @@ export const FooterSocial = () => {
         </Text>
         <Group spacing={0} className={classes.links} position="right" noWrap>
           <Link to="/credits" color="gray" style={{ padding: 10, fontSize: 'small' }}>
-            Credits
+            クレジット
           </Link>
           <Link to="/privacy_policy" color="gray" style={{ padding: 10, fontSize: 'small' }}>
-            Privacy Policy
+            プライバシーポリシー
           </Link>
           <Link to="/terms_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
-            Term of Use
+            利用規約
           </Link>
           <ActionIcon size="lg">
             <IconBrandTwitter size="1.05rem" stroke={1.5} />
