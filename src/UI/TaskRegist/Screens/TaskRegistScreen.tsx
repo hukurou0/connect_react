@@ -37,7 +37,7 @@ const TaskRegist = () => {
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Stack w='95%' align="center">
+      <Stack w="95%" align="center">
         <Flex w="100%" align="center" justify="center" className={classes.hiddenMobile}>
           <Stack w="50%" align="center">
             <Image src={HomeworkImage} width="80%" fit="contain" />
@@ -48,7 +48,13 @@ const TaskRegist = () => {
           </Stack>
         </Flex>
 
-        <Stack w="100%" align="center" justify="center" style={{ textAlign: 'center' }} className={classes.hiddenDesktop}>
+        <Stack
+          w="100%"
+          align="center"
+          justify="center"
+          style={{ textAlign: 'center' }}
+          className={classes.hiddenDesktop}
+        >
           <Stack w="40%" align="center">
             <Image src={HomeworkImage} width="100%" fit="contain" />
           </Stack>
@@ -91,13 +97,13 @@ const TaskRegist = () => {
           style={{ marginTop: 25 }}
           onClick={async () => {
             if (dueDate === null) {
-              console.log("dueDate is undefined");
+              console.log('dueDate is undefined');
               return;
             }
             console.log(dueDate.getFullYear());
             console.log(dueDate.getMonth() + 1);
             console.log(dueDate.getDate());
-            
+
             await getAndSetRegisteredTasks(selectedSubject!, dueDate);
           }}
         >

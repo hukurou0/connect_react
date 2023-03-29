@@ -24,7 +24,7 @@ export const TaskItem: FC<TaskItemProps> = ({
   addMode = false,
   deadlineApproacing = false,
   onDelete,
-  onClick = () => { },
+  onClick = () => {},
 }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
   const { newduplicateTask } = NewTasksService();

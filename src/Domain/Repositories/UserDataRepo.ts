@@ -22,7 +22,7 @@ export const fetchUserData = async (): Promise<UserDataResponse> => {
         department_id: 0,
         mail: '',
         username: '',
-        iso_visible_limit: ''
+        iso_visible_limit: '',
       },
       error: errorData,
     };

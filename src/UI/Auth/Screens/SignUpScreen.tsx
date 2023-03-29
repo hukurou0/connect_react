@@ -32,10 +32,10 @@ const SignUp = () => {
 
   return (
     <Stack maw={500} w="100%" align="center">
-      <Stack align="center" w='100%'>
+      <Stack align="center" w="100%">
         <Title order={2}>登録</Title>
 
-        <Stack w='90%' align='stretch'>
+        <Stack w="90%" align="stretch">
           <UsernameInput username={username} setUsername={setUsername} />
 
           <EmailInput email={email} setEmail={setEmail} />
@@ -54,8 +54,8 @@ const SignUp = () => {
           <Space mt="md" />
 
           <Button
-            size='md'
-            radius='lg'
+            size="md"
+            radius="lg"
             onClick={async () => {
               const isVailedInputs = isVailed(username, password, selectedDepartment);
 
