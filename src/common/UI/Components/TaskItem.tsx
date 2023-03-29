@@ -7,7 +7,7 @@ import { IconCircleFilled, IconTrash } from '@tabler/icons-react';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
-import RegisteredTasksService from '../../../Services/RegisteredTasksService';
+import NewTasksService from '../../../Services/NewTasksService';
 
 interface TaskItemProps {
   task: TaskData;
@@ -25,7 +25,7 @@ export const TaskItem: FC<TaskItemProps> = ({
   onClick = () => {},
 }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
-  const { newduplicateTask } = RegisteredTasksService();
+  const { newduplicateTask } = NewTasksService();
   const navigate = useNavigate();
 
   return (

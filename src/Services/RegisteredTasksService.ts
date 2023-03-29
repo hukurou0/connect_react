@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { registeredTasks,duplicateTask } from '../Domain/Repositories/RegisteredTasksRepo';
+import { registeredTasks } from '../Domain/Repositories/RegisteredTasksRepo';
 import { catchCustomError } from '../lib/helpers/errorHandler';
 import { registeredTasksState } from '../Hooks/RegisteredTasksState';
 import { SubjectData } from '../Domain/Entities/SubjectEntity';
@@ -41,16 +41,7 @@ const RegisteredTasksService = () => {
     }
   };
 
-  const newduplicateTask = async (taskId: number) => {
-    setLoadingState(true);
-    const response = await duplicateTask(taskId);
-    if (response.error !== undefined) {
-      console.log(response.error);
-    }
-    setLoadingState(false);
-  };
-
-  return { getAndSetRegisteredTasks, newduplicateTask };
+  return { getAndSetRegisteredTasks };
 };
 
 export default RegisteredTasksService;
