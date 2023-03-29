@@ -23,7 +23,7 @@ export const TaskSelection = () => {
         <Text color="gray">追加したい課題が一覧にある場合、クリックすると課題表示期間が延長されます。</Text>
         <Divider w="100%" />
         {registeredTasks.map((task, index) => (
-          <TaskItem task={task} key={index} />
+          <TaskItem task={task} key={index} addMode />
         ))}
         <Space h={20} />
         <Text color="gray">追加したい課題が一覧に無い場合、ここから新しく追加ができます。</Text>

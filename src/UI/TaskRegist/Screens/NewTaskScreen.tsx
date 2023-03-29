@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { IconCircleFilled } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
+import NewTasksService from '../../../Services/NewTasksService';
 import { SubjectData } from '../../../Domain/Entities/SubjectEntity';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
+// import { TaskData } from '../../../Domain/Entities/TaskEntity';
 
 export const NewTask = () => {
   const navigate = useNavigate();
@@ -14,6 +16,8 @@ export const NewTask = () => {
   const [difficulty, setDifficulty] = useState(2);
   const styles = { thumb: { borderWidth: 2, height: 26, width: 26, padding: 3 } };
   const isDisabled = summary === '' || details === '';
+  const { newaddTask } = NewTasksService();
+  // const A = location.state as TaskData;
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -74,7 +78,19 @@ export const NewTask = () => {
           maw={250}
           disabled={isDisabled}
           style={{ marginTop: 25 }}
-          onClick={() => {
+          onClick={async () => {
+            await newaddTask(
+              (location.state.subject as SubjectData).subject_id,
+              (location.state.subject as SubjectData).name,
+              0,
+              (location.state.deadline as Date).getFullYear(),
+              (location.state.deadline as Date).getMonth(),
+              (location.state.deadline as Date).getDate(),
+              summary,
+              details,
+              difficulty
+            );
+            console.log(location.state);
             navigate('/user');
           }}
         >

@@ -1,5 +1,5 @@
 import { Alert, Button, Overlay, Space, Stack, Title } from '@mantine/core';
-import { useInputState } from '@mantine/hooks';
+import { useDisclosure, useInputState } from '@mantine/hooks';
 import { useState } from 'react';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
@@ -14,6 +14,7 @@ const LogIn = () => {
   const [isErrorShown, setErrorVisivility] = useState(false);
   const [usernameInput, setUsername] = useInputState('');
   const [passwordInput, setPassword] = useInputState('');
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <Stack maw={500} w="100%" align="center">
