@@ -33,6 +33,8 @@ const UserDataService = () => {
   const checkLogInState = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserData();
+    console.log(response);
+    
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
@@ -43,7 +45,7 @@ const UserDataService = () => {
       return;
     }
     setUserDataState(response.data);
-    setLogInState(response.status_code !== 4);
+    setLogInState(response.status_code === 1);
     setLoadingState(false);
   };
 
