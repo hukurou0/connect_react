@@ -12,6 +12,7 @@ import NewTasksService from '../../../Services/NewTasksService';
 interface TaskItemProps {
   task: TaskData;
   showModel?: boolean;
+  addMode?: boolean;
   deadlineApproacing?: boolean;
   onDelete?: () => Promise<void>;
   onClick?: () => void;
@@ -21,6 +22,7 @@ export const TaskItem: FC<TaskItemProps> = ({
   task,
   showModel = true,
   deadlineApproacing = false,
+  addMode = false,
   onDelete,
   onClick = () => {},
 }: TaskItemProps) => {
@@ -55,16 +57,18 @@ export const TaskItem: FC<TaskItemProps> = ({
             </Stack>
           </Flex>
           <Text style={{ margin: 10 }}>{task.detail}</Text>
-          <Button
-            radius="xl"
-            size="lg"
-            onClick={async () => {
-              await newduplicateTask(task.task_id);
-              navigate('/user/');
-            }}
-          >
-            課題を追加
-          </Button>
+          {addMode && (
+            <Button
+              radius="xl"
+              size="lg"
+              onClick={async () => {
+                await newduplicateTask(task.task_id);
+                navigate('/user/');
+              }}
+            >
+              課題を追加
+            </Button>
+          )}
         </Stack>
       </Modal>
 
