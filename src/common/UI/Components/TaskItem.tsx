@@ -1,15 +1,18 @@
 /* eslint-disable react/require-default-props */
 
-import { Stack, Title, Text, Flex, Card, Modal, UnstyledButton } from '@mantine/core';
+import { Stack, Title, Text, Flex, Card, Modal, UnstyledButton, Button } from '@mantine/core';
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IconCircleFilled, IconTrash } from '@tabler/icons-react';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
+import NewTasksService from '../../../Services/NewTasksService';
 
 interface TaskItemProps {
   task: TaskData;
   showModel?: boolean;
+  addMode?: boolean;
   deadlineApproacing?: boolean;
   onDelete?: () => Promise<void>;
   onClick?: () => void;
@@ -18,11 +21,14 @@ interface TaskItemProps {
 export const TaskItem: FC<TaskItemProps> = ({
   task,
   showModel = true,
+  addMode = false,
   deadlineApproacing = false,
   onDelete,
-  onClick = () => { },
+  onClick = () => {},
 }: TaskItemProps) => {
   const [isPresented, setPresentState] = useState(false);
+  const { newduplicateTask } = NewTasksService();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -51,6 +57,18 @@ export const TaskItem: FC<TaskItemProps> = ({
             </Stack>
           </Flex>
           <Text style={{ margin: 10 }}>{task.detail}</Text>
+          {addMode && (
+            <Button
+              radius="xl"
+              size="lg"
+              onClick={async () => {
+                await newduplicateTask(task.task_id);
+                navigate('/user/');
+              }}
+            >
+              課題を追加
+            </Button>
+          )}
         </Stack>
       </Modal>
 
@@ -73,10 +91,12 @@ export const TaskItem: FC<TaskItemProps> = ({
           <Flex align="center" justify="space-between">
             <Text>{task.subject_name}</Text>
             {onDelete !== undefined ? (
-              <UnstyledButton onClick={async () => {
-                setPresentState(false);
-                onDelete();
-              }}>
+              <UnstyledButton
+                onClick={async () => {
+                  setPresentState(false);
+                  onDelete();
+                }}
+              >
                 <IconTrash color="red" />
               </UnstyledButton>
             ) : (

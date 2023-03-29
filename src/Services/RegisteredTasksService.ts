@@ -13,12 +13,11 @@ const RegisteredTasksService = () => {
 
   const getAndSetRegisteredTasks = async (subject: SubjectData, date: Date): Promise<void> => {
     setLoadingState(true);
-    // TODO: API Function
     const response = await registeredTasks({
       subject_id: subject.subject_id,
       deadline_year: date.getFullYear(),
-      deadline_month: date.getMonth(),
-      deadline_day: date.getDay(),
+      deadline_month: date.getMonth() + 1,
+      deadline_day: date.getDate(),
     });
     console.log(response);
 
@@ -34,6 +33,8 @@ const RegisteredTasksService = () => {
     setRegisteredTasks(response.data.tasks);
 
     setLoadingState(false);
+    console.log(response.data.tasks);
+
     if (response.data.tasks.length > 0) {
       navigate('/user/select_task', { state: { subject: subject, deadline: date } });
     } else {
