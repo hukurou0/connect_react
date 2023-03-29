@@ -6,7 +6,7 @@ import { useInputState } from '@mantine/hooks';
 import NewTasksService from '../../../Services/NewTasksService';
 import { SubjectData } from '../../../Domain/Entities/SubjectEntity';
 import { color, label } from '../../../lib/helpers/taskDifficulty';
-import { TaskData } from '../../../Domain/Entities/TaskEntity';
+// import { TaskData } from '../../../Domain/Entities/TaskEntity';
 
 export const NewTask = () => {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ export const NewTask = () => {
   const [difficulty, setDifficulty] = useState(2);
   const styles = { thumb: { borderWidth: 2, height: 26, width: 26, padding: 3 } };
   const isDisabled = summary === '' || details === '';
-  const A = location.state.subject as TaskData;
   const { newaddTask } = NewTasksService();
+  // const A = location.state as TaskData;
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -79,13 +79,14 @@ export const NewTask = () => {
           disabled={isDisabled}
           style={{ marginTop: 25 }}
           onClick={async () => {
+            console.log(location.state);
             await newaddTask(
-              subject_id,
-              subject_name,
-              task_id,
-              deadline_year,
-              deadline_month,
-              deadline_day,
+              location.state.subject.subject_id,
+              location.state.subject.name,
+              0,
+              location.state.date.getFullYear(),
+              location.state.date.getMonth(),
+              location.state.date.getDay(),
               summary,
               details,
               difficulty

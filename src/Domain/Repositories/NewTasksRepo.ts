@@ -12,7 +12,9 @@ export const duplicateTask = async (taskId: number): Promise<EmptyResponse> => {
       },
     });
 
-    const { data } = response.data;
+    console.log(response);
+
+    const { data } = response;
 
     const emptyResponse = {
       status_code: data.status_code,
@@ -56,9 +58,9 @@ export const newTask = async (
       },
     });
 
-    console.log(response.data);
+    console.log(response);
 
-    const { data } = response.data;
+    const { data } = response;
 
     const newTaskResponse: NewTasksResponse = {
       status_code: data.status_code,

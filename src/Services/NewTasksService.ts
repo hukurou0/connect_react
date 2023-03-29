@@ -23,7 +23,7 @@ const NewTasksService = () => {
     deadline_month: number,
     deadline_day: number,
     summary: string,
-    detail: string,
+    details: string,
     difficulty: number
   ) => {
     setLoadingState(true);
@@ -35,7 +35,7 @@ const NewTasksService = () => {
       deadline_month,
       deadline_day,
       summary,
-      detail,
+      details,
       difficulty
     );
 
