@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { BASEURL, DUPLICATION, NEW } from '../../lib/constants/urls';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { EmptyResponse } from '../Entities/EmptyResponseEntity';
 import { NewTasksResponse } from '../Entities/TaskEntity';
 
 export const duplicateTask = async (taskId: number): Promise<EmptyResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + DUPLICATION, {
       data: {
@@ -43,6 +44,7 @@ export const newTask = async (
   details: string,
   difficulty: number
 ): Promise<NewTasksResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + NEW, {
       data: {

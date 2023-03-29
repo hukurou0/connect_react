@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASEURL, CHECK } from '../../lib/constants/urls';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse } from '../Entities/TaskEntity';
 
 interface CheckTaskParmas {
