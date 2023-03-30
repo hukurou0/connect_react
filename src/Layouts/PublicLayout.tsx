@@ -20,7 +20,7 @@ const PublicLayout = () => {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <PublicHeaderMenu isLoggedIn={false} userData={isLoggedIn ? userData : undefined} />
+      <PublicHeaderMenu isLoggedIn={isLoggedIn} userData={isLoggedIn ? userData : undefined} />
       <Stack style={{ flex: 1 }} h="100%" w="100%" align="center">
         <Outlet />
       </Stack>

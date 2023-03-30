@@ -1,4 +1,3 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { MantineProvider } from '@mantine/core';
@@ -9,13 +8,11 @@ import reportWebVitals from './reportWebVitals';
 const container = createRoot(document.getElementById('root') as HTMLElement);
 
 container.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <MantineProvider>
-        <App />
-      </MantineProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  <RecoilRoot>
+    <MantineProvider>
+      <App />
+    </MantineProvider>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function
