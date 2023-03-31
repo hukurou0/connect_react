@@ -42,7 +42,7 @@ const LogIn = () => {
               }
 
               await onLogIn(usernameInput, passwordInput);
-              await setUserData();
+              // await setUserData();
             }}
           >
             ログイン

@@ -24,12 +24,11 @@ export const makeErrorData = (error: unknown): APIError => {
 };
 
 export const catchCustomError = (statusCode: number, navigate?: NavigateFunction | undefined): APIError | undefined => {
-  if (statusCode === 4 && navigate !== undefined) {
+  /* if (statusCode === 4 && navigate !== undefined) {
     console.log("goin' back");
     navigate('/login');
     return undefined;
-  }
-
+  } */
   if (statusCode !== 1) {
     const errorData: APIError = {
       status: statusCode,

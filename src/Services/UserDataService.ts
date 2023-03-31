@@ -29,7 +29,7 @@ const UserDataService = () => {
   };
 
   const checkLogInState = async (): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await fetchUserData();
     const customError = catchCustomError(response.status_code, navigate);
     if (customError !== undefined) {
