@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
@@ -27,14 +27,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<PublicLayout />}>
             <Route index element={<Home />} />
-            <Route path="logIn" element={<LogIn />} />
-            <Route path="signUp" element={<SignUp />} />
+            <Route path="logIn" element={<Navigate to="/" replace />} />
+            <Route path="signUp" element={<Navigate to="/" replace />} />
             <Route path="usertop" element={<UserTop />} />
             <Route path="credits" element={<Credits />} />
             <Route path="privacy_policy" element={<PrivacyPolicy />} />
             <Route path="terms_of_use" element={<TermsOfUse />} />
           </Route>
-          <Route path="user/" element={<UserLayout />}>
+          <Route path="user/" element={<Navigate to="/" replace />}>
             <Route index element={<UserTop />} />
             <Route path="regist_task" element={<TaskRegist />} />
             <Route path="create_new_task" element={<NewTask />} />
