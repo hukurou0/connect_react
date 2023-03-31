@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { BASEURL, GET_DEPARTMENTS, MODIFY_DEPARTMENTS } from '../../lib/constants/urls';
 import { DepartmentsResponse } from '../Entities/DepartmentEntity';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { EmptyResponse } from '../Entities/EmptyResponseEntity';
 
 export const fetchDepartments = async (): Promise<DepartmentsResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.get(BASEURL + GET_DEPARTMENTS);
     const { data } = response;
@@ -25,6 +26,7 @@ export const fetchDepartments = async (): Promise<DepartmentsResponse> => {
 };
 
 export const modifyDeparment = async (departmentId: number): Promise<EmptyResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + MODIFY_DEPARTMENTS, {
       data: {

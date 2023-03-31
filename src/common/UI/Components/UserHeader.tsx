@@ -105,6 +105,7 @@ export const UserHeaderMenu = () => {
 
           <Group>
             <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="settings">
+              <Text>アカウント</Text>
               <IconUserCircle />
             </Button>
 
