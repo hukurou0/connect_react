@@ -8,7 +8,6 @@ import {
   Text,
   Divider,
   Box,
-  Burger,
   Drawer,
   ScrollArea,
   Image,
@@ -105,7 +104,8 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Link>
           </Group> */}
 
-          <Group>
+          {/* Wait For Public Release */}
+          {/* <Group>
             {isLoggedIn ? (
               <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
                 <Text>ユーザートップ</Text>
@@ -123,7 +123,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             )}
 
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
-          </Group>
+          </Group> */}
         </Group>
       </Header>
 

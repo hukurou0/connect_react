@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
-import UserLayout from './Layouts/UserLayout';
 import Home from './UI/Home/Home';
 import NoPage from './UI/NoPage/NoPage';
-import LogIn from './UI/Auth/Screens/LogInScreen';
-import SignUp from './UI/Auth/Screens/SignUpScreen';
+// import LogIn from './UI/Auth/Screens/LogInScreen';
+// import SignUp from './UI/Auth/Screens/SignUpScreen';
+// import UserLayout from './Layouts/UserLayout';
 import UserTop from './UI/UserTop/Screens/UserTopScreen';
 import TaskRegist from './UI/TaskRegist/Screens/TaskRegistScreen';
 import Timetable from './UI/Timetable/Screens/TimetableScreen';
@@ -29,7 +29,6 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="logIn" element={<Navigate to="/" replace />} />
             <Route path="signUp" element={<Navigate to="/" replace />} />
-            <Route path="usertop" element={<UserTop />} />
             <Route path="credits" element={<Credits />} />
             <Route path="privacy_policy" element={<PrivacyPolicy />} />
             <Route path="terms_of_use" element={<TermsOfUse />} />
