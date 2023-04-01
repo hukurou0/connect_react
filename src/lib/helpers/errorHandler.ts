@@ -25,22 +25,29 @@ export const ErrorHandler = () => {
     return errorData;
   };
 
-export const catchCustomError = (statusCode: number, navigate?: NavigateFunction | undefined): APIError | undefined => {
-  console.log("↓独自定義statusCode");
-  console.log(statusCode);
-  if ((statusCode === 4 || statusCode === 0)&& navigate !== undefined) {
-    console.log("goin' back");
-    navigate('/login');
-    return undefined;
-  }
+  const catchCustomError = (
+    statusCode: number,
+    resetLogInState: Resetter,
+    navigate?: NavigateFunction | undefined
+  ): APIError | undefined => {
+    console.log('↓独自定義statusCode');
+    console.log(statusCode);
+    if ((statusCode === 4 || statusCode === 0) && navigate !== undefined) {
+      resetLogInState();
+      console.log("goin' back");
+      navigate('/login');
+      return undefined;
+    }
 
-  if (statusCode !== 1) {
-    const errorData: APIError = {
-      status: statusCode,
-      code: '',
-      message: getStatusMassage(statusCode),
-    };
-    return errorData;
-  }
-  return undefined;
+    if (statusCode !== 1) {
+      const errorData: APIError = {
+        status: statusCode,
+        code: '',
+        message: getStatusMassage(statusCode),
+      };
+      return errorData;
+    }
+    return undefined;
+  };
+  return { makeErrorData, catchCustomError };
 };
