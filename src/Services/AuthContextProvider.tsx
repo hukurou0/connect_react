@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 /**
  * 簡易的な認証情報の型のサンプル

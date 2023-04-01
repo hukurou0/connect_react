@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import UsernameInput from '../Components/UsernameInput';
-import UserDataService from '../../../Services/UserDataService';
+// import UserDataService from '../../../Services/UserDataService';
 import AuthService from '../../../Services/AuthService';
 // import isVailed from '../../../../lib/helpers/validation';
 
 const LogIn = () => {
   const { onLogIn } = AuthService();
-  const { setUserData } = UserDataService();
+  // const { setUserData } = UserDataService();
   const [isErrorShown, setErrorVisivility] = useState(false);
   const [usernameInput, setUsername] = useInputState('');
   const [passwordInput, setPassword] = useInputState('');

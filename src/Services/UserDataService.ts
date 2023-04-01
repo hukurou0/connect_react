@@ -1,10 +1,11 @@
-import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { loadingState } from '../Hooks/LoadingState';
 import { fetchUserData } from '../Domain/Repositories/UserDataRepo';
 import { userDataState } from '../Hooks/UserDataState';
 import { catchCustomError } from '../lib/helpers/errorHandler';
 import { logInState } from '../Hooks/LogInState';
-import { loadingState } from '../Hooks/LoadingState';
+
 
 const UserDataService = () => {
   const setUserDataState = useSetRecoilState(userDataState);
@@ -29,7 +30,7 @@ const UserDataService = () => {
   };
 
   const checkLogInState = async (): Promise<void> => {
-    // setLoadingState(true);
+    setLoadingState(true);
     const response = await fetchUserData();
     const customError = catchCustomError(response.status_code, navigate);
     if (customError !== undefined) {

@@ -6,7 +6,11 @@ import { EmptyResponse } from '../Entities/EmptyResponseEntity';
 
 export const fetchUserTasks = async (): Promise<UserTasksResponse> => {
   try {
-    const response = await axios.get(BASEURL + GET_USER_TASKS);
+    const response = await axios.post(BASEURL + GET_USER_TASKS,{
+      user_id:sessionStorage.getItem('user_id'),
+      data: {
+      },
+    });
     const { data } = response;
     const userTasksResponse: UserTasksResponse = {
       status_code: data.status_code,

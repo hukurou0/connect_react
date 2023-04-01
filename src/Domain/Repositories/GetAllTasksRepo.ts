@@ -5,7 +5,11 @@ import { AllTasksResponse } from '../Entities/TaskEntity';
 
 export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
   try {
-    const response = await axios.get(BASEURL + GET_TASKS);
+    const response = await axios.post(BASEURL + GET_TASKS,{
+      user_id:sessionStorage.getItem('user_id'),
+      data: {
+      },
+    });
     const { data } = response;
     const allTasksResponse: AllTasksResponse = {
       status_code: data.status_code,

@@ -5,7 +5,11 @@ import { makeErrorData } from '../../lib/helpers/errorHandler';
 
 export const fetchUserData = async (): Promise<UserDataResponse> => {
   try {
-    const response = await axios.get(BASEURL + GET_USERIFNO);
+    const response = await axios.post(BASEURL + GET_USERIFNO,{
+      user_id:sessionStorage.getItem('user_id'),
+      data: {
+      },
+    });
 
     const { data } = response;
     const userDataResponse: UserDataResponse = {
