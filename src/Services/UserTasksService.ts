@@ -15,7 +15,7 @@ const UserTasksService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetUserTasks = async (): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await fetchUserTasks();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
@@ -31,7 +31,7 @@ const UserTasksService = () => {
   };
 
   const deleteTask = async (task: TaskData): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await deleteUserTask(task);
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {

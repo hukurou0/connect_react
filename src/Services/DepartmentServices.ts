@@ -14,7 +14,7 @@ const DepartmentService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetDepartments = async (): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await fetchDepartments();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
@@ -30,7 +30,7 @@ const DepartmentService = () => {
   };
 
   const updateDepartment = async (departmentId: number) => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await modifyDeparment(departmentId);
     if (response.error !== undefined) {
       console.log(response.error);

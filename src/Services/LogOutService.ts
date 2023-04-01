@@ -21,7 +21,7 @@ const LogOutService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const logOut = async (): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     await logout();
     // Whatever error happen, reset all data and going back to login.
     // if (response.error !== undefined) {

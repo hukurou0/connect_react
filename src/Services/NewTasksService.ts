@@ -6,7 +6,7 @@ const NewTasksService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const newduplicateTask = async (taskId: number) => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await duplicateTask(taskId);
     if (response.error !== undefined) {
       console.log(response.error);
@@ -26,7 +26,7 @@ const NewTasksService = () => {
     details: string,
     difficulty: number
   ) => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await newTask(
       subject_id,
       subject_name,

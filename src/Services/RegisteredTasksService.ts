@@ -15,7 +15,7 @@ const RegisteredTasksService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetRegisteredTasks = async (subject: SubjectData, date: Date): Promise<void> => {
-    setLoadingState(true);
+    // setLoadingState(true);
     const response = await registeredTasks({
       subject_id: subject.subject_id,
       deadline_year: date.getFullYear(),
