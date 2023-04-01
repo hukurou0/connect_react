@@ -14,7 +14,7 @@ const AllTasksService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetAllTasks = async (): Promise<void> => {
-    // setLoadingState(true);
+    setLoadingState(true);
     const response = await fetchAllTasks();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {

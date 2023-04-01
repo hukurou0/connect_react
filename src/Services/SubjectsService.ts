@@ -14,7 +14,7 @@ const SubjectsService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const getAndSetSubjects = async (): Promise<void> => {
-    // setLoadingState(true);
+    setLoadingState(true);
     const response = await fetchSubjects();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {

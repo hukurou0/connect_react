@@ -12,7 +12,7 @@ const AuthService = () => {
   const setLoadingState = useSetRecoilState(loadingState);
 
   const onLogIn = async (username: string, password: string): Promise<void> => {
-    // setLoadingState(true);
+    setLoadingState(true);
     const response = await logIn(username, password);
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
@@ -28,7 +28,7 @@ const AuthService = () => {
   };
 
   const onSignUp = async (username: string, password: string, departmentId: number): Promise<void> => {
-    // setLoadingState(true);
+    setLoadingState(true);
     const response = await signUp(username, password, departmentId);
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
