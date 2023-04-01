@@ -3,35 +3,20 @@
 import {
   createStyles,
   Header,
-  HoverCard,
   Group,
   Button,
-  UnstyledButton,
   Text,
-  SimpleGrid,
-  ThemeIcon,
   Divider,
-  Center,
   Box,
   Burger,
   Drawer,
-  Collapse,
   ScrollArea,
   Image,
   rem,
   Flex,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
-  IconChevronDown,
-  IconHome,
-} from '@tabler/icons-react';
+import { IconHome } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.jpg';
 import { UserData } from '../../../Domain/Entities/UserDataEntity';
@@ -94,39 +79,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const mockdata = [
-  {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
-  },
-  {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
-  },
-  {
-    icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
-  },
-  {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
-  },
-  {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
-  },
-  {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
-  },
-];
-
 interface HeaderProps {
   isLoggedIn: boolean;
   userData?: UserData | undefined;
@@ -134,26 +86,7 @@ interface HeaderProps {
 
 export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();
-
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group noWrap align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon size={rem(22)} color={theme.fn.primaryColor()} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" color="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
 
   return (
     <Box pb={60}>
@@ -166,72 +99,31 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Flex>
           </Link>
 
-          <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
+          {/* <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
             <Link to="/" className={classes.link}>
               Home
             </Link>
-            <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-              <HoverCard.Target>
-                <Link to="/" className={classes.link}>
-                  <Center inline>
-                    <Box component="span" mr={5}>
-                      Features
-                    </Box>
-                    <IconChevronDown size={16} color={theme.fn.primaryColor()} />
-                  </Center>
-                </Link>
-              </HoverCard.Target>
+          </Group> */}
 
-              <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
-                <Group position="apart" px="md">
-                  <Text fw={500}>Features</Text>
-                </Group>
+          <Group>
+            {isLoggedIn ? (
+              <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
+                <Text>ユーザートップ</Text>
+                <IconHome />
+              </Button>
+            ) : (
+              <Group className={classes.hiddenMobile}>
+                <Button variant="default" component={Link} to="/logIn">
+                  Log In
+                </Button>
+                <Button component={Link} to="/signUp">
+                  Sign Up
+                </Button>
+              </Group>
+            )}
 
-                <Divider my="sm" mx="-md" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
-
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
-
-                <div className={classes.dropdownFooter}>
-                  <Group position="apart">
-                    <div>
-                      <Text fw={500} fz="sm">
-                        Get started
-                      </Text>
-                      <Text size="xs" color="dimmed">
-                        Their food sources have decreased, and their numbers
-                      </Text>
-                    </div>
-                    <Button variant="default">Get started</Button>
-                  </Group>
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard>
-            <Link to="/" className={classes.link}>
-              Learn
-            </Link>
-            <Link to="/" className={classes.link}>
-              Academy
-            </Link>
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
           </Group>
-
-          {isLoggedIn ? (
-            <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
-              <IconHome />
-            </Button>
-          ) : (
-            <Group className={classes.hiddenMobile}>
-              <Button variant="default" component={Link} to="/logIn">
-                Log In
-              </Button>
-              <Button component={Link} to="/signUp">
-                Sign Up
-              </Button>
-            </Group>
-          )}
-
-          <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
         </Group>
       </Header>
 
@@ -241,15 +133,15 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
+        title="Connect"
         className={classes.hiddenDesktop}
         zIndex={1000000}
       >
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+          {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Link to="/" className={classes.link} onClick={closeDrawer}>
-            Home
+            ホーム
           </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
@@ -265,17 +157,26 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
           </Link>
           <Link to="/test" className={classes.link} onClick={closeDrawer}>
             Academy
-          </Link>
+          </Link> */}
 
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="/logIn" onClick={closeDrawer}>
-              Log In
-            </Button>
-            <Button component={Link} to="/signUp" onClick={closeDrawer}>
-              Sign Up
-            </Button>
+          <Group>
+            {isLoggedIn ? (
+              <Link to="/" className={classes.link} onClick={closeDrawer}>
+                <IconHome style={{ marginRight: 10 }} />
+                ユーザートップ
+              </Link>
+            ) : (
+              <Group className={classes.hiddenMobile}>
+                <Button variant="default" component={Link} to="/logIn">
+                  Log In
+                </Button>
+                <Button component={Link} to="/signUp">
+                  Sign Up
+                </Button>
+              </Group>
+            )}
           </Group>
         </ScrollArea>
       </Drawer>

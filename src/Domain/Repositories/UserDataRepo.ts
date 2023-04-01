@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASEURL, GET_USERIFNO } from '../../lib/constants/urls';
 import { UserDataResponse } from '../Entities/UserDataEntity';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 
 export const fetchUserData = async (): Promise<UserDataResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + GET_USERIFNO,{
       user_id:sessionStorage.getItem('user_id'),
@@ -26,7 +27,7 @@ export const fetchUserData = async (): Promise<UserDataResponse> => {
         department_id: 0,
         mail: '',
         username: '',
-        iso_visible_limit: ''
+        iso_visible_limit: '',
       },
       error: errorData,
     };

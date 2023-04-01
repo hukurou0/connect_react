@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASEURL, GET_SUBJECTS } from '../../lib/constants/urls';
 import { SubjectsResponse } from '../Entities/SubjectEntity';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 
 export const fetchSubjects = async (): Promise<SubjectsResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + GET_SUBJECTS,{
       user_id:sessionStorage.getItem('user_id'),

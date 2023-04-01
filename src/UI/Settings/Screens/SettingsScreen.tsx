@@ -40,11 +40,15 @@ const Settings = () => {
 
   return (
     <Stack w="100%" align="stretch">
-      <Stack style={{ padding: 20 }} align='center'>
-        <Title order={4} style={{ marginBottom: 15 }}>課題表示期限: {(new Date(userData.iso_visible_limit).toLocaleDateString())}</Title>
+      <Stack style={{ padding: 20 }} align="center">
+        <Title order={4} style={{ marginBottom: 15 }}>
+          課題表示期限: {new Date(userData.iso_visible_limit).toLocaleDateString()}
+        </Title>
 
-        <Flex justify="space-between" w='95%' style={{ paddingLeft: 20, paddingRight: 20 }}>
-          <Title order={2} style={{ margin: 0 }}>アカウント設定</Title>
+        <Flex justify="space-between" w="95%" style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <Title order={2} style={{ margin: 0 }}>
+            アカウント設定
+          </Title>
           <Button
             radius="xl"
             size="md"
@@ -59,7 +63,7 @@ const Settings = () => {
             <IconDoorExit className={classes.hiddenDesktop} size="1.2rem" stroke={1.5} />
           </Button>
         </Flex>
-        <Divider w='95%' />
+        <Divider w="95%" />
 
         {/* Desktop */}
         <Flex w="100%" className={classes.hiddenMobile}>
@@ -77,7 +81,6 @@ const Settings = () => {
               </Stack>
             </div>
           </Stack>
-
 
           <Stack w="60%" align="flex-start" style={{ padding: 15 }}>
             <Flex justify="space-between" align="stretch" w="100%">
@@ -115,12 +118,12 @@ const Settings = () => {
         </Flex>
 
         {/* Mobile */}
-        <Stack w="100%" className={classes.hiddenDesktop} align='center'>
+        <Stack w="100%" className={classes.hiddenDesktop} align="center">
           <Flex w="100%" align="center" columnGap={20}>
             <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10 }}>
               <IconUser size={80} color="#ffffff" fill="#E7E9ED" />
             </div>
-            <Stack align="center" w='calc(100% - 120px)'>
+            <Stack align="center" w="calc(100% - 120px)">
               <Text size="xl" weight="bold" style={{ marginTop: 10 }}>
                 {userData?.username}
               </Text>
@@ -144,7 +147,7 @@ const Settings = () => {
 
             <Stack w="100%" align="center">
               <Button
-                size='md'
+                size="md"
                 radius="lg"
                 maw={250}
                 style={{ marginTop: 25 }}
@@ -157,8 +160,7 @@ const Settings = () => {
               >
                 変更を保存
               </Button>
-              <Button
-                size='md' radius="lg" maw={250} style={{ marginTop: 25 }}>
+              <Button size="md" radius="lg" maw={250} style={{ marginTop: 25 }}>
                 パスワード変更
               </Button>
             </Stack>

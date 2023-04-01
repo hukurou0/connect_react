@@ -62,7 +62,9 @@ const UserTop = () => {
 
   return (
     <Stack maw={800} w="100%" align="center">
-      <Title order={4} style={{ marginBottom: 20 }}>課題表示期限: {(new Date(allTasksData.visible_limit).toLocaleDateString())}</Title>
+      <Title order={4} style={{ marginBottom: 20 }}>
+        課題表示期限: {new Date(allTasksData.visible_limit).toLocaleDateString()}
+      </Title>
 
       {/* Timetable */}
       {/* <Stack
@@ -96,11 +98,11 @@ const UserTop = () => {
         </Flex>
         <Stack className={classes.hiddenDesktop} w="95%" align="center">
           <Title order={2}>やばい課題</Title>
-          <Text color='gray'>期限が3日以内・大変さが「やばい」の課題</Text>
+          <Text color="gray">期限が3日以内・大変さが「やばい」の課題</Text>
         </Stack>
         <Divider w="95%" />
         {allTasksData.tasks
-          .filter(task => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
+          .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
           .map((task) => (
             <TaskItem task={task} deadlineApproacing />
           ))}
@@ -112,7 +114,7 @@ const UserTop = () => {
         </Flex>
         <Divider w="95%" />
         {allTasksData.tasks
-          .filter(task => !isOutdated(task))
+          .filter((task) => !isOutdated(task))
           .map((task, index) => (
             <TaskItem task={task} key={index} />
           ))}

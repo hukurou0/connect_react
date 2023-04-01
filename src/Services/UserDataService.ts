@@ -1,13 +1,15 @@
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { loadingState } from '../Hooks/LoadingState';
 import { fetchUserData } from '../Domain/Repositories/UserDataRepo';
 import { userDataState } from '../Hooks/UserDataState';
-import { catchCustomError } from '../lib/helpers/errorHandler';
+import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { logInState } from '../Hooks/LogInState';
 
 
 const UserDataService = () => {
+  const { catchCustomError } = ErrorHandler();
+  const resetLogInState = useResetRecoilState(logInState);
   const setUserDataState = useSetRecoilState(userDataState);
   const setLogInState = useSetRecoilState(logInState);
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const UserDataService = () => {
   const setUserData = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserData();
-    const customError = catchCustomError(response.status_code, navigate);
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
       return;
@@ -32,7 +34,9 @@ const UserDataService = () => {
   const checkLogInState = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserData();
-    const customError = catchCustomError(response.status_code, navigate);
+    console.log(response);
+    
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
       return;
@@ -42,7 +46,7 @@ const UserDataService = () => {
       return;
     }
     setUserDataState(response.data);
-    setLogInState(response.status_code !== 4);
+    setLogInState(response.status_code === 1);
     setLoadingState(false);
   };
 

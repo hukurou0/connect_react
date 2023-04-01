@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { BASEURL, LOGIN, SIGNUP } from '../../lib/constants/urls';
 import { AuthResponse } from '../Entities/AuthEntity';
-import { makeErrorData } from '../../lib/helpers/errorHandler';
+import { ErrorHandler } from '../../lib/helpers/errorHandler';
 
 export const logIn = async (username: string, password: string): Promise<AuthResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + LOGIN, {
       data: {
@@ -31,6 +32,7 @@ export const logIn = async (username: string, password: string): Promise<AuthRes
 };
 
 export const signUp = async (username: string, password: string, departmentId: number): Promise<AuthResponse> => {
+  const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + SIGNUP, {
       data: {
