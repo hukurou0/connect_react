@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Stack } from '@mantine/core';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { PublicHeaderMenu } from '../common/UI/Components/PublicHeader';
 import { FooterSocial } from '../common/UI/Components/Footer';
@@ -12,11 +12,11 @@ const PublicLayout = () => {
   const isLoggedIn = useRecoilValue(logInState);
   const userData = useRecoilValue(userDataState);
   const { checkLogInState } = UserDataService();
-  useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       await checkLogInState();
     })();
-  }, []);
+  }, []); */
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
