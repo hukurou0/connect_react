@@ -1,10 +1,11 @@
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { loadingState } from '../Hooks/LoadingState';
 import { fetchUserData } from '../Domain/Repositories/UserDataRepo';
 import { userDataState } from '../Hooks/UserDataState';
 import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { logInState } from '../Hooks/LogInState';
-import { loadingState } from '../Hooks/LoadingState';
+
 
 const UserDataService = () => {
   const { catchCustomError } = ErrorHandler();

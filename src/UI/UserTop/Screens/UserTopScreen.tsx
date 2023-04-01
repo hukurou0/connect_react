@@ -122,5 +122,4 @@ const UserTop = () => {
     </Stack>
   );
 };
-
 export default UserTop;

@@ -6,4 +6,6 @@ export type AuthResponse = {
   error?: APIError | undefined;
 };
 
-export type AuthData = {};
+export type AuthData = {
+  user_id: string;
+};
