@@ -103,8 +103,8 @@ const UserTop = () => {
         <Divider w="95%" />
         {allTasksData.tasks
           .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
-          .map((task) => (
-            <TaskItem task={task} deadlineApproacing />
+          .map((task, index) => (
+            <TaskItem task={task} key={`5_${index}`} deadlineApproacing />
           ))}
       </Stack>
 
