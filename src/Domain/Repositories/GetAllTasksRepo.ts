@@ -6,10 +6,9 @@ import { AllTasksResponse } from '../Entities/TaskEntity';
 export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
   const { makeErrorData } = ErrorHandler();
   try {
-    const response = await axios.post(BASEURL + GET_TASKS,{
-      user_id:sessionStorage.getItem('user_id'),
-      data: {
-      },
+    const response = await axios.post(BASEURL + GET_TASKS, {
+      user_id: sessionStorage.getItem('user_id'),
+      data: {},
     });
     const { data } = response;
     console.log(response);

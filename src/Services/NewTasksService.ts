@@ -10,6 +10,7 @@ const NewTasksService = () => {
     const response = await duplicateTask(taskId);
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
     }
     console.log(response);
     setLoadingState(false);
@@ -43,6 +44,7 @@ const NewTasksService = () => {
 
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
     }
     setLoadingState(false);
   };

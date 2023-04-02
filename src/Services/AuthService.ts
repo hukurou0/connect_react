@@ -17,22 +17,17 @@ const AuthService = () => {
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
-    
-    const userId = sessionStorage.getItem('user_id')
-    if (userId !== null) {
-      /* 画面表示 */
-    }else {
-      navigate('/login');
-    }
-    
+
     navigate('/user');
   };
 
@@ -42,10 +37,12 @@ const AuthService = () => {
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     setLoadingState(false);

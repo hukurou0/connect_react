@@ -27,10 +27,12 @@ const RegisteredTasksService = () => {
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     setRegisteredTasks(response.data.tasks);

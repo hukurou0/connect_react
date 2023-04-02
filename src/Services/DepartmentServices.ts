@@ -19,10 +19,12 @@ const DepartmentService = () => {
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     setDepartments(response.data);
@@ -34,6 +36,7 @@ const DepartmentService = () => {
     const response = await modifyDeparment(departmentId);
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
     }
     setLoadingState(false);
   };

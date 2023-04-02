@@ -6,7 +6,6 @@ import { userDataState } from '../Hooks/UserDataState';
 import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { logInState } from '../Hooks/LogInState';
 
-
 const UserDataService = () => {
   const { catchCustomError } = ErrorHandler();
   const resetLogInState = useResetRecoilState(logInState);
@@ -21,10 +20,12 @@ const UserDataService = () => {
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     setUserDataState(response.data);
@@ -35,14 +36,16 @@ const UserDataService = () => {
     setLoadingState(true);
     const response = await fetchUserData();
     console.log(response);
-    
+
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       console.log(customError);
+      setLoadingState(false);
       return;
     }
     if (response.error !== undefined) {
       console.log(response.error);
+      setLoadingState(false);
       return;
     }
     setUserDataState(response.data);
