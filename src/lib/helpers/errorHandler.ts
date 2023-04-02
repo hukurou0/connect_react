@@ -30,8 +30,8 @@ export const ErrorHandler = () => {
     resetLogInState: Resetter,
     navigate?: NavigateFunction | undefined
   ): APIError | undefined => {
-    console.log(`CUstom Status Code: ${statusCode}`);
-    if ((statusCode === 4 || statusCode === 0) && navigate !== undefined) {
+    console.log(`Custom Status Code: ${statusCode}`);
+    if (statusCode === 4 && navigate !== undefined) {
       resetLogInState();
       navigate('/login');
       return undefined;
