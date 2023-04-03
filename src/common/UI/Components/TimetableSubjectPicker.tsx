@@ -45,8 +45,14 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   console.log(days);
   const A = Object.values(days);
   console.log(A);
-  const items = A?.map((item) => item.day.classes);
+  const items = A?.map((item) => item.classes);
   //   console.log(items[0]);
+
+  // mon : 5 ~ 9
+  // tue : 15 ~ 19
+  // wed : 20 ~ 24
+  // thu : 10 ~ 14
+  // fri : 0 ~ 4
 
   const TableSubject = items[day]?.map((item) => (
     <Menu.Item onClick={() => setSelection(item)} key={item.name}>
@@ -61,7 +67,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedSubject?.name ?? '空きコマ'}</span>
+            <span className={classes.label}>{selectedSubject?.name ?? '選択'}</span>
           </Group>
         </UnstyledButton>
       </Menu.Target>

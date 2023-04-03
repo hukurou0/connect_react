@@ -26,12 +26,12 @@ const AuthService = () => {
     sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
     
-    const userId = sessionStorage.getItem('user_id')
-    if (userId !== null) {
-      /* 画面表示 */
-    }else {
-      navigate('/login');
-    }
+    // const userId = sessionStorage.getItem('user_id')
+    // if (userId !== null) {
+    //   /* 画面表示 */
+    // }else {
+    //   navigate('/login');
+    // }
     
     navigate('/user');
   };

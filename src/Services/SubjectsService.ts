@@ -2,7 +2,7 @@ import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { subjectsState } from '../Hooks/SubjectState';
-import { fetchSubjects, timeTableSubjects } from '../Domain/Repositories/SubjectsRepo';
+import { fetchSubjects, postTimetableSubjects, timeTableSubjects } from '../Domain/Repositories/SubjectsRepo';
 import { loadingState } from '../Hooks/LoadingState';
 import { logInState } from '../Hooks/LogInState';
 import { timetableState } from '../Hooks/TimetableSubjectState';
@@ -47,17 +47,17 @@ const SubjectsService = () => {
     setLoadingState(false);
   };
 
-  // const newpostSubject = async (id: number[]) => {
-  //   setLoadingState(true);
-  //   const response = await postSubjects(id);
-  //   if (response.error !== undefined) {
-  //     console.log(response.error);
-  //   }
-  //   console.log(response);
-  //   setLoadingState(false);
-  // };
+  const newPostTimetableSubject = async (id: number[]) => {
+    setLoadingState(true);
+    const response = await postTimetableSubjects(id);
+    if (response.error !== undefined) {
+      console.log(response.error);
+    }
+    console.log(response);
+    setLoadingState(false);
+  };
 
-  return { getAndSetSubjects, getTimetableSubjects };
+  return { getAndSetSubjects, getTimetableSubjects, newPostTimetableSubject };
 };
 
 export default SubjectsService;

@@ -18,10 +18,8 @@ export type TimetableResponse = {
 };
 
 export type ClassData = {
-  day: {
-    classes: TablesubjectData[];
-    taken_id: number;
-  };
+  classes: TablesubjectData[];
+  taken_id: number;
 };
 
 export type TablesubjectData = {
