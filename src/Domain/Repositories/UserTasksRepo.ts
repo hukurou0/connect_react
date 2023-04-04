@@ -33,6 +33,7 @@ export const deleteUserTask = async (task: TaskData): Promise<EmptyResponse> => 
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + DELETE_TASK, {
+      user_id:sessionStorage.getItem('user_id'),
       data: {
         task_id: task.task_id,
       },
