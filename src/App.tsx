@@ -17,6 +17,7 @@ import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
 import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
 import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
 import { Credits } from './UI/Credits/CreditsScreen';
+import Introduciton from './UI/Introduction/introduction';
 
 const App = () => {
   const isLoading = useRecoilValue(loadingState);
@@ -29,6 +30,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="logIn" element={<LogIn />} />
             <Route path="signUp" element={<SignUp />} />
+            <Route path="introduction" element={<Introduciton />} />
             <Route path="usertop" element={<UserTop />} />
             <Route path="credits" element={<Credits />} />
             <Route path="privacy_policy" element={<PrivacyPolicy />} />
