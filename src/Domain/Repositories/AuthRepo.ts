@@ -23,7 +23,7 @@ export const logIn = async (username: string, password: string): Promise<AuthRes
     const authResponse: AuthResponse = {
       status_code: 0,
       data: {
-        user_id:"error"
+        user_id: 'error',
       },
       error: errorData,
     };
@@ -52,7 +52,7 @@ export const signUp = async (username: string, password: string, departmentId: n
     const signUpResponse: AuthResponse = {
       status_code: 0,
       data: {
-        user_id:"error"
+        user_id: 'error',
       },
       error: errorData,
     };

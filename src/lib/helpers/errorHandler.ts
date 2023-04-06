@@ -30,11 +30,8 @@ export const ErrorHandler = () => {
     resetLogInState: Resetter,
     navigate?: NavigateFunction | undefined
   ): APIError | undefined => {
-    console.log('↓独自定義statusCode');
-    console.log(statusCode);
-    if ((statusCode === 4 || statusCode === 0) && navigate !== undefined) {
+    if (statusCode === 4 && navigate !== undefined) {
       resetLogInState();
-      console.log("goin' back");
       navigate('/login');
       return undefined;
     }
@@ -45,6 +42,7 @@ export const ErrorHandler = () => {
         code: '',
         message: getStatusMassage(statusCode),
       };
+
       return errorData;
     }
     return undefined;

@@ -6,6 +6,8 @@ import { registeredTasksState } from '../Hooks/RegisteredTasksState';
 import { SubjectData } from '../Domain/Entities/SubjectEntity';
 import { loadingState } from '../Hooks/LoadingState';
 import { logInState } from '../Hooks/LogInState';
+import { alertContentState } from '../Hooks/AlertContentState';
+import { alertPresentationState } from '../Hooks/AlertPresentationState';
 
 const RegisteredTasksService = () => {
   const { catchCustomError } = ErrorHandler();
@@ -13,6 +15,8 @@ const RegisteredTasksService = () => {
   const setRegisteredTasks = useSetRecoilState(registeredTasksState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
+  const setAlertState = useSetRecoilState(alertPresentationState);
+  const setAlertContent = useSetRecoilState(alertContentState);
 
   const getAndSetRegisteredTasks = async (subject: SubjectData, date: Date): Promise<void> => {
     setLoadingState(true);
@@ -22,21 +26,29 @@ const RegisteredTasksService = () => {
       deadline_month: date.getMonth() + 1,
       deadline_day: date.getDate(),
     });
-    console.log(response);
 
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の取得に失敗しました。\n${customError.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の取得に失敗しました。\n${response.error.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     setRegisteredTasks(response.data.tasks);
 
     setLoadingState(false);
-    console.log(response.data.tasks);
 
     if (response.data.tasks.length > 0) {
       navigate('/user/select_task', { state: { subject: subject, deadline: date } });

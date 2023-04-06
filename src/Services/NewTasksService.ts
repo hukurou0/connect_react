@@ -9,10 +9,8 @@ const NewTasksService = () => {
     setLoadingState(true);
     const response = await duplicateTask(taskId);
     if (response.error !== undefined) {
-      console.log(response.error);
+      setLoadingState(false);
     }
-    console.log(response);
-    setLoadingState(false);
   };
 
   const newaddTask = async (
@@ -39,10 +37,8 @@ const NewTasksService = () => {
       difficulty
     );
 
-    console.log(response.data);
-
     if (response.error !== undefined) {
-      console.log(response.error);
+      setLoadingState(false);
     }
     setLoadingState(false);
   };

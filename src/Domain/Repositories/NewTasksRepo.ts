@@ -8,13 +8,11 @@ export const duplicateTask = async (taskId: number): Promise<EmptyResponse> => {
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + DUPLICATION, {
-      user_id:sessionStorage.getItem('user_id'),
+      user_id: sessionStorage.getItem('user_id'),
       data: {
         task_id: taskId,
       },
     });
-
-    console.log(response);
 
     const { data } = response;
 
@@ -48,7 +46,7 @@ export const newTask = async (
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + NEW, {
-      user_id:sessionStorage.getItem('user_id'),
+      user_id: sessionStorage.getItem('user_id'),
       data: {
         subject_id,
         subject_name,
@@ -61,8 +59,6 @@ export const newTask = async (
         difficulty,
       },
     });
-
-    console.log(response);
 
     const { data } = response;
 
