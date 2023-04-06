@@ -14,6 +14,7 @@ import {
   Image,
   rem,
   Flex,
+  Stack,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHome } from '@tabler/icons-react';
@@ -114,21 +115,21 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             ) : (
               <Group className={classes.hiddenMobile}>
                 <Button variant="default" component={Link} to="/logIn">
-                  Log In
+                  ログイン
                 </Button>
                 <Button component={Link} to="/signUp">
-                  Sign Up
+                  サインアップ
                 </Button>
               </Group>
             )}
 
-            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+            {!isLoggedIn && <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />}
           </Group>
         </Group>
       </Header>
 
       {/* For Mobile */}
-      <Drawer
+      {!isLoggedIn && <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
         size="100%"
@@ -161,25 +162,18 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
 
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Group>
-            {isLoggedIn ? (
-              <Link to="/" className={classes.link} onClick={closeDrawer}>
-                <IconHome style={{ marginRight: 10 }} />
-                ユーザートップ
-              </Link>
-            ) : (
-              <Group className={classes.hiddenMobile}>
-                <Button variant="default" component={Link} to="/logIn">
-                  Log In
-                </Button>
-                <Button component={Link} to="/signUp">
-                  Sign Up
-                </Button>
-              </Group>
-            )}
-          </Group>
+          <Stack align='center'>
+            <Group>
+              <Button variant="default" component={Link} to="/logIn">
+                ログイン
+              </Button>
+              <Button component={Link} to="/signUp">
+                サインアップ
+              </Button>
+            </Group>
+          </Stack>
         </ScrollArea>
-      </Drawer>
+      </Drawer>}
     </Box>
   );
 };

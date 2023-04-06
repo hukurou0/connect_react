@@ -47,27 +47,7 @@ const UserDataService = () => {
   const checkLogInState = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserData();
-
-    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
-    if (customError !== undefined) {
-      setAlertContent({
-        title: 'エラー',
-        message: `ログイン状態の取得に失敗しました。\n${customError.message}`,
-      });
-      setLoadingState(false);
-      setAlertState(true);
-      return;
-    }
-    if (response.error !== undefined) {
-      setAlertContent({
-        title: 'エラー',
-        message: `ログイン状態の取得に失敗しました。\n${response.error.message}`,
-      });
-      setLoadingState(false);
-      setAlertState(true);
-      return;
-    }
-    setUserDataState(response.data);
+    if (response.status_code === 1) setUserDataState(response.data);
     setLogInState(response.status_code === 1);
     setLoadingState(false);
   };
