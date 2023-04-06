@@ -5,6 +5,8 @@ import { subjectsState } from '../Hooks/SubjectState';
 import { fetchSubjects } from '../Domain/Repositories/SubjectsRepo';
 import { loadingState } from '../Hooks/LoadingState';
 import { logInState } from '../Hooks/LogInState';
+import { alertContentState } from '../Hooks/AlertContentState';
+import { alertPresentationState } from '../Hooks/AlertPresentationState';
 
 const SubjectsService = () => {
   const { catchCustomError } = ErrorHandler();
@@ -12,19 +14,29 @@ const SubjectsService = () => {
   const setSubjects = useSetRecoilState(subjectsState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
+  const setAlertState = useSetRecoilState(alertPresentationState);
+  const setAlertContent = useSetRecoilState(alertContentState);
 
   const getAndSetSubjects = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchSubjects();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `科目の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+      });
       setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `科目の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+      });
       setLoadingState(false);
+      setAlertState(true);
       return;
     }
     setSubjects(response.data);

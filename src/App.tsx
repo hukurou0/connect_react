@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
 import UserLayout from './Layouts/UserLayout';
 import Home from './UI/Home/Home';
@@ -17,8 +17,13 @@ import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
 import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
 import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
 import { Credits } from './UI/Credits/CreditsScreen';
+import { alertContentState } from './Hooks/AlertContentState';
+import { alertPresentationState } from './Hooks/AlertPresentationState';
+import { CustomAlert } from './common/UI/Components/CustomAlert';
 
 const App = () => {
+  const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
+  const alertContent = useRecoilValue(alertContentState);
   const isLoading = useRecoilValue(loadingState);
 
   return (
@@ -50,6 +55,7 @@ const App = () => {
         style={{ position: 'fixed', height: '100%' }}
         visible={isLoading}
       />
+      {isErrorShown && <CustomAlert content={alertContent} setErrorVisivility={setErrorVisivility} />}
     </>
   );
 };

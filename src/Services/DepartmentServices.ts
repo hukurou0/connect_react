@@ -5,6 +5,8 @@ import { fetchDepartments, modifyDeparment } from '../Domain/Repositories/Depart
 import { ErrorHandler } from '../lib/helpers/errorHandler';
 import { loadingState } from '../Hooks/LoadingState';
 import { logInState } from '../Hooks/LogInState';
+import { alertContentState } from '../Hooks/AlertContentState';
+import { alertPresentationState } from '../Hooks/AlertPresentationState';
 
 const DepartmentService = () => {
   const { catchCustomError } = ErrorHandler();
@@ -12,19 +14,29 @@ const DepartmentService = () => {
   const setDepartments = useSetRecoilState(departmentsState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
+  const setAlertState = useSetRecoilState(alertPresentationState);
+  const setAlertContent = useSetRecoilState(alertContentState);
 
   const getAndSetDepartments = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchDepartments();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `学科一覧の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+      });
       setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `学科一覧の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+      });
       setLoadingState(false);
+      setAlertState(true);
       return;
     }
     setDepartments(response.data);
@@ -34,9 +46,24 @@ const DepartmentService = () => {
   const updateDepartment = async (departmentId: number) => {
     setLoadingState(true);
     const response = await modifyDeparment(departmentId);
-    if (response.error !== undefined) {
-      console.log(response.error);
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
+    if (customError !== undefined) {
+      setAlertContent({
+        title: 'エラー',
+        message: `学科の変更に失敗しました。\n${customError.message} (c_${customError.status})`,
+      });
       setLoadingState(false);
+      setAlertState(true);
+      return;
+    }
+    if (response.error !== undefined) {
+      setAlertContent({
+        title: 'エラー',
+        message: `学科の変更に失敗しました。\n${response.error.message} (${response.error.status})`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
+      return;
     }
     setLoadingState(false);
   };

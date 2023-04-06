@@ -29,15 +29,17 @@ const UserTasks = () => {
         <Title order={3} color="gray">
           登録済みの課題はありません。
         </Title>
-      ) : userTasks.map((task, index) => (
-        <TaskItem
-          task={task}
-          key={index}
-          onDelete={async () => {
-            await deleteTask(task);
-          }}
-        />
-      ))}
+      ) : (
+        userTasks.map((task, index) => (
+          <TaskItem
+            task={task}
+            key={index}
+            onDelete={async () => {
+              await deleteTask(task);
+            }}
+          />
+        ))
+      )}
     </Stack>
   );
 };
