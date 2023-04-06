@@ -39,7 +39,6 @@ const AllTasksService = () => {
       setAlertState(true);
       return;
     }
-    console.log(response);
 
     setAllTasks(response.data);
     setLoadingState(false);

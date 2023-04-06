@@ -47,7 +47,6 @@ const UserDataService = () => {
   const checkLogInState = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserData();
-    console.log(response);
 
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {

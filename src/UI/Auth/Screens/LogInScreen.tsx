@@ -1,5 +1,5 @@
 import { Button, Space, Stack, Title } from '@mantine/core';
-import { useDisclosure, useInputState } from '@mantine/hooks';
+import { useInputState } from '@mantine/hooks';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import UsernameInput from '../Components/UsernameInput';
@@ -16,7 +16,6 @@ const LogIn = () => {
   const setAlertContent = useSetRecoilState(alertContentState);
   const [usernameInput, setUsername] = useInputState('');
   const [passwordInput, setPassword] = useInputState('');
-  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <Stack maw={500} w="100%" align="center">

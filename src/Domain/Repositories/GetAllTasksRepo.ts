@@ -11,7 +11,6 @@ export const fetchAllTasks = async (): Promise<AllTasksResponse> => {
       data: {},
     });
     const { data } = response;
-    console.log(response);
 
     let allTasksResponse: AllTasksResponse;
     try {

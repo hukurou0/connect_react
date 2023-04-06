@@ -14,8 +14,6 @@ export const duplicateTask = async (taskId: number): Promise<EmptyResponse> => {
       },
     });
 
-    console.log(response);
-
     const { data } = response;
 
     const emptyResponse = {
@@ -61,8 +59,6 @@ export const newTask = async (
         difficulty,
       },
     });
-
-    console.log(response);
 
     const { data } = response;
 

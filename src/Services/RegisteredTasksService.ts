@@ -26,7 +26,6 @@ const RegisteredTasksService = () => {
       deadline_month: date.getMonth() + 1,
       deadline_day: date.getDate(),
     });
-    console.log(response);
 
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
@@ -50,7 +49,6 @@ const RegisteredTasksService = () => {
     setRegisteredTasks(response.data.tasks);
 
     setLoadingState(false);
-    console.log(response.data.tasks);
 
     if (response.data.tasks.length > 0) {
       navigate('/user/select_task', { state: { subject: subject, deadline: date } });

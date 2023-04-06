@@ -22,12 +22,6 @@ const LogOutService = () => {
   const logOut = async (): Promise<void> => {
     setLoadingState(true);
     sessionStorage.removeItem('user_id');
-    // Whatever error happen, reset all data and going back to login.
-    // if (response.error !== undefined) {
-    //   console.log(response.error);
-    //   setLoadingState(false);
-    //   return;
-    // }
     resetSubjects();
     resetUserData();
     resetAllTasksData();
