@@ -46,6 +46,9 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   const A = Object.values(days);
   console.log(A);
   const items = A?.map((item) => item.classes);
+  const takenId = A?.map((item) => item.taken_id);
+  console.log(takenId);
+  console.log(items);
   //   console.log(items[0]);
 
   // mon : 5 ~ 9
@@ -54,20 +57,35 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   // thu : 10 ~ 14
   // fri : 0 ~ 4
 
+  const D = A[day]?.taken_id;
+  console.log(D);
+
   const TableSubject = items[day]?.map((item) => (
-    <Menu.Item onClick={() => setSelection(item)} key={item.name}>
+    <Menu.Item defaultValue={item.id} onClick={() => setSelection(item)} key={item.name}>
       {item.name}
     </Menu.Item>
   ));
+  console.log(selectedSubject);
+
+  // if (takenId.map((item) => item) === items[day].map((item) => item.id)) {
+  //   return console.log(items[day].map((item) => item.name));
+  // }
+
   //   const first = A?.map((item) => item.classes[1]);
   //   console.log(Object.values(items[0]).map((item) => item));
+
+  // const selectedClass = A?.find((item) => item.taken_id === selectedSubject?.id);
+  // console.log(selectedClass);
+
+  // const test = items[day].find((item) => item.id === 1);
+  // console.log(test);
 
   return (
     <Menu onOpen={() => setOpened(true)} onClose={() => setOpened(false)} radius="md" width="target" withinPortal>
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedSubject?.name ?? '選択'}</span>
+            <span className={classes.label}>{selectedSubject?.name ?? 'test'}</span>
           </Group>
         </UnstyledButton>
       </Menu.Target>
