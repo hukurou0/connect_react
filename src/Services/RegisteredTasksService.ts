@@ -15,12 +15,14 @@ const RegisteredTasksService = () => {
   const setRegisteredTasks = useSetRecoilState(registeredTasksState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
+  const userID = sessionStorage.getItem('user_id');
   const setAlertState = useSetRecoilState(alertPresentationState);
   const setAlertContent = useSetRecoilState(alertContentState);
 
   const getAndSetRegisteredTasks = async (subject: SubjectData, date: Date): Promise<void> => {
     setLoadingState(true);
     const response = await registeredTasks({
+      user_id: userID,
       subject_id: subject.subject_id,
       deadline_year: date.getFullYear(),
       deadline_month: date.getMonth() + 1,

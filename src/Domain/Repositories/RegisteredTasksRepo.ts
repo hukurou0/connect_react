@@ -4,13 +4,20 @@ import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse } from '../Entities/TaskEntity';
 
 interface CheckTaskParmas {
+  user_id: string;
   subject_id: number;
   deadline_year: number;
   deadline_month: number;
   deadline_day: number;
 }
 
-export const registeredTasks = async ({ subject_id, deadline_year, deadline_month, deadline_day }: CheckTaskParmas) => {
+export const registeredTasks = async ({
+  user_id,
+  subject_id,
+  deadline_year,
+  deadline_month,
+  deadline_day,
+}: CheckTaskParmas) => {
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + CHECK, {
@@ -22,6 +29,7 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
         deadline_day: deadline_day,
       },
     });
+    console.log(response.data);
 
     // /** This is for test */
     // const sampleTask: TaskData = {
