@@ -21,11 +21,15 @@ const UserTasks = () => {
           登録した課題一覧
         </Title>
         <Text style={{ margin: 0 }} color="gray" size="md">
-          新規で登録した課題のみ削除できます。重複して登録したものは削除せきません。
+          新規で登録した課題のみ削除できます。重複して登録したものは削除できません。
         </Text>
       </Stack>
       <Divider w="90%" />
-      {userTasks.map((task, index) => (
+      {userTasks.length === 0 ? (
+        <Title order={3} color="gray">
+          登録済みの課題はありません。
+        </Title>
+      ) : userTasks.map((task, index) => (
         <TaskItem
           task={task}
           key={index}

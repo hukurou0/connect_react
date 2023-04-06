@@ -14,7 +14,7 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + CHECK, {
-      user_id:sessionStorage.getItem('user_id'),
+      user_id: sessionStorage.getItem('user_id'),
       data: {
         subject_id: subject_id,
         deadline_year: deadline_year,

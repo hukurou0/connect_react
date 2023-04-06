@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+
 import { Stack, Flex, Text, Title, Divider, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -27,20 +29,20 @@ const UserTop = () => {
   const { getAndSetAllTasks } = AllTasksService();
   const allTasksData = useRecoilValue(allTasksDataState);
 
-  const elements = [
-    { time: 1, class: '線形代数', room: 'Ⅳ-402' },
-    { time: 2, class: '-', room: '' },
-    { time: 3, class: '-', room: '' },
-    { time: 1, class: '線形代数', room: 'Ⅶ-LLL5' },
-    { time: 5, class: '-', room: '' },
-  ];
-  const rows = elements.map((element, index) => (
-    <tr key={index}>
-      <td>{element.time}</td>
-      <td>{element.class}</td>
-      <td>{element.room}</td>
-    </tr>
-  ));
+  // const elements = [
+  //   { time: 1, class: '線形代数', room: 'Ⅳ-402' },
+  //   { time: 2, class: '-', room: '' },
+  //   { time: 3, class: '-', room: '' },
+  //   { time: 1, class: '線形代数', room: 'Ⅶ-LLL5' },
+  //   { time: 5, class: '-', room: '' },
+  // ];
+  // const rows = elements.map((element, index) => (
+  //   <tr key={index}>
+  //     <td>{element.time}</td>
+  //     <td>{element.class}</td>
+  //     <td>{element.room}</td>
+  //   </tr>
+  // ));
 
   useEffect(() => {
     getAndSetAllTasks();
@@ -101,11 +103,17 @@ const UserTop = () => {
           <Text color="gray">期限が3日以内・大変さが「やばい」の課題</Text>
         </Stack>
         <Divider w="95%" />
-        {allTasksData.tasks
-          .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
-          .map((task, index) => (
-            <TaskItem task={task} key={`5_${index}`} deadlineApproacing />
-          ))}
+        {allTasksData.tasks.filter(
+          (task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task))
+        ).length === 0 ? (
+          <Title order={3} color="gray">
+            やばい課題はありません。
+          </Title>
+        ) : (
+          allTasksData.tasks
+            .filter((task) => task.difficulty === 5 || (isDeadlineApproaching(task) && !isOutdated(task)))
+            .map((task, index) => <TaskItem task={task} key={`5_${index}`} deadlineApproacing />)
+        )}
       </Stack>
 
       <Stack w="100%" align="center" style={{ marginTop: 20 }}>
@@ -113,11 +121,15 @@ const UserTop = () => {
           <Title order={2}>課題一覧</Title>
         </Flex>
         <Divider w="95%" />
-        {allTasksData.tasks
-          .filter((task) => !isOutdated(task))
-          .map((task, index) => (
-            <TaskItem task={task} key={index} />
-          ))}
+        {allTasksData.tasks.length === 0 ? (
+          <Title order={3} color="gray">
+            課題はありません。
+          </Title>
+        ) : (
+          allTasksData.tasks
+            .filter((task) => !isOutdated(task))
+            .map((task, index) => <TaskItem task={task} key={index} />)
+        )}
       </Stack>
     </Stack>
   );

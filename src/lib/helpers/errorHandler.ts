@@ -43,7 +43,7 @@ export const ErrorHandler = () => {
         code: '',
         message: getStatusMassage(statusCode),
       };
-      
+
       return errorData;
     }
     return undefined;
