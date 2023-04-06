@@ -90,7 +90,6 @@ export const NewTask = () => {
               details,
               difficulty
             );
-            console.log(location.state);
             navigate('/user');
           }}
         >

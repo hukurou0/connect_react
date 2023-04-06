@@ -70,7 +70,7 @@ const Settings = () => {
           {/* Left Bar */}
           <Stack w="40%" align="center" style={{ textAlign: 'left' }}>
             <div>
-              <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10 }}>
+              <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10, width: 'fit-content' }}>
                 <IconUser size={80} color="#ffffff" fill="#E7E9ED" />
               </div>
               <Stack align="flex-start">
