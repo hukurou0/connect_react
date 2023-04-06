@@ -33,6 +33,12 @@ const LogIn = () => {
             size="md"
             radius="lg"
             onClick={async () => {
+              if (usernameInput.length === 0 || passwordInput.length === 0) {
+                setErrorVisivility(true);
+                setAlertContent({ title: 'エラー', message: '入力されていない項目があります。' });
+                return;
+              }
+
               /** This is for production */
               const isVailedInputs = isVailed(true, usernameInput, passwordInput);
               /** This is for test */
@@ -40,7 +46,7 @@ const LogIn = () => {
 
               if (!isVailedInputs) {
                 setErrorVisivility(!isErrorShown);
-                setAlertContent({ title: 'エラー', message: '入力されていない項目があります。' });
+                setAlertContent({ title: 'エラー', message: 'すべての項目を正しく入力してください。' });
                 return;
               }
 

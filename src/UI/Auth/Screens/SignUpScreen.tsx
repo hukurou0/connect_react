@@ -20,9 +20,9 @@ const SignUp = () => {
   const { setUserData } = UserDataService();
   const { getAndSetDepartments } = DepartmentService();
 
-  const [username, setUsername] = useInputState('');
-  const [email, setEmail] = useInputState('');
-  const [password, setPassword] = useInputState('');
+  const [usernameInput, setUsername] = useInputState('');
+  const [emailInput, setEmail] = useInputState('');
+  const [passwordInput, setPassword] = useInputState('');
   const [selectedDepartment, setSelection] = useState<DepartmentData | undefined>(undefined);
   const [isChecked, setCheckStatus] = useInputState(false);
   const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
@@ -40,11 +40,11 @@ const SignUp = () => {
         <Title order={2}>登録</Title>
 
         <Stack w="90%" align="stretch">
-          <UsernameInput username={username} setUsername={setUsername} />
+          <UsernameInput username={usernameInput} setUsername={setUsername} />
 
-          <EmailInput email={email} setEmail={setEmail} />
+          <EmailInput email={emailInput} setEmail={setEmail} />
 
-          <PasswordInputWithNotes password={password} setPassword={setPassword} />
+          <PasswordInputWithNotes password={passwordInput} setPassword={setPassword} />
 
           <Space mt="md" />
 
@@ -66,15 +66,21 @@ const SignUp = () => {
             size="md"
             radius="lg"
             onClick={async () => {
-              const isVailedInputs = isVailed(false, username, password, selectedDepartment);
-
-              if (!isVailedInputs || !isChecked) {
+              if (usernameInput.length === 0 || passwordInput.length === 0) {
                 setErrorVisivility(!isErrorShown);
                 setAlertContent({ title: 'エラー', message: '入力されていない項目があります。' });
                 return;
               }
 
-              await onSignUp(username, password, selectedDepartment!.id);
+              const isVailedInputs = isVailed(false, usernameInput, passwordInput, selectedDepartment);
+
+              if (!isVailedInputs || !isChecked) {
+                setErrorVisivility(!isErrorShown);
+                setAlertContent({ title: 'エラー', message: 'すべての項目を正しく入力してください。' });
+                return;
+              }
+
+              await onSignUp(usernameInput, passwordInput, selectedDepartment!.id);
               await setUserData();
             }}
           >
