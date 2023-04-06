@@ -49,6 +49,10 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   const takenId = A?.map((item) => item.taken_id);
   console.log(takenId);
   console.log(items);
+
+  const selectedID = A?.find((item) => item.taken_id === selectedSubject?.id);
+  console.log(selectedID);
+
   //   console.log(items[0]);
 
   // mon : 5 ~ 9
@@ -85,7 +89,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedSubject?.name ?? 'test'}</span>
+            <span className={classes.label}>{selectedSubject?.name ?? items[day]?.[0].name ?? 'test'}</span>
           </Group>
         </UnstyledButton>
       </Menu.Target>
