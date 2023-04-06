@@ -24,7 +24,7 @@ const SubjectsService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `科目の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `科目の取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -33,7 +33,7 @@ const SubjectsService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `科目の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `科目の取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);

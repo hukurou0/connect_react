@@ -25,7 +25,7 @@ const UserTasksService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `課題の取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -34,7 +34,7 @@ const UserTasksService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `課題の取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -51,7 +51,7 @@ const UserTasksService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の削除に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `課題の削除に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -60,7 +60,7 @@ const UserTasksService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の削除に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `課題の削除に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);

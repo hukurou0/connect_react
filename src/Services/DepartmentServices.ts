@@ -24,7 +24,7 @@ const DepartmentService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `学科一覧の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `学科一覧の取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -33,7 +33,7 @@ const DepartmentService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `学科一覧の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `学科一覧の取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -50,7 +50,7 @@ const DepartmentService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `学科の変更に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `学科の変更に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -59,7 +59,7 @@ const DepartmentService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `学科の変更に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `学科の変更に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);

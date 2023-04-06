@@ -22,7 +22,7 @@ const AuthService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ログインできませんでした。\n${customError.message} (c_${customError.status})`,
+        message: `ログインできませんでした。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -31,7 +31,7 @@ const AuthService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ログインできませんでした。\n${response.error.message} (${response.error.status})`,
+        message: `ログインできませんでした。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -50,7 +50,7 @@ const AuthService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `サインアップできませんでした。\n${customError.message} (c_${customError.status})`,
+        message: `サインアップできませんでした。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -59,7 +59,7 @@ const AuthService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `サインアップできませんでした。\n${response.error.message} (${response.error.status})`,
+        message: `サインアップできませんでした。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);

@@ -25,7 +25,7 @@ const UserDataService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ユーザーデータの取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `ユーザーデータの取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -34,7 +34,7 @@ const UserDataService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ユーザーデータの取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `ユーザーデータの取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -52,7 +52,7 @@ const UserDataService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ログイン状態の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `ログイン状態の取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -61,7 +61,7 @@ const UserDataService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `ログイン状態の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `ログイン状態の取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);

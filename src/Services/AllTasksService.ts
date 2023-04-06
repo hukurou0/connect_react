@@ -24,7 +24,7 @@ const AllTasksService = () => {
     if (customError !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の取得に失敗しました。\n${customError.message} (c_${customError.status})`,
+        message: `課題の取得に失敗しました。\n${customError.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
@@ -33,7 +33,7 @@ const AllTasksService = () => {
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',
-        message: `課題の取得に失敗しました。\n${response.error.message} (${response.error.status})`,
+        message: `課題の取得に失敗しました。\n${response.error.message}`,
       });
       setLoadingState(false);
       setAlertState(true);
