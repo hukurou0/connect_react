@@ -42,7 +42,7 @@ const Settings = () => {
     <Stack w="100%" align="stretch">
       <Stack style={{ padding: 20 }} align="center">
         <Title order={4} style={{ marginBottom: 15 }}>
-          課題表示期限: {new Date(userData.iso_visible_limit).toLocaleDateString()}
+          課題表示: {new Date(userData.iso_visible_limit).toLocaleDateString()}まで
         </Title>
 
         <Flex justify="space-between" w="95%" style={{ paddingLeft: 20, paddingRight: 20 }}>
@@ -70,7 +70,7 @@ const Settings = () => {
           {/* Left Bar */}
           <Stack w="40%" align="center" style={{ textAlign: 'left' }}>
             <div>
-              <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10 }}>
+              <div style={{ backgroundColor: '#E7E9ED', borderRadius: 100, padding: 10, width: 'fit-content' }}>
                 <IconUser size={80} color="#ffffff" fill="#E7E9ED" />
               </div>
               <Stack align="flex-start">
@@ -109,9 +109,6 @@ const Settings = () => {
                 }}
               >
                 変更を保存
-              </Button>
-              <Button radius="lg" maw={250} style={{ marginTop: 25 }}>
-                パスワード変更
               </Button>
             </Stack>
           </Stack>

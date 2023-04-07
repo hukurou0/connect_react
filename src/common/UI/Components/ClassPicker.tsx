@@ -41,6 +41,7 @@ export const ClassPicker = ({ selectedSubject, setSelection }: Params) => {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles({ opened });
   const subjects = useRecoilValue(subjectsState);
+  // console.log(subjects);
   const items = subjects?.map((item) => (
     <Menu.Item onClick={() => setSelection(item)} key={item.name}>
       {item.name}

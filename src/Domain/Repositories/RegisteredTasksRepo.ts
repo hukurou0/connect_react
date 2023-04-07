@@ -4,6 +4,7 @@ import { ErrorHandler } from '../../lib/helpers/errorHandler';
 import { DuplicatedTaskResponse } from '../Entities/TaskEntity';
 
 interface CheckTaskParmas {
+  user_id: string;
   subject_id: number;
   deadline_year: number;
   deadline_month: number;
@@ -14,6 +15,7 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + CHECK, {
+      user_id: sessionStorage.getItem('user_id'),
       data: {
         subject_id: subject_id,
         deadline_year: deadline_year,
@@ -21,6 +23,7 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
         deadline_day: deadline_day,
       },
     });
+    console.log(response.data);
 
     // /** This is for test */
     // const sampleTask: TaskData = {

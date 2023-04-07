@@ -97,12 +97,8 @@ const TaskRegist = () => {
           style={{ marginTop: 25 }}
           onClick={async () => {
             if (dueDate === null) {
-              console.log('dueDate is undefined');
               return;
             }
-            console.log(dueDate.getFullYear());
-            console.log(dueDate.getMonth() + 1);
-            console.log(dueDate.getDate());
 
             await getAndSetRegisteredTasks(selectedSubject!, dueDate);
           }}

@@ -1,5 +1,5 @@
 import { createStyles, Container, Group, ActionIcon, Image, rem, Text } from '@mantine/core';
-import { IconBrandTwitter } from '@tabler/icons-react';
+import { IconBrandInstagram } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.jpg';
 
@@ -48,8 +48,8 @@ export const FooterSocial = () => {
           <Link to="/terms_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             利用規約
           </Link>
-          <ActionIcon size="lg">
-            <IconBrandTwitter size="1.05rem" stroke={1.5} />
+          <ActionIcon size="lg" variant="filled" component={Link} to="https://instagram.com/connect_.official?igshid=YmMyMTA2M2Y=">
+            <IconBrandInstagram size="2rem" stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>
