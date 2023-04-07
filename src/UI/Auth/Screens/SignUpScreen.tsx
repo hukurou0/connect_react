@@ -1,5 +1,6 @@
 import { Button, Checkbox, Flex, Space, Stack, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useInputState } from '@mantine/hooks';
 import { useRecoilState } from 'recoil';
 import { DepartmentData } from '../../../Domain/Entities/DepartmentEntity';
@@ -19,7 +20,6 @@ const SignUp = () => {
   const { onSignUp } = AuthService();
   const { setUserData } = UserDataService();
   const { getAndSetDepartments } = DepartmentService();
-
   const [usernameInput, setUsername] = useInputState('');
   const [emailInput, setEmail] = useInputState('');
   const [passwordInput, setPassword] = useInputState('');
@@ -27,6 +27,7 @@ const SignUp = () => {
   const [isChecked, setCheckStatus] = useInputState(false);
   const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
   const [alertContent, setAlertContent] = useRecoilState(alertContentState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -82,6 +83,8 @@ const SignUp = () => {
 
               await onSignUp(usernameInput, passwordInput, selectedDepartment!.id);
               await setUserData();
+
+              navigate('/introduction');
             }}
           >
             登録

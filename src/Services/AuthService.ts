@@ -66,7 +66,6 @@ const AuthService = () => {
     }
     // sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
-    navigate('/introduction');
   };
 
   return { onLogIn, onSignUp };
