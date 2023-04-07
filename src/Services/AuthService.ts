@@ -39,7 +39,7 @@ const AuthService = () => {
     }
     sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
-    navigate('/introduction');
+    navigate('/user');
   };
 
   const onSignUp = async (username: string, password: string, departmentId: number): Promise<void> => {
@@ -66,7 +66,7 @@ const AuthService = () => {
     }
     sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
-    navigate('/user');
+    navigate('/introduction');
   };
 
   return { onLogIn, onSignUp };
