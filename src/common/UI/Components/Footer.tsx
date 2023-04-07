@@ -39,6 +39,9 @@ export const FooterSocial = () => {
           Copyright © 2023 Connect All rights reserved.
         </Text>
         <Group spacing={0} className={classes.links} position="right" noWrap>
+          <Link to="/introduction" color="gray" style={{ padding: 10, fontSize: 'small' }}>
+            イントロダクション
+          </Link>
           <Link to="/credits" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             クレジット
           </Link>
@@ -48,7 +51,12 @@ export const FooterSocial = () => {
           <Link to="/terms_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             利用規約
           </Link>
-          <ActionIcon size="lg" variant="filled" component={Link} to="https://instagram.com/connect_.official?igshid=YmMyMTA2M2Y=">
+          <ActionIcon
+            size="lg"
+            variant="filled"
+            component={Link}
+            to="https://instagram.com/connect_.official?igshid=YmMyMTA2M2Y="
+          >
             <IconBrandInstagram size="2rem" stroke={1.5} />
           </ActionIcon>
         </Group>
