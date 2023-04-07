@@ -11,13 +11,7 @@ interface CheckTaskParmas {
   deadline_day: number;
 }
 
-export const registeredTasks = async ({
-  user_id,
-  subject_id,
-  deadline_year,
-  deadline_month,
-  deadline_day,
-}: CheckTaskParmas) => {
+export const registeredTasks = async ({ subject_id, deadline_year, deadline_month, deadline_day }: CheckTaskParmas) => {
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + CHECK, {
