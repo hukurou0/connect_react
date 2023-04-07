@@ -64,9 +64,9 @@ const AuthService = () => {
       setAlertState(true);
       return;
     }
-    sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
+    // sessionStorage.setItem('user_id', JSON.stringify(response.data.user_id));
     setLoadingState(false);
-    navigate('/introduction');
+    navigate('/login');
   };
 
   return { onLogIn, onSignUp };
