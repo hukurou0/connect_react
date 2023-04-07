@@ -14,7 +14,6 @@ const requirements = [
   { re: /[0-9]/, label: '数字を含んでください' },
   { re: /[a-z]/, label: '小文字を含んでください' },
   { re: /[A-Z]/, label: '大文字を含んでください' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: '特殊文字を含んでください' },
 ];
 
 function getStrength(password: string) {
