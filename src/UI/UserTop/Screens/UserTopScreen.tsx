@@ -67,7 +67,7 @@ const UserTop = () => {
   return (
     <Stack maw={800} w="100%" align="center">
       <Title order={4} style={{ marginBottom: 20 }}>
-        課題表示期限: {new Date(allTasksData.visible_limit).toLocaleDateString()}
+        課題表示: {new Date(allTasksData.visible_limit).toLocaleDateString()}まで
       </Title>
 
       {/* Timetable */}
