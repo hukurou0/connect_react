@@ -79,6 +79,7 @@ const Introduction = () => {
 
   return (
     <Stack maw={800} w="95%" align="center">
+      <Divider w="100%" />
       <Title>
         課題管理アプリ <span style={{ color: '#48AAF9' }}>Connect</span>
       </Title>
@@ -87,6 +88,19 @@ const Introduction = () => {
         課題の管理を面倒に思ったことはありませんか？不定期で急に出された課題を見逃したりしたことはないでしょうか？このアプリは、そんな問題を人と共に課題管理することで解決するアプリです！
       </Title>
       <Space h="md" />
+      <div>
+        {!userLoggedIn && (
+          <Button
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            ログインへ
+          </Button>
+        )}
+      </div>
+      <Space h="ms" />
+      <Divider w="100%" />
       <Title order={2}>機能紹介</Title>
       <Feature
         icon={IconList}
@@ -108,18 +122,6 @@ const Introduction = () => {
         description="アカウント情報の確認、変更が出来ます。ユーザ削除やログアウトもこちらからできます。"
       />
       <Image src={UserInfoSC} maw={400} />
-
-      <div>
-        {!userLoggedIn && (
-          <Button
-            onClick={() => {
-              navigate('/login');
-            }}
-          >
-            ログイン
-          </Button>
-        )}
-      </div>
     </Stack>
   );
 };
