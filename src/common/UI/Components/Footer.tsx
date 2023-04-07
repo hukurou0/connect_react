@@ -40,7 +40,7 @@ export const FooterSocial = () => {
         </Text>
         <Group spacing={0} className={classes.links} position="right" noWrap>
           <Link to="/introduction" color="gray" style={{ padding: 10, fontSize: 'small' }}>
-            イントロダクション
+            アプリ説明
           </Link>
           <Link to="/credits" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             クレジット
