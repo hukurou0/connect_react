@@ -8,6 +8,7 @@ import AllTasksService from '../../../Services/AllTasksService';
 import { allTasksDataState } from '../../../Hooks/AllTasksState';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
+import { getTimetable } from '../../../Domain/Repositories/TimetableRepo';
 
 const useStyles = createStyles((theme) => ({
   hiddenMobile: {
@@ -46,6 +47,7 @@ const UserTop = () => {
 
   useEffect(() => {
     getAndSetAllTasks();
+    getTimetable();
   }, []);
 
   const isDeadlineApproaching = (task: TaskData): boolean => {
@@ -69,8 +71,8 @@ const UserTop = () => {
       </Title>
 
       {/* Timetable */}
-      {/* <Stack
-        w='calc(100% - 40px)'
+      <Stack
+        w="calc(100% - 40px)"
         align="center"
         style={{ padding: 10, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
       >
@@ -81,17 +83,7 @@ const UserTop = () => {
           </Text>
         </Flex>
         <Divider w="95%" />
-        <Table>
-          <thead>
-            <tr>
-              <th>時間</th>
-              <th>科目</th>
-              <th>教室</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </Table>
-      </Stack> */}
+      </Stack>
 
       <Stack w="100%" align="center" style={{ marginTop: 20 }}>
         <Flex className={classes.hiddenMobile} w="95%" align="center" columnGap={10}>

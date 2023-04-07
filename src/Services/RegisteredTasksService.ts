@@ -29,6 +29,8 @@ const RegisteredTasksService = () => {
       deadline_day: date.getDate(),
     });
 
+    console.log(response);
+
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       setAlertContent({
@@ -52,10 +54,10 @@ const RegisteredTasksService = () => {
 
     setLoadingState(false);
 
-    if (response.data.tasks.length > 0) {
-      navigate('/user/select_task', { state: { subject: subject, deadline: date } });
-    } else {
+    if (response.data.tasks !== null) {
       navigate('/user/create_new_task', { state: { subject: subject, deadline: date } });
+    } else {
+      navigate('/user/select_task', { state: { subject: subject, deadline: date } });
     }
   };
 
