@@ -38,27 +38,49 @@ interface Params {
   day: number;
 }
 
+// export const registerdId = (day: number) => {
+//   const days = useRecoilValue(timetableState);
+//   const A = Object.values(days);
+//   const takenId = A?.map((item) => item.taken_id);
+//   const Id = takenId[day];
+
+//   return Id;
+// };
+
 export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) => {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles({ opened });
   const days = useRecoilValue(timetableState);
   console.log(days);
   const A = Object.values(days);
-  console.log(A);
+  // console.log(A);
   const items = A?.map((item) => item.classes);
   const takenId = A?.map((item) => item.taken_id);
   console.log(takenId);
   console.log(items);
-  //   console.log(items[0]);
+
+  // const [F, SetF] = useState('');
+
+  // const G = () => {
+  //   takenId.forEach((id) => {
+  //     const obj = items[5]?.find((item) => item.id === id);
+  //     if (obj) {
+  //       SetF(obj.name);
+  //     }
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   G();
+  // }, []);
+
+  // console.log(F);
 
   // mon : 5 ~ 9
   // tue : 15 ~ 19
   // wed : 20 ~ 24
   // thu : 10 ~ 14
   // fri : 0 ~ 4
-
-  const D = A[day]?.taken_id;
-  console.log(D);
 
   const TableSubject = items[day]?.map((item) => (
     <Menu.Item defaultValue={item.id} onClick={() => setSelection(item)} key={item.name}>
@@ -85,7 +107,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedSubject?.name ?? 'test'}</span>
+            <span className={classes.label}>{selectedSubject?.name ?? 't'}</span>
           </Group>
         </UnstyledButton>
       </Menu.Target>
