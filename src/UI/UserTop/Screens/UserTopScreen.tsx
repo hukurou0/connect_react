@@ -53,11 +53,11 @@ const UserTop = () => {
     todayTimetable();
   }, []);
 
-  console.log(allTableData[1]);
-  console.log(allTableData.timeTable);
-  console.log(allTableData);
+  // console.log(allTableData[1]);
+  // console.log(allTableData.timeTable);
+  // console.log(allTableData);
 
-  console.log(allTasksData.tasks);
+  // console.log(allTasksData.tasks);
 
   const isDeadlineApproaching = (task: TaskData): boolean => {
     const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
