@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 
-import { Stack, Flex, Text, Title, Divider, createStyles, Space } from '@mantine/core';
+import { Stack, Flex, Text, Title, Divider, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { TaskItem } from '../../../common/UI/Components/TaskItem';
@@ -54,7 +54,8 @@ const UserTop = () => {
   }, []);
 
   console.log(allTableData[1]);
-  console.log(allTableData.timeTable?.map((a) => a.name));
+  console.log(allTableData.timeTable);
+  console.log(allTableData);
 
   console.log(allTasksData.tasks);
 
@@ -90,28 +91,42 @@ const UserTop = () => {
             {today.toLocaleDateString()}
           </Text>
         </Flex>
-        <Space />
-
+        <Divider w="95%" />
         <Flex justify="space-between" w="95%">
           <Stack w="20%" align="center">
-            <Text>1限</Text>
-            <Text size="sm">{allTableData[0]?.name ?? '空きコマ'}</Text>
+            <Text fw={500}>1限</Text>
+            <Text>{allTableData[0]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[0]?.room}
+            </Text>
           </Stack>
           <Stack w="20%" align="center">
             <Text>2限</Text>
             <Text>{allTableData[1]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[1]?.room}
+            </Text>
           </Stack>
           <Stack w="20%" align="center">
             <Text>3限</Text>
             <Text>{allTableData[2]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[2]?.room}
+            </Text>
           </Stack>
           <Stack w="20%" align="center">
             <Text>4限</Text>
             <Text>{allTableData[3]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[3]?.room}
+            </Text>
           </Stack>
           <Stack w="20%" align="center">
             <Text>5限</Text>
             <Text>{allTableData[4]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[4]?.room}
+            </Text>
           </Stack>
         </Flex>
         <Divider w="95%" />
