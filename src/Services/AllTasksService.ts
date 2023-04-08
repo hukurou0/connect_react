@@ -39,27 +39,27 @@ const AllTasksService = () => {
       setAlertState(true);
       return;
     }
-    if (response.data.display_ok.subject_taken === false) {
-      setAlertContent({
-        title: '未履修登録',
-        message: `課題表示のため履修登録をしてください。`,
-      });
-      navigate('/user/timetable');
-      setLoadingState(false);
-      setAlertState(true);
-      return;
-    }
+    // if (response.data.display_ok.subject_taken === false) {
+    //   setAlertContent({
+    //     title: '未履修登録',
+    //     message: `課題表示のため履修登録をしてください。`,
+    //   });
+    //   navigate('/user/timetable');
+    //   setLoadingState(false);
+    //   setAlertState(true);
+    //   return;
+    // }
 
-    if (response.data.display_ok.task_regist === false) {
-      setAlertContent({
-        title: '未課題登録',
-        message: `課題表示のため新たに課題を登録してください。`,
-      });
-      navigate('/user/regist_task');
-      setLoadingState(false);
-      setAlertState(true);
-      return;
-    }
+    // if (response.data.display_ok.task_regist === false) {
+    //   setAlertContent({
+    //     title: '未課題登録',
+    //     message: `課題表示のため新たに課題を登録してください。`,
+    //   });
+    //   navigate('/user/regist_task');
+    //   setLoadingState(false);
+    //   setAlertState(true);
+    //   return;
+    // }
 
     setAllTasks(response.data);
     setLoadingState(false);
