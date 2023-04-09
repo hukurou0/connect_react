@@ -1,20 +1,21 @@
-import { Alert, Button, Overlay, Space, Stack, Title } from '@mantine/core';
-import { useDisclosure, useInputState } from '@mantine/hooks';
-import { useState } from 'react';
-import { IconAlertCircle } from '@tabler/icons-react';
+import { Button, Space, Stack, Title } from '@mantine/core';
+import { useInputState } from '@mantine/hooks';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
 import UsernameInput from '../Components/UsernameInput';
-import UserDataService from '../../../Services/UserDataService';
+// import UserDataService from '../../../Services/UserDataService';
 import AuthService from '../../../Services/AuthService';
-// import isVailed from '../../../../lib/helpers/validation';
+import isVailed from '../../../lib/helpers/validation';
+import { alertPresentationState } from '../../../Hooks/AlertPresentationState';
+import { alertContentState } from '../../../Hooks/AlertContentState';
 
 const LogIn = () => {
   const { onLogIn } = AuthService();
-  const { setUserData } = UserDataService();
-  const [isErrorShown, setErrorVisivility] = useState(false);
+  // const { setUserData } = UserDataService();
+  const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
+  const setAlertContent = useSetRecoilState(alertContentState);
   const [usernameInput, setUsername] = useInputState('');
   const [passwordInput, setPassword] = useInputState('');
-  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <Stack maw={500} w="100%" align="center">
@@ -32,39 +33,31 @@ const LogIn = () => {
             size="md"
             radius="lg"
             onClick={async () => {
+              if (usernameInput.length === 0 || passwordInput.length === 0) {
+                setErrorVisivility(true);
+                setAlertContent({ title: 'エラー', message: '入力されていない項目があります。' });
+                return;
+              }
+
               /** This is for production */
-              // const isVailedInputs = isVailed(usernameInput, passwordInput);
+              const isVailedInputs = isVailed(true, usernameInput, passwordInput);
               /** This is for test */
-              const isVailedInputs = usernameInput.length !== 0 && passwordInput.length !== 0;
+              // const isVailedInputs = usernameInput.length !== 0 && passwordInput.length !== 0;
 
               if (!isVailedInputs) {
                 setErrorVisivility(!isErrorShown);
+                setAlertContent({ title: 'エラー', message: 'すべての項目を正しく入力してください。' });
                 return;
               }
 
               await onLogIn(usernameInput, passwordInput);
-              await setUserData();
+              // await setUserData();
             }}
           >
             ログイン
           </Button>
         </Stack>
       </Stack>
-
-      {isErrorShown && (
-        <Overlay center w="100%" style={{ position: 'fixed' }} onClick={() => setErrorVisivility(false)}>
-          <Alert
-            icon={<IconAlertCircle size="1rem" />}
-            title="Error"
-            color="red"
-            radius="lg"
-            withCloseButton
-            onClose={() => setErrorVisivility(false)}
-          >
-            全項目を正しく入力してください。
-          </Alert>
-        </Overlay>
-      )}
     </Stack>
   );
 };

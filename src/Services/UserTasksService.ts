@@ -6,6 +6,8 @@ import { userTasksState } from '../Hooks/UserTasksState';
 import { deleteUserTask, fetchUserTasks } from '../Domain/Repositories/UserTasksRepo';
 import { TaskData } from '../Domain/Entities/TaskEntity';
 import { logInState } from '../Hooks/LogInState';
+import { alertPresentationState } from '../Hooks/AlertPresentationState';
+import { alertContentState } from '../Hooks/AlertContentState';
 
 const UserTasksService = () => {
   const { catchCustomError } = ErrorHandler();
@@ -13,17 +15,29 @@ const UserTasksService = () => {
   const setUserTasks = useSetRecoilState(userTasksState);
   const navigate = useNavigate();
   const setLoadingState = useSetRecoilState(loadingState);
+  const setAlertState = useSetRecoilState(alertPresentationState);
+  const setAlertContent = useSetRecoilState(alertContentState);
 
   const getAndSetUserTasks = async (): Promise<void> => {
     setLoadingState(true);
     const response = await fetchUserTasks();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の取得に失敗しました。\n${customError.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の取得に失敗しました。\n${response.error.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     setUserTasks(response.data.tasks);
@@ -35,11 +49,21 @@ const UserTasksService = () => {
     const response = await deleteUserTask(task);
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の削除に失敗しました。\n${customError.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `課題の削除に失敗しました。\n${response.error.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     await getAndSetUserTasks();

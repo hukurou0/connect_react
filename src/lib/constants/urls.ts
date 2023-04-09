@@ -14,3 +14,6 @@ export const DUPLICATION = '/api/task/regist/duplication';
 export const NEW = '/api/task/regist/new';
 export const LOGOUT = '/api/logout';
 export const GET_INFO = '/api/user/getInfo';
+export const TAKEN_GET_SUBJECT = '/api/taken/getSubjects';
+export const TAKEN = '/api/taken';
+export const GET_TIMETABLE = '/api/user/getTimeTable';

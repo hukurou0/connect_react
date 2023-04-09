@@ -19,6 +19,9 @@ export const NewTask = () => {
   const { newaddTask } = NewTasksService();
   // const A = location.state as TaskData;
 
+  // const A = (location.state.deadline as Date).getMonth() + 1;
+  // console.log(location.state.deadline);
+  // console.log(A);
   return (
     <Stack maw={800} w="100%" align="center">
       <Stack w="95%" align="center">
@@ -84,13 +87,12 @@ export const NewTask = () => {
               (location.state.subject as SubjectData).name,
               0,
               (location.state.deadline as Date).getFullYear(),
-              (location.state.deadline as Date).getMonth(),
+              (location.state.deadline as Date).getMonth() + 1,
               (location.state.deadline as Date).getDate(),
               summary,
               details,
               difficulty
             );
-            console.log(location.state);
             navigate('/user');
           }}
         >

@@ -13,6 +13,8 @@ import {
   Image,
   rem,
   Flex,
+  Stack,
+  Burger,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHome } from '@tabler/icons-react';
@@ -98,14 +100,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Flex>
           </Link>
 
-          {/* <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-          </Group> */}
-
-          {/* Wait For Public Release */}
-          {/* <Group>
+          <Group>
             {isLoggedIn ? (
               <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
                 <Text>ユーザートップ</Text>
@@ -114,31 +109,32 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             ) : (
               <Group className={classes.hiddenMobile}>
                 <Button variant="default" component={Link} to="/logIn">
-                  Log In
+                  ログイン
                 </Button>
                 <Button component={Link} to="/signUp">
-                  Sign Up
+                  サインアップ
                 </Button>
               </Group>
             )}
 
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
-          </Group> */}
+          </Group>
         </Group>
       </Header>
 
       {/* For Mobile */}
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Connect"
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-      >
-        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+      {userData === undefined && (
+        <Drawer
+          opened={drawerOpened}
+          onClose={closeDrawer}
+          size="100%"
+          padding="md"
+          title="Connect"
+          className={classes.hiddenDesktop}
+          zIndex={1000000}
+        >
+          <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+            {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Link to="/" className={classes.link} onClick={closeDrawer}>
             ホーム
@@ -159,27 +155,21 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             Academy
           </Link> */}
 
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+            <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Group>
-            {isLoggedIn ? (
-              <Link to="/" className={classes.link} onClick={closeDrawer}>
-                <IconHome style={{ marginRight: 10 }} />
-                ユーザートップ
-              </Link>
-            ) : (
-              <Group className={classes.hiddenMobile}>
+            <Stack align="center">
+              <Group>
                 <Button variant="default" component={Link} to="/logIn">
-                  Log In
+                  ログイン
                 </Button>
                 <Button component={Link} to="/signUp">
-                  Sign Up
+                  サインアップ
                 </Button>
               </Group>
-            )}
-          </Group>
-        </ScrollArea>
-      </Drawer>
+            </Stack>
+          </ScrollArea>
+        </Drawer>
+      )}
     </Box>
   );
 };

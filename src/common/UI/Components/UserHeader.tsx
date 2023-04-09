@@ -140,11 +140,8 @@ export const UserHeaderMenu = () => {
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="/logIn" onClick={closeDrawer}>
-              Log In
-            </Button>
-            <Button component={Link} to="/signUp" onClick={closeDrawer}>
-              Sign Up
+            <Button variant="default" component={Link} to="/settings" onClick={closeDrawer}>
+              アカウント
             </Button>
           </Group>
         </ScrollArea>

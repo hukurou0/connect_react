@@ -20,7 +20,7 @@ const useStyles = createStyles((theme) => ({
     left: 10,
     backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
     zIndex: 1,
-    borderRadius: theme.radius.lg
+    borderRadius: theme.radius.lg,
   },
 
   content: {
@@ -61,22 +61,37 @@ const Feature = ({ icon: Icon, title, description, className, ...others }: Featu
       </div>
     </div>
   );
-}
-
+};
 
 const Home = () => (
   <Stack maw={800} w="95%" align="center">
-    <Title>課題管理SNS <span style={{color: '#48AAF9'}}>Connect</span><br />4/10リリース!</Title>
+    <Title>
+      課題管理SNS <span style={{ color: '#48AAF9' }}>Connect</span>
+      <br />
+      4/10リリース!
+    </Title>
     <Divider w="100%" />
     <Title order={2}>機能紹介</Title>
-    <Feature icon={IconList} title='課題表示機能' description='履修している科目で出された課題を一目で確認できます！ 期日が迫っていたり、事前に大変なものに設定していた課題は、「やばい課題」に分類され優先度が分かりやすい！' />
-    <Image src={TaskDisplaySC} maw={400}/>
+    <Feature
+      icon={IconList}
+      title="課題表示機能"
+      description="履修している科目で出された課題を一目で確認できます！ 期日が迫っていたり、事前に大変なものに設定していた課題は、「やばい課題」に分類され優先度が分かりやすい！"
+    />
+    <Image src={TaskDisplaySC} maw={400} />
     <Divider w="100%" />
-    <Feature icon={IconPlus} title='課題追加機能' description='授業で出された課題を追加できます！もし既にある課題を追加する場合は、自動で候補が出てきます！' />
-    <Image src={TaskRegistSC} maw={400}/>
+    <Feature
+      icon={IconPlus}
+      title="課題追加機能"
+      description="授業で出された課題を追加できます！もし既にある課題を追加する場合は、自動で候補が出てきます！"
+    />
+    <Image src={TaskRegistSC} maw={400} />
     <Divider w="100%" />
-    <Feature icon={IconUser} title='アカウント設定機能' description='アカウント情報の再登録ができます！転科などで所属学科などが変更になっても対応できます！' />
-    <Image src={UserInfoSC} maw={400}/>
+    <Feature
+      icon={IconUser}
+      title="アカウント設定機能"
+      description="アカウント情報の再登録ができます！転科などで所属学科などが変更になっても対応できます！"
+    />
+    <Image src={UserInfoSC} maw={400} />
   </Stack>
 );
 

@@ -29,16 +29,15 @@ export const modifyDeparment = async (departmentId: number): Promise<EmptyRespon
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + MODIFY_DEPARTMENTS, {
+      user_id: sessionStorage.getItem('user_id'),
       data: {
         department_id: departmentId,
       },
     });
-
-    const { data } = response.data;
-
+    
     const emptyResponse: EmptyResponse = {
-      status_code: data.status_code,
-      data: data.data,
+      status_code: response.data.status_code,
+      data: response.data.data,
     };
     return emptyResponse;
   } catch (error) {

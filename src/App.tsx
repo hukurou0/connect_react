@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
 import Home from './UI/Home/Home';
 import NoPage from './UI/NoPage/NoPage';
@@ -18,7 +18,17 @@ import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
 import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
 import { Credits } from './UI/Credits/CreditsScreen';
 
+import { alertContentState } from './Hooks/AlertContentState';
+import { alertPresentationState } from './Hooks/AlertPresentationState';
+import { CustomAlert } from './common/UI/Components/CustomAlert';
+import LogIn from './UI/Auth/Screens/LogInScreen';
+import SignUp from './UI/Auth/Screens/SignUpScreen';
+import Introduction from './UI/Introduction/introduction';
+import UserLayout from './Layouts/UserLayout';
+
 const App = () => {
+  const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
+  const alertContent = useRecoilValue(alertContentState);
   const isLoading = useRecoilValue(loadingState);
 
   return (
@@ -27,13 +37,15 @@ const App = () => {
         <Routes>
           <Route path="/" element={<PublicLayout />}>
             <Route index element={<Home />} />
-            <Route path="logIn" element={<Navigate to="/" replace />} />
-            <Route path="signUp" element={<Navigate to="/" replace />} />
+            <Route path="logIn" element={<LogIn />} />
+            <Route path="signUp" element={<SignUp />} />
+            <Route path="usertop" element={<UserTop />} />
             <Route path="credits" element={<Credits />} />
             <Route path="privacy_policy" element={<PrivacyPolicy />} />
             <Route path="terms_of_use" element={<TermsOfUse />} />
+            <Route path="introduction" element={<Introduction />} />
           </Route>
-          <Route path="user/" element={<Navigate to="/" replace />}>
+          <Route path="user/" element={<UserLayout />}>
             <Route index element={<UserTop />} />
             <Route path="regist_task" element={<TaskRegist />} />
             <Route path="create_new_task" element={<NewTask />} />
@@ -49,6 +61,7 @@ const App = () => {
         style={{ position: 'fixed', height: '100%' }}
         visible={isLoading}
       />
+      {isErrorShown && <CustomAlert content={alertContent} setErrorVisivility={setErrorVisivility} />}
     </>
   );
 };
