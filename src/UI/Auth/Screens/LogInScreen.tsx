@@ -1,4 +1,4 @@
-import { Button, Space, Stack, Title } from '@mantine/core';
+import { Button, Space, Stack, Title, Text, Divider, Image } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { PasswordInputWithNotes } from '../Components/PasswordInputWithNotes';
@@ -8,6 +8,8 @@ import AuthService from '../../../Services/AuthService';
 import isVailed from '../../../lib/helpers/validation';
 import { alertPresentationState } from '../../../Hooks/AlertPresentationState';
 import { alertContentState } from '../../../Hooks/AlertContentState';
+import sharejpg from '../../../common/Assets/screenshots/share.jpg';
+import addHomejpg from '../../../common/Assets/screenshots/add_home.jpg';
 
 const LogIn = () => {
   const { onLogIn } = AuthService();
@@ -28,7 +30,9 @@ const LogIn = () => {
           <PasswordInputWithNotes password={passwordInput} setPassword={setPassword} />
 
           <Space mt="md" />
-
+          <Text tt="uppercase" fz="md" c="yellow">
+          アプリを使いやすくするためにインストールをしてください。インストール方法は下で説明しています。
+          </Text>
           <Button
             size="md"
             radius="lg"
@@ -56,6 +60,18 @@ const LogIn = () => {
           >
             ログイン
           </Button>
+          <Divider w="100%" />
+          <Title order={2}>インストール方法</Title>
+          <Space h="ms" />
+          <Text tt="uppercase" fz="md">
+          1.画面下部の共有ボタンを押します。
+          </Text>
+          <Image src={sharejpg} maw={400} />
+          <Space h="ms" />
+          <Text tt="uppercase" fz="md">
+          2.ホーム画面に追加を押します。
+          </Text>
+          <Image src={addHomejpg} maw={400} />
         </Stack>
       </Stack>
     </Stack>
