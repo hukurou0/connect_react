@@ -34,12 +34,10 @@ export const modifyDeparment = async (departmentId: number): Promise<EmptyRespon
         department_id: departmentId,
       },
     });
-
-    const { data } = response.data;
-
+    
     const emptyResponse: EmptyResponse = {
-      status_code: data.status_code,
-      data: data.data,
+      status_code: response.data.status_code,
+      data: response.data.data,
     };
     return emptyResponse;
   } catch (error) {

@@ -46,6 +46,7 @@ const DepartmentService = () => {
   const updateDepartment = async (departmentId: number) => {
     setLoadingState(true);
     const response = await modifyDeparment(departmentId);
+    
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       setAlertContent({

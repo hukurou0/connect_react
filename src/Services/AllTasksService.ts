@@ -39,6 +39,7 @@ const AllTasksService = () => {
       setAlertState(true);
       return;
     }
+    
     if (response.data.display_ok.subject_taken === false) {
       setAlertContent({
         title: '未履修登録',
@@ -49,7 +50,6 @@ const AllTasksService = () => {
       setAlertState(true);
       return;
     }
-
     if (response.data.display_ok.task_regist === false) {
       setAlertContent({
         title: '未課題登録',

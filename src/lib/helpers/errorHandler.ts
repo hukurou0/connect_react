@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { AxiosError } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { Resetter } from 'recoil';
@@ -6,7 +8,7 @@ import { getStatusMassage } from './getStatusMessage';
 
 export const ErrorHandler = () => {
   const makeErrorData = (error: unknown): APIError => {
-    console.log(error);
+    console.log(`ErrorData(line: 9)-${error}`);
 
     let errorData: APIError;
     if (error instanceof AxiosError) {
@@ -42,7 +44,6 @@ export const ErrorHandler = () => {
         code: '',
         message: getStatusMassage(statusCode),
       };
-
       return errorData;
     }
     return undefined;
