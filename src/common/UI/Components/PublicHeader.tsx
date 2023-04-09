@@ -123,7 +123,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
       </Header>
 
       {/* For Mobile */}
-      {!isLoggedIn && <Drawer
+      {userData === undefined && <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
         size="100%"

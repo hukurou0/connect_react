@@ -33,31 +33,11 @@ const UserTop = () => {
   const allTasksData = useRecoilValue(allTasksDataState);
   const { todayTimetable } = displayTimetable();
   const allTableData = useRecoilValue(userTableDataState);
-  // const elements = [
-  //   { time: 1, class: '線形代数', room: 'Ⅳ-402' },
-  //   { time: 2, class: '-', room: '' },
-  //   { time: 3, class: '-', room: '' },
-  //   { time: 1, class: '線形代数', room: 'Ⅶ-LLL5' },
-  //   { time: 5, class: '-', room: '' },
-  // ];
-  // const rows = elements.map((element, index) => (
-  //   <tr key={index}>
-  //     <td>{element.time}</td>
-  //     <td>{element.class}</td>
-  //     <td>{element.room}</td>
-  //   </tr>
-  // ));
 
   useEffect(() => {
     getAndSetAllTasks();
     todayTimetable();
   }, []);
-
-  // console.log(allTableData[1]);
-  // console.log(allTableData.timeTable);
-  // console.log(allTableData);
-
-  // console.log(allTasksData.tasks);
 
   const isDeadlineApproaching = (task: TaskData): boolean => {
     const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
@@ -72,8 +52,6 @@ const UserTop = () => {
     const days = Math.ceil(duration / (1000 * 3600 * 24));
     return days < 0;
   };
-
-  console.log(allTasksData.tasks);
 
   return (
     <Stack maw={800} w="100%" align="center">
@@ -131,7 +109,6 @@ const UserTop = () => {
             </Text>
           </Stack>
         </Flex>
-        <Divider w="95%" />
       </Stack>
 
       <Stack w="100%" align="center" style={{ marginTop: 20 }}>
