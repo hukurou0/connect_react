@@ -50,11 +50,21 @@ const SubjectsService = () => {
     const response = await timeTableSubjects();
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
-      console.log(customError);
+      setAlertContent({
+        title: 'エラー',
+        message: `時間割の取得に失敗しました。\n${customError.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     if (response.error !== undefined) {
-      console.log(response.error);
+      setAlertContent({
+        title: 'エラー',
+        message: `時間割の取得に失敗しました。\n${response.error.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
       return;
     }
     setTimetablesubjects(response.data);
@@ -64,10 +74,25 @@ const SubjectsService = () => {
   const newPostTimetableSubject = async (id: number[]) => {
     setLoadingState(true);
     const response = await postTimetableSubjects(id);
-    if (response.error !== undefined) {
-      console.log(response.error);
+    const customError = catchCustomError(response.status_code, resetLogInState, navigate);
+    if (customError !== undefined) {
+      setAlertContent({
+        title: 'エラー',
+        message: `時間割の更新に失敗しました。\n${customError.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
+      return;
     }
-    console.log(response);
+    if (response.error !== undefined) {
+      setAlertContent({
+        title: 'エラー',
+        message: `時間割の更新に失敗しました。\n${response.error.message}`,
+      });
+      setLoadingState(false);
+      setAlertState(true);
+      return;
+    }
     setLoadingState(false);
   };
 
