@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
@@ -23,8 +23,8 @@ import { alertPresentationState } from './Hooks/AlertPresentationState';
 import { CustomAlert } from './common/UI/Components/CustomAlert';
 import LogIn from './UI/Auth/Screens/LogInScreen';
 import SignUp from './UI/Auth/Screens/SignUpScreen';
-import { UserHeaderMenu } from './common/UI/Components/UserHeader';
 import Introduction from './UI/Introduction/introduction';
+import UserLayout from './Layouts/UserLayout';
 
 
 const App = () => {

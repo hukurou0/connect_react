@@ -100,12 +100,6 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Flex>
           </Link>
 
-          {/* <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-          </Group> */}
-
           <Group>
             {isLoggedIn ? (
               <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
@@ -124,7 +118,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             )}
 
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
-          </Group> */}
+          </Group>
         </Group>
       </Header>
 
