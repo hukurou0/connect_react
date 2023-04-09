@@ -13,11 +13,11 @@ const PublicLayout = () => {
   const isLoggedIn = useRecoilValue(logInState);
   const userData = useRecoilValue(userDataState);
   const { checkLogInState } = UserDataService();
-  useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       await checkLogInState();
     })();
-  }, []);
+  }, []); */
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
