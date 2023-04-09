@@ -107,7 +107,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group spacing="xs">
-            <span className={classes.label}>{selectedSubject?.name ?? 't'}</span>
+            <span className={classes.label}>{selectedSubject?.name ?? '空きコマ'}</span>
           </Group>
         </UnstyledButton>
       </Menu.Target>
