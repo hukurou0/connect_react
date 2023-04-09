@@ -1,13 +1,8 @@
 import { Button, ScrollArea, Stack, Table } from '@mantine/core';
 import { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { ClassPicker } from '../../../common/UI/Components/ClassPicker';
 import { TablesubjectData } from '../../../Domain/Entities/SubjectEntity';
 import SubjectsService from '../../../Services/SubjectsService';
-// import { BASEURL, TAKEN_GET_SUBJECT } from '../../../lib/constants/urls';
-// import { ErrorHandler } from '../../../lib/helpers/errorHandler';
 import { TimetablePicker } from '../../../common/UI/Components/TimetableSubjectPicker';
-// import { TimetablePicker } from '../../../common/UI/Components/TimetableSubjectPicker';
 
 const Timetable = () => {
   const [mon1, setMon1] = useState<TablesubjectData | undefined>(undefined);
@@ -36,24 +31,7 @@ const Timetable = () => {
   const [fri4, setFri4] = useState<TablesubjectData | undefined>(undefined);
   const [fri5, setFri5] = useState<TablesubjectData | undefined>(undefined);
 
-  const elements = [
-    { time: 1, class: '線形代数', room: 'Ⅳ-402' },
-    { time: 2, class: '-', room: '' },
-    { time: 3, class: '-', room: '' },
-    { time: 4, class: '線形代数', room: 'Ⅶ-LLL5' },
-    { time: 5, class: '-', room: '' },
-  ];
-  const rows = elements.map((element) => (
-    <tr key={element.time}>
-      <td>{element.time}</td>
-    </tr>
-  ));
-
   const { getAndSetSubjects, getTimetableSubjects, newPostTimetableSubject } = SubjectsService();
-
-  // const Id = registerdId(5);
-  // const Id2 = registerdId(6);
-  // console.log(Id);
 
   useEffect(() => {
     getAndSetSubjects();
@@ -200,7 +178,6 @@ const Timetable = () => {
             thu5?.id ?? 0,
             fri5?.id ?? 0,
           ]);
-          console.log(mon1);
         }}
       >
         時間割登録

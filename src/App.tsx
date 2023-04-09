@@ -26,7 +26,6 @@ import SignUp from './UI/Auth/Screens/SignUpScreen';
 import Introduction from './UI/Introduction/introduction';
 import UserLayout from './Layouts/UserLayout';
 
-
 const App = () => {
   const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
   const alertContent = useRecoilValue(alertContentState);

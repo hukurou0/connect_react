@@ -38,8 +38,6 @@ export const timeTableSubjects = async (): Promise<TimetableResponse> => {
 
     const { data } = response;
 
-    console.log(response.data.data);
-
     const subjectsResponse = {
       status_code: data.status_code,
       data: data.data,
@@ -67,8 +65,6 @@ export const postTimetableSubjects = async (id: number[]): Promise<EmptyResponse
     });
 
     const { data } = response;
-
-    console.log(response.data.data);
 
     const subjectsResponse = {
       status_code: data.status_code,

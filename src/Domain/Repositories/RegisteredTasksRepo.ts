@@ -23,21 +23,6 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
         deadline_day: deadline_day,
       },
     });
-    console.log(response.data);
-
-    // /** This is for test */
-    // const sampleTask: TaskData = {
-    //   subject_id: 1,
-    //   subject_name: '',
-    //   task_id: 1,
-    //   deadline_year: 2023,
-    //   deadline_month: 4,
-    //   deadline_day: 13,
-    //   summary: 'Test',
-    //   detail: 'Test Details',
-    //   difficulty: 4,
-    // };
-    // const twoSample = { tasks: [sampleTask] };
 
     const { data } = response;
     const duplicatedTaskResponse: DuplicatedTaskResponse = {

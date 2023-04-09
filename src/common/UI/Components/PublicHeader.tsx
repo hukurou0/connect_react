@@ -123,17 +123,18 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
       </Header>
 
       {/* For Mobile */}
-      {userData === undefined && <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Connect"
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-      >
-        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+      {userData === undefined && (
+        <Drawer
+          opened={drawerOpened}
+          onClose={closeDrawer}
+          size="100%"
+          padding="md"
+          title="Connect"
+          className={classes.hiddenDesktop}
+          zIndex={1000000}
+        >
+          <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+            {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Link to="/" className={classes.link} onClick={closeDrawer}>
             ホーム
@@ -154,20 +155,21 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             Academy
           </Link> */}
 
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+            <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Stack align='center'>
-            <Group>
-              <Button variant="default" component={Link} to="/logIn">
-                ログイン
-              </Button>
-              <Button component={Link} to="/signUp">
-                サインアップ
-              </Button>
-            </Group>
-          </Stack>
-        </ScrollArea>
-      </Drawer>}
+            <Stack align="center">
+              <Group>
+                <Button variant="default" component={Link} to="/logIn">
+                  ログイン
+                </Button>
+                <Button component={Link} to="/signUp">
+                  サインアップ
+                </Button>
+              </Group>
+            </Stack>
+          </ScrollArea>
+        </Drawer>
+      )}
     </Box>
   );
 };

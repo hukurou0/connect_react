@@ -13,8 +13,6 @@ const displayTimetable = () => {
     if (response.error !== undefined) {
       setLoadingState(false);
     }
-
-    // console.log(response);
     setUserTable(response.data);
   };
 

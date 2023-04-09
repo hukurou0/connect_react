@@ -29,8 +29,6 @@ const RegisteredTasksService = () => {
       deadline_day: date.getDate(),
     });
 
-    console.log(response);
-
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
     if (customError !== undefined) {
       setAlertContent({

@@ -16,7 +16,7 @@ export const CustomAlert = ({ content, setErrorVisivility }: CustomAlertProps) =
       radius="lg"
       withCloseButton
       onClose={() => setErrorVisivility(false)}
-      style={{whiteSpace: "pre-wrap"}}
+      style={{ whiteSpace: 'pre-wrap' }}
     >
       {content.message}
     </Alert>
