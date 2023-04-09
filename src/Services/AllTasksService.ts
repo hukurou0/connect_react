@@ -30,6 +30,7 @@ const AllTasksService = () => {
       setAlertState(true);
       return;
     }
+    console.log(response);
     if (response.error !== undefined) {
       setAlertContent({
         title: 'エラー',

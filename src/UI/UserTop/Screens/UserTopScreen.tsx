@@ -73,6 +73,8 @@ const UserTop = () => {
     return days < 0;
   };
 
+  console.log(allTasksData.tasks);
+
   return (
     <Stack maw={800} w="100%" align="center">
       <Title order={4} style={{ marginBottom: 20 }}>
