@@ -47,7 +47,9 @@ const DepartmentService = () => {
     setLoadingState(true);
     const response = await modifyDeparment(departmentId);
     const customError = catchCustomError(response.status_code, resetLogInState, navigate);
-    if (customError !== undefined) {
+    console.log(response.error)
+    console.log(customError.status)
+    if (customError.status !== undefined) {
       setAlertContent({
         title: 'エラー',
         message: `学科の変更に失敗しました。\n${customError.message}`,

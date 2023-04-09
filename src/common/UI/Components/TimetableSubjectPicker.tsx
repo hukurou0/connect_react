@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createStyles, UnstyledButton, Menu, Group, rem } from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons-react';
 import { useRecoilValue } from 'recoil';
 import { TablesubjectData } from '../../../Domain/Entities/SubjectEntity';
 import { timetableState } from '../../../Hooks/TimetableSubjectState';
@@ -51,13 +52,13 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles({ opened });
   const days = useRecoilValue(timetableState);
-  console.log(days);
+  // console.log(days);
   const A = Object.values(days);
   // console.log(A);
   const items = A?.map((item) => item.classes);
-  const takenId = A?.map((item) => item.taken_id);
-  console.log(takenId);
-  console.log(items);
+  // const takenId = A?.map((item) => item.taken_id);
+  // console.log(takenId);
+  // console.log(items);
 
   // const [F, SetF] = useState('');
 
@@ -83,7 +84,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
   // fri : 0 ~ 4
 
   const TableSubject = items[day]?.map((item) => (
-    <Menu.Item defaultValue={item.id} onClick={() => setSelection(item)} key={item.name}>
+    <Menu.Item onClick={() => setSelection(item)} key={item.name}>
       {item.name}
     </Menu.Item>
   ));
@@ -109,6 +110,7 @@ export const TimetablePicker = ({ selectedSubject, setSelection, day }: Params) 
           <Group spacing="xs">
             <span className={classes.label}>{selectedSubject?.name ?? '空きコマ'}</span>
           </Group>
+          <IconChevronDown size="1rem" className={classes.icon} stroke={1.5} />
         </UnstyledButton>
       </Menu.Target>
       <Menu.Dropdown>{TableSubject}</Menu.Dropdown>
