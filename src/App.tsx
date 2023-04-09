@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import PublicLayout from './Layouts/PublicLayout';
-import UserLayout from './Layouts/UserLayout';
 import Home from './UI/Home/Home';
 import NoPage from './UI/NoPage/NoPage';
-import LogIn from './UI/Auth/Screens/LogInScreen';
-import SignUp from './UI/Auth/Screens/SignUpScreen';
+// import LogIn from './UI/Auth/Screens/LogInScreen';
+// import SignUp from './UI/Auth/Screens/SignUpScreen';
+// import UserLayout from './Layouts/UserLayout';
 import UserTop from './UI/UserTop/Screens/UserTopScreen';
 import TaskRegist from './UI/TaskRegist/Screens/TaskRegistScreen';
 import Timetable from './UI/Timetable/Screens/TimetableScreen';
@@ -18,11 +18,13 @@ import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
 import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
 import { Credits } from './UI/Credits/CreditsScreen';
 
-import Introduciton from './UI/Introduction/introduction';
-
 import { alertContentState } from './Hooks/AlertContentState';
 import { alertPresentationState } from './Hooks/AlertPresentationState';
 import { CustomAlert } from './common/UI/Components/CustomAlert';
+import LogIn from './UI/Auth/Screens/LogInScreen';
+import SignUp from './UI/Auth/Screens/SignUpScreen';
+import { UserHeaderMenu } from './common/UI/Components/UserHeader';
+import Introduction from './UI/Introduction/introduction';
 
 
 const App = () => {
@@ -38,13 +40,12 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="logIn" element={<LogIn />} />
             <Route path="signUp" element={<SignUp />} />
-            <Route path="introduction" element={<Introduciton />} />
-            <Route path="usertop" element={<UserTop />} />
             <Route path="credits" element={<Credits />} />
             <Route path="privacy_policy" element={<PrivacyPolicy />} />
             <Route path="terms_of_use" element={<TermsOfUse />} />
+            <Route path="introduction" element={<Introduction />} />
           </Route>
-          <Route path="user/" element={<UserLayout />}>
+          <Route path="user/" element={<UserHeaderMenu />}>
             <Route index element={<UserTop />} />
             <Route path="regist_task" element={<TaskRegist />} />
             <Route path="create_new_task" element={<NewTask />} />

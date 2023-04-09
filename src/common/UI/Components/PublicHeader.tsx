@@ -8,13 +8,13 @@ import {
   Text,
   Divider,
   Box,
-  Burger,
   Drawer,
   ScrollArea,
   Image,
   rem,
   Flex,
   Stack,
+  Burger,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconHome } from '@tabler/icons-react';
@@ -100,12 +100,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
             </Flex>
           </Link>
 
-          {/* <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-          </Group> */}
-
+          {/* Wait For Public Release */}
           <Group>
             {isLoggedIn ? (
               <Button variant="light" color="#48AAF9" radius="xl" size="md" component={Link} to="user">
@@ -123,7 +118,7 @@ export const PublicHeaderMenu = ({ isLoggedIn, userData }: HeaderProps) => {
               </Group>
             )}
 
-            {!isLoggedIn && <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />}
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
           </Group>
         </Group>
       </Header>

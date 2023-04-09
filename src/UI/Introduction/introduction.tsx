@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     position: 'relative',
     paddingTop: theme.spacing.xl,
     paddingLeft: theme.spacing.xl,
-    width: '95%',
+    width: '95%'
   },
 
   overlay: {
@@ -22,21 +22,21 @@ const useStyles = createStyles((theme) => ({
     left: 10,
     backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
     zIndex: 1,
-    borderRadius: theme.radius.lg,
+    borderRadius: theme.radius.lg
   },
 
   content: {
     position: 'relative',
-    zIndex: 2,
+    zIndex: 2
   },
 
   icon: {
-    color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+    color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color
   },
 
   title: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  },
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black
+  }
 }));
 
 interface FeatureProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -79,14 +79,12 @@ const Introduction = () => {
 
   return (
     <Stack maw={800} w="95%" align="center">
-      <Divider w="100%" />
       <Title>
         課題管理アプリ <span style={{ color: '#48AAF9' }}>Connect</span>
       </Title>
-      <Divider w="100%" />
-      <Title tt="uppercase" fz="sm" order={4}>
-        課題の管理を面倒に思ったことはありませんか？不定期で急に出された課題を見逃したりしたことはないでしょうか？このアプリは、そんな問題を人と共に課題管理することで解決するアプリです！
-      </Title>
+      <Text tt="uppercase" fz="md">
+        課題の管理を面倒に思ったことはありませんか？不定期で急に出された課題を見逃したりしたことはないでしょうか？<br />このサービスは、そんな問題を人と共に課題管理することで解決できます！
+      </Text>
       <Space h="md" />
       <div>
         {!userLoggedIn && (

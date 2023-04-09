@@ -1,4 +1,4 @@
-import { createStyles, Container, Group, ActionIcon, Image, rem, Text } from '@mantine/core';
+import { createStyles, Container, Group, Image, rem, Text, Anchor } from '@mantine/core';
 import { IconBrandInstagram } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.jpg';
@@ -6,7 +6,7 @@ import logo from '../../Assets/logo.jpg';
 const useStyles = createStyles((theme) => ({
   footer: {
     marginTop: rem(120),
-    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]}`,
+    borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]}`
   },
 
   inner: {
@@ -17,15 +17,15 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: theme.spacing.xl,
 
     [theme.fn.smallerThan('xs')]: {
-      flexDirection: 'column',
-    },
+      flexDirection: 'column'
+    }
   },
 
   links: {
     [theme.fn.smallerThan('xs')]: {
-      marginTop: theme.spacing.md,
-    },
-  },
+      marginTop: theme.spacing.md
+    }
+  }
 }));
 
 export const FooterSocial = () => {
@@ -51,14 +51,9 @@ export const FooterSocial = () => {
           <Link to="/terms_of_use" color="gray" style={{ padding: 10, fontSize: 'small' }}>
             利用規約
           </Link>
-          <ActionIcon
-            size="lg"
-            variant="filled"
-            component={Link}
-            to="https://instagram.com/connect_.official?igshid=YmMyMTA2M2Y="
-          >
+          <Anchor color='purple' href="https://instagram.com/connect_.official?igshid=YmMyMTA2M2Y=">
             <IconBrandInstagram size="2rem" stroke={1.5} />
-          </ActionIcon>
+          </Anchor>
         </Group>
       </Container>
     </div>
