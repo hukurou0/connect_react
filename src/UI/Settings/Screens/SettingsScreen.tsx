@@ -157,9 +157,6 @@ const Settings = () => {
               >
                 変更を保存
               </Button>
-              <Button size="md" radius="lg" maw={250} style={{ marginTop: 25 }}>
-                パスワード変更
-              </Button>
             </Stack>
           </Stack>
         </Stack>
