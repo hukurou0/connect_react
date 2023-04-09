@@ -51,6 +51,10 @@ const Timetable = () => {
 
   const { getAndSetSubjects, getTimetableSubjects, newPostTimetableSubject } = SubjectsService();
 
+  // const Id = registerdId(5);
+  // const Id2 = registerdId(6);
+  // console.log(Id);
+
   useEffect(() => {
     getAndSetSubjects();
     getTimetableSubjects();
@@ -170,33 +174,33 @@ const Timetable = () => {
         style={{ marginTop: 25 }}
         onClick={async () => {
           await newPostTimetableSubject([
-            mon1?.id,
-            tue1?.id,
-            wed1?.id,
-            thu1?.id,
-            fri1?.id,
-            mon2?.id,
-            tue2?.id,
-            wed2?.id,
-            thu2?.id,
-            fri2?.id,
-            mon3?.id,
-            tue3?.id,
-            wed3?.id,
-            thu3?.id,
-            fri3?.id,
-            mon4?.id,
-            tue4?.id,
-            wed4?.id,
-            thu4?.id,
-            fri4?.id,
-            mon5?.id,
-            tue5?.id,
-            wed5?.id,
-            thu5?.id,
-            fri5?.id,
+            mon1?.id ?? 0,
+            tue1?.id ?? 0,
+            wed1?.id ?? 0,
+            thu1?.id ?? 0,
+            fri1?.id ?? 0,
+            mon2?.id ?? 0,
+            tue2?.id ?? 0,
+            wed2?.id ?? 0,
+            thu2?.id ?? 0,
+            fri2?.id ?? 0,
+            mon3?.id ?? 0,
+            tue3?.id ?? 0,
+            wed3?.id ?? 0,
+            thu3?.id ?? 0,
+            fri3?.id ?? 0,
+            mon4?.id ?? 0,
+            tue4?.id ?? 0,
+            wed4?.id ?? 0,
+            thu4?.id ?? 0,
+            fri4?.id ?? 0,
+            mon5?.id ?? 0,
+            tue5?.id ?? 0,
+            wed5?.id ?? 0,
+            thu5?.id ?? 0,
+            fri5?.id ?? 0,
           ]);
-          console.log(mon1?.id);
+          console.log(mon1);
         }}
       >
         時間割登録

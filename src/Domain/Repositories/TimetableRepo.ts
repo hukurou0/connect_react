@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { BASEURL, GET_TIMETABLE } from '../../lib/constants/urls';
 import { ErrorHandler } from '../../lib/helpers/errorHandler';
-import { UserTimetalbeResponse } from '../Entities/UserTimetableEntity';
+import { UserTimetableResponse } from '../Entities/UserTimetableEntity';
 
-export const getTimetable = async (): Promise<UserTimetalbeResponse> => {
+export const getTimetable = async (): Promise<UserTimetableResponse> => {
   const { makeErrorData } = ErrorHandler();
   try {
     const response = await axios.post(BASEURL + GET_TIMETABLE, {
@@ -12,16 +12,18 @@ export const getTimetable = async (): Promise<UserTimetalbeResponse> => {
     });
     const { data } = response;
 
-    const subjectsResponse: UserTimetalbeResponse = {
+    const subjectsResponse: UserTimetableResponse = {
       status_code: data.status_code,
       data: data.data,
     };
     return subjectsResponse;
   } catch (error) {
     const errorData = makeErrorData(error);
-    const subjectsResponse: UserTimetalbeResponse = {
+    const subjectsResponse: UserTimetableResponse = {
       status_code: 0,
-      data: [],
+      data: {
+        timeTable: [{ name: '', room: '' }],
+      },
       error: errorData,
     };
     return subjectsResponse;

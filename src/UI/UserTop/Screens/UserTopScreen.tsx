@@ -8,6 +8,8 @@ import AllTasksService from '../../../Services/AllTasksService';
 import { allTasksDataState } from '../../../Hooks/AllTasksState';
 import { TaskData } from '../../../Domain/Entities/TaskEntity';
 import { generateDate } from '../../../lib/helpers/generateDate';
+import displayTimetable from '../../../Services/DisplayTimeService';
+import { userTableDataState } from '../../../Hooks/UserTimetableState';
 // import { getTimetable } from '../../../Domain/Repositories/TimetableRepo';
 
 const useStyles = createStyles((theme) => ({
@@ -29,7 +31,8 @@ const UserTop = () => {
   const today = new Date();
   const { getAndSetAllTasks } = AllTasksService();
   const allTasksData = useRecoilValue(allTasksDataState);
-
+  const { todayTimetable } = displayTimetable();
+  const allTableData = useRecoilValue(userTableDataState);
   // const elements = [
   //   { time: 1, class: '線形代数', room: 'Ⅳ-402' },
   //   { time: 2, class: '-', room: '' },
@@ -47,8 +50,14 @@ const UserTop = () => {
 
   useEffect(() => {
     getAndSetAllTasks();
-    // getTimetable();
+    todayTimetable();
   }, []);
+
+  // console.log(allTableData[1]);
+  // console.log(allTableData.timeTable);
+  // console.log(allTableData);
+
+  // console.log(allTasksData.tasks);
 
   const isDeadlineApproaching = (task: TaskData): boolean => {
     const deadline = generateDate(task.deadline_year, task.deadline_month, task.deadline_day);
@@ -71,7 +80,7 @@ const UserTop = () => {
       </Title>
 
       {/* Timetable */}
-      {/* <Stack
+      <Stack
         w="calc(100% - 40px)"
         align="center"
         style={{ padding: 10, background: '#fff', borderRadius: 20, boxShadow: '0px 5px 20px #D7D7D7' }}
@@ -83,7 +92,45 @@ const UserTop = () => {
           </Text>
         </Flex>
         <Divider w="95%" />
-      </Stack> */}
+        <Flex justify="space-between" w="95%">
+          <Stack w="20%" align="center">
+            <Text fw={500}>1限</Text>
+            <Text>{allTableData[0]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[0]?.room}
+            </Text>
+          </Stack>
+          <Stack w="20%" align="center">
+            <Text>2限</Text>
+            <Text>{allTableData[1]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[1]?.room}
+            </Text>
+          </Stack>
+          <Stack w="20%" align="center">
+            <Text>3限</Text>
+            <Text>{allTableData[2]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[2]?.room}
+            </Text>
+          </Stack>
+          <Stack w="20%" align="center">
+            <Text>4限</Text>
+            <Text>{allTableData[3]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[3]?.room}
+            </Text>
+          </Stack>
+          <Stack w="20%" align="center">
+            <Text>5限</Text>
+            <Text>{allTableData[4]?.name ?? '空きコマ'}</Text>
+            <Text size="xs" color="gray">
+              {allTableData[4]?.room}
+            </Text>
+          </Stack>
+        </Flex>
+        <Divider w="95%" />
+      </Stack>
 
       <Stack w="100%" align="center" style={{ marginTop: 20 }}>
         <Flex className={classes.hiddenMobile} w="95%" align="center" columnGap={10}>

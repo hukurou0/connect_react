@@ -1,8 +1,8 @@
 import { APIError } from './ApiBaseModel';
 
-export type UserTimetalbeResponse = {
+export type UserTimetableResponse = {
   status_code: number;
-  data: TimetableData[];
+  data: TimetableData;
   error?: APIError | undefined;
 };
 
