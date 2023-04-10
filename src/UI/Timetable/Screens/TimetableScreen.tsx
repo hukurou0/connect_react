@@ -1,5 +1,6 @@
 import { Button, ScrollArea, Stack, Table } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TablesubjectData } from '../../../Domain/Entities/SubjectEntity';
 import SubjectsService from '../../../Services/SubjectsService';
 import { TimetablePicker } from '../../../common/UI/Components/TimetableSubjectPicker';
@@ -32,7 +33,9 @@ const Timetable = () => {
   const [fri5, setFri5] = useState<TablesubjectData | undefined>(undefined);
 
   const { getAndSetSubjects, getTimetableSubjects, newPostTimetableSubject } = SubjectsService();
-
+ 
+  const navigate = useNavigate();
+  
   useEffect(() => {
     getAndSetSubjects();
     getTimetableSubjects();
@@ -151,6 +154,7 @@ const Timetable = () => {
         maw={250}
         style={{ marginTop: 25 }}
         onClick={async () => {
+          navigate('/user')
           await newPostTimetableSubject([
             mon1?.id ?? 0,
             tue1?.id ?? 0,
