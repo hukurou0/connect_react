@@ -34,7 +34,7 @@ export const registeredTasks = async ({ subject_id, deadline_year, deadline_mont
     const errorData = makeErrorData(error);
     const duplicatedTaskResponse: DuplicatedTaskResponse = {
       status_code: 0,
-      data: { tasks: [] },
+      data: { data:{tasks: [] }},
       error: errorData,
     };
     return duplicatedTaskResponse;

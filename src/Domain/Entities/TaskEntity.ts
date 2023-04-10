@@ -2,7 +2,7 @@ import { APIError } from './ApiBaseModel';
 
 export type DuplicatedTaskResponse = {
   status_code: number;
-  data: { tasks: TaskData[] };
+  data: { data:{tasks: []} };
   error?: APIError | undefined;
 };
 
