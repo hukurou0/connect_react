@@ -48,11 +48,12 @@ const RegisteredTasksService = () => {
       setAlertState(true);
       return;
     }
-    setRegisteredTasks(response.data.tasks);
+    
+    setRegisteredTasks(response.data.data.tasks);
 
     setLoadingState(false);
 
-    if (response.data.tasks !== null) {
+    if (response.data.data.tasks.length === 0) {
       navigate('/user/create_new_task', { state: { subject: subject, deadline: date } });
     } else {
       navigate('/user/select_task', { state: { subject: subject, deadline: date } });
