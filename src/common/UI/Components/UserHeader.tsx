@@ -13,7 +13,7 @@ import {
   ScrollArea,
   Burger,
 } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconUserCircle } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import logo from '../../Assets/logo.jpg';
@@ -79,6 +79,7 @@ const useStyles = createStyles((theme) => ({
 export const UserHeaderMenu = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const { classes, theme } = useStyles();
+  const navigate = useNavigate()
 
   return (
     <Box pb={60}>
@@ -140,7 +141,9 @@ export const UserHeaderMenu = () => {
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} to="/settings" onClick={closeDrawer}>
+            <Button variant="default" onClick={()=>{
+              navigate('/user/settings')
+            }}>
               アカウント
             </Button>
           </Group>
