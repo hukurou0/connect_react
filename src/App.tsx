@@ -1,30 +1,31 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoadingOverlay, Loader } from '@mantine/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import PublicLayout from './Layouts/PublicLayout';
-import Home from './UI/Home/Home';
-import NoPage from './UI/NoPage/NoPage';
+/* import PublicLayout from './Layouts/PublicLayout';
+import Home from './UI/Home/Home'; */
+/* import NoPage from './UI/NoPage/NoPage'; */
+import CloseService from './UI/NoPage/CloseService';
 // import LogIn from './UI/Auth/Screens/LogInScreen';
 // import SignUp from './UI/Auth/Screens/SignUpScreen';
 // import UserLayout from './Layouts/UserLayout';
-import UserTop from './UI/UserTop/Screens/UserTopScreen';
+/* import UserTop from './UI/UserTop/Screens/UserTopScreen';
 import TaskRegist from './UI/TaskRegist/Screens/TaskRegistScreen';
 import Timetable from './UI/Timetable/Screens/TimetableScreen';
 import { NewTask } from './UI/TaskRegist/Screens/NewTaskScreen';
-import { TaskSelection } from './UI/TaskRegist/Screens/TaskSelectionScreen';
+import { TaskSelection } from './UI/TaskRegist/Screens/TaskSelectionScreen'; */
 import { loadingState } from './Hooks/LoadingState';
-import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
+/* import AccountOuterScreen from './UI/Settings/Screens/AccountOuterScreen';
 import { TermsOfUse } from './UI/TermsOfUse/TermsOfUseScreen';
 import { PrivacyPolicy } from './UI/PrivacyPolicy/PrivacyPolicyScreen';
-import { Credits } from './UI/Credits/CreditsScreen';
+import { Credits } from './UI/Credits/CreditsScreen'; */
 
 import { alertContentState } from './Hooks/AlertContentState';
 import { alertPresentationState } from './Hooks/AlertPresentationState';
 import { CustomAlert } from './common/UI/Components/CustomAlert';
-import LogIn from './UI/Auth/Screens/LogInScreen';
+/* import LogIn from './UI/Auth/Screens/LogInScreen';
 import SignUp from './UI/Auth/Screens/SignUpScreen';
 import Introduction from './UI/Introduction/introduction';
-import UserLayout from './Layouts/UserLayout';
+import UserLayout from './Layouts/UserLayout'; */
 
 const App = () => {
   const [isErrorShown, setErrorVisivility] = useRecoilState(alertPresentationState);
@@ -35,7 +36,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PublicLayout />}>
+          {/* <Route path="/" element={<PublicLayout />}>
             <Route index element={<Home />} />
             <Route path="logIn" element={<LogIn />} />
             <Route path="signUp" element={<SignUp />} />
@@ -53,7 +54,8 @@ const App = () => {
             <Route path="timetable" element={<Timetable />} />
             <Route path="settings" element={<AccountOuterScreen />} />
           </Route>
-          <Route path="*" element={<NoPage />} />
+          <Route path="*" element={<NoPage />} /> */}
+          <Route path="*" element={<CloseService />} />
         </Routes>
       </BrowserRouter>
       <LoadingOverlay
